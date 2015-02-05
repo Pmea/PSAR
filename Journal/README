@@ -1,0 +1,5 @@
+utilisation du journal de bord.
+dans le journal est consigné toute les traveaux sur le projet. les conternedus de reunion, les divers recherches effectuer et le travaille implementé.
+
+avant toute ecriture penser a faire la commande suivant, pour ajoute la date au format mornalisé
+date >> journalDeBord.txt

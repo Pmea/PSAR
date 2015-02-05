@@ -1,0 +1,6 @@
+jeudi 29 janvier 2015, 23:02:21 (UTC+0100)
+REUNION 1
+Premiere reunion avec le responsable du projet. Presentation du projet en detail de la carte UDOO, ainsi que sur les attendus du chercheur et de l'artiste.
+Discution sur pure-data et comment integrer les capteurs dans pure-data. Les externals sont evoqué: soit en c/c++, soit par le biais de faust. 
+
+Creation du depôt github, ainsi que recherche de documentation sur les externals PureData.

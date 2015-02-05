@@ -1,0 +1,4 @@
+1: {text: '**dimanche, 01/02/2015 22:23:52**
+
+    Creation du journal de bord sous rednotebook, test des fonctionnalités pour la
+    creation d''un journal de bord pour le projet.'}
