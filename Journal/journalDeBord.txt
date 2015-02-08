@@ -1,6 +1,28 @@
 jeudi 29 janvier 2015, 23:02:21 (UTC+0100)
-REUNION 1
+COMPTE RENDU REUNION 1
 Premiere reunion avec le responsable du projet. Presentation du projet en detail de la carte UDOO, ainsi que sur les attendus du chercheur et de l'artiste.
 Discution sur pure-data et comment integrer les capteurs dans pure-data. Les externals sont evoqué: soit en c/c++, soit par le biais de faust. 
 
 Creation du depôt github, ainsi que recherche de documentation sur les externals PureData.
+
+
+dimanche 8 février 2015, 14:31:18 (UTC+0100)
+COMPTE RENDU REUNION 2
+Presentation de l'equipe complete au reponsable, ainsi que discution du projet et de ces debouchés.
+Huges nous a demander de mettre en place d'un google doc pour pouvoir converser plus simplement sur l'avancement du projet et connaitre les problemes rencontrés.
+
+Nous avons discuter sur les realisations a faire dans un premier temps.
+Il y a 3 poles independant (mais avec cet priorité:
+- l'aquisition des données vennent des capteurs, micros et autres
+- creation module de base (base pour les fonctionnalités plus evolués), elles seront listé plus bas. En faust ou flext au choix -Hugues Genevois a l'aire de preferer faust-
+- creation d'un outil de test, avec possibilité de faire des graphs de données pour chaque capteur avec la possibilité de le faire passer plus ou moins vite. En pd ou avec un langage tierce. -Pierre pense a du java avec un gui design, plus rapide a programmer, question toujours en suspend-
+
+- Si du temps, nous pouvons reflechir a une interface graphique aidant a la programmation. Mais cela n'est pas essentiel.
+
+*LISTE DES MODULES DE BASE*
+- suivi de hauteur
+- deternimer les impultions (peut etre a partir d'un seuil, au dessus de X puissance) -> principe du vu mettre
+- extraction  d'enveloppe
+- extraction de motif rythmique
+- fft, dans l'optique de faire des filtre
+- filtre simple, passe bas, passe haut, passe band, plus complex ?
