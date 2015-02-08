@@ -26,3 +26,5 @@ Il y a 3 poles independant (mais avec cet priorité:
 - extraction de motif rythmique
 - fft, dans l'optique de faire des filtre
 - filtre simple, passe bas, passe haut, passe band, plus complex ?
+
+Les reunions sont maintenant hebdomadère, et se derouleront le vendredi mà 11h au LAM (11 rue Lourmel)
