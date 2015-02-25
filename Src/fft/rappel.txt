@@ -1,0 +1,9 @@
+
+ gcc -std=c99 -Wall -o buildata  builddata.c -lm 
+ gcc rawfft.c -o rawfft -lfftw3 -lm
+
+ ./buildata 440 880 1200 8000 20000
+ ./rawfft -n 44100  data-sinus.data > result-dft
+
+gnuplot> plot [*:*] [*:*] "result-dft" with linespoints
+
