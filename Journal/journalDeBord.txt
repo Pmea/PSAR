@@ -28,3 +28,23 @@ Il y a 3 poles independant (mais avec cet priorité:
 - filtre simple, passe bas, passe haut, passe band, plus complex ?
 
 Les reunions sont maintenant hebdomadère, et se derouleront le vendredi mà 11h au LAM (11 rue Lourmel)
+
+dimanche 15 février 2015, 15:07:39 (UTC+0100)
+COMPTE RENDU REUNION 3
+Pierre a implementé un calcul de la fft mais elle s'avaire tres couteuse en temps de traitement trop cher pour la puissant de la carte. Lidée est donc abandonnée au profit de quelque chose de moins gourmand. (On garde le code nous y reviendrons peut etre plus tard, si besoin).
+Nous pensons a un systeme plus ecconome: Nous decoupons le spectre en bande de frequence (a l'aide de filtre) et nous regardons si il y a des impactes sur chaque bande, si il y a un impact nous regardons la frequence.
+Pour parlons de la detection rythmique
+
+vendredi 27 février 2015, 18:23:39 (UTC+0100)
+COMPTE RENDU REUNION 4
+Nous avons eu une reunion avec le chercheur et le compositeur.
+Le compositeur nous a parlé des souhait de realisation et de comment lui voyait le projet.
+
+mardi 3 mars 2015, 18:23:39 (UTC+0100)
+COMPTE RENDU REUNION 5
+-adrien absant-
+Nous avons eu une reunion avec le chercheur avec le quelle nous avons parlé de musique et de comment il voyait le projet. Il a manifesté de nouveau du souhait de faire un module pour ponctuer les bruit ambiant plutot que de vouloir tous couvrir.
+Nous avons parlé de Max NeuHaus qui a fait des installations ainsi que de de Murray Schafer le createur du Soundscape (qui consiste a ecouter ce qui ce passe autour de nous).
+
+Comme pour la reunion avec le chercheur, elle a etait court. 
+La partie detection de frequence ne marchant pas, Mr Genevois a bien voulu voir notre code pour trouvé ou etait le probleme. Et a demandé a etre plus tenue au courant pour l'avancé du projet (par mail et Google Doc).
