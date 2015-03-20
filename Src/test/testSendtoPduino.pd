@@ -11,7 +11,7 @@
 #X obj 448 204 t b b;
 #X obj 451 170 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 449 276 devicename /dev/ttyACM5;
+#X msg 450 276 devicename /dev/ttyACM6;
 #X connect 0 0 3 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
