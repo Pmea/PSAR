@@ -3,6 +3,8 @@ int photocellReading;     // the analog reading from the sensor divider
 int LEDpin = 11;          // connect LED to pin 11 
 int LEDbrightness;        
 
+int valDelay=10;      // en miliseconde * 10
+
 int valMax;    //pour adapter le systeme a l'environement
 int valMin;
 
@@ -10,9 +12,15 @@ void setup(void) {
   Serial.begin(9600);   
   valMax=0;
   valMin= (1 << 15) -1 ; // max int 
+  
 }
  
 void loop(void) {
+  Serial.flush();
+  if(Serial.available()){
+    valDelay= Serial.read();
+  }
+  
   photocellReading = analogRead(photocellPin);    
   
   if(valMin > photocellReading){
@@ -39,5 +47,5 @@ void loop(void) {
   
   Serial.write(photocellReading);
  
-  delay(100);
+  delay(valDelay*10);
 }
