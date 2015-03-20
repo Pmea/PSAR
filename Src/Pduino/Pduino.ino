@@ -1,7 +1,6 @@
 
 int led = 13;
-int mode;  // 0 pour eteins et 1 pour alume
-
+int mode;  // 0 pour eteins et 1 pour alumer
 
 void setup() {                
   pinMode(led, OUTPUT); 
@@ -13,7 +12,7 @@ void setup() {
 void loop() {
   //Serial.println("LOOP");
   int val;
-  while(Serial.available() > 0){
+  while(Serial.available() > 0){    //attendre une valeur a lire
     val=Serial.read();
     
     int ledVal= map(val, 0, 127, 0, 225);
