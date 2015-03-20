@@ -1,3 +1,0 @@
-NAME=simple1 coincoin
-SRCS=main.cpp coincoin.cpp
-
