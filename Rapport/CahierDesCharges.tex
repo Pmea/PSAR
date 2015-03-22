@@ -32,9 +32,8 @@
     \vskip0.5em}%
 }                
 
-
 \hypersetup{%
-    pdfborder = {0 0 0}
+    pdfborder = {0 0 0},
 }
 
                                     
@@ -88,7 +87,7 @@ La production de son du dispositif devra être une synthèse sonore et non un le
 La synthèse paramétrable devra être modifiable par un interface ergonomique sans avoir à brancher d’écran, ni de clavier au nano-ordinateur. Cette interface permet de définir ce que chaque capteur contrôle au niveau de la synthèse.
 
 \paragraph{}
-L'interface utilisateur devra permettre a l'utilisateur de fournir, a l'aide d'un fichier ou en traçant une courbe, les valeurs désiré pour chaque capteur pour faire des simulations du comportement du dispositif en condition réel. Des paramètres variant tres lentement comme la température ou la pression, l'utilisateur pourra également modifier la vitesse de lecture de ses valeurs.
+L'interface utilisateur devra permettre a l'utilisateur de fournir, a l'aide d'un fichier ou en traçant une courbe, les valeurs désiré pour chaque capteur pour faire des simulations du comportement du dispositif en condition réel. Certains paramètres variant tres lentement comme la température ou la pression, l'utilisateur pourra également modifier la vitesse de lecture de ses valeurs.
 
 \paragraph{}
 La procédure permettant la reproduction du dispositif un tutoriel détaillant toute les actions a faire sera fourni pour le coté logiciel ainsi que les schémas des divers montages pour le coté matériel. En parallèle a ce tutoriel, une image de la carte mémoire du nano-ordinateur sera fourni. Ce qui permettra la duplication rapide pour le même type de carte (même modelé, même version).
@@ -119,13 +118,68 @@ Le produit doit être livrée le 12/05/2015.
 
 \section{Tests de validation}
 
-\subsection{Test de paramétrage}
-\paragraph{Séquencement}
-L'utilisateur allume le nano-ordinateur
-
 \subsection{Test d'interaction}
+\paragraph{Test\\}
+Ce test permet de savoir si le dispositif fonctionne bien.
+
+\paragraph{Hypothèse\\}
+Le dispositif est déployé, tous les composants fonctionnent correctement.
+
+\paragraph{Entrée\\}
+Néant.
+
+\paragraph{Enchaînement nominal}
+\begin {enumerate}
+\item L'utilisateur démarre le système. Il attend que le système soit prêts.
+\item L'utilisateur fait une suite de plusieurs claquements de main.
+\end{enumerate}
+
+\paragraph{Résultat attendu\\}
+Le système doit répondre a ses claquements de main en émettant un son en lien (rythme, fréquence) avec l'action de l'utilisateur.
+
+\subsection{Test de l'interface d'utilisation}
+\paragraph{Test\\}
+Envoi de donnés via l'interface d'utilisation pour simuler une réception particulière d'un capteur.
+
+\paragraph{Hypothèse\\}
+Le dispositif est déployé, tous les composants fonctionnent correctement.
+Le nano-ordinateur est éteint.
+
+\paragraph{Entrée\\}
+nom du fichier \"capteur\_val.dat\" contenant un ensemble de valeurs.\\
+Le capteur de température comme le capteur cible.
+
+
+\paragraph{Enchaînement nominal}
+\begin {enumerate}
+\item L'utilisateur démarre le système.
+\item L'utilisateur envoi a l'aide de l'interface le fichier \"capteur\_val.dat\" et choisi le capteur de température comme capteur correspond ces valeurs.
+\item L'utilisateur confirme.
+\end{enumerate}
+
+\paragraph{Résultat attendu\\}
+Les valeurs on était enregistré par le dispositif. Le dispositif doit générer du son.
+
 
 \subsection{Test de duplication}
 
- 
+\paragraph{Test\\}
+Ce test permet de voir si le tutoriel fourni avec le projet est suffisant pour reproduire le dispositif.
+\paragraph{Hypothèse\\}
+L'utilisateur dispose de tous le matériel nécessaire pour faire le montage.
+De plus il possède un ordinateur sous Linux a ça disposition.
+
+\paragraph{Entrée\\}
+Une carte microSD.
+
+\paragraph{Enchaînement nominal}
+\begin {enumerate}
+\item L'utilisateur fait les montages indiqué sur les schémas fourni avec le projet.
+\item L'utilisateur suit la procédure d'installation détaillé dans le tutoriel. Qui lui permet d'installer le logiciel sur le nano-ordinateur.
+\item L'utilisateur redémarre le nano-ordinateur.
+\end{enumerate}
+
+\paragraph{Résultat attendu\\}
+Le dispositif fonctionne, les voyants des capteurs indiquent qu'ils fonctionnes. Le dispositif émet des sons.
+
 \end{document}
