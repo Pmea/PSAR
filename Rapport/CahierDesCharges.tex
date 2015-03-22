@@ -30,8 +30,14 @@
     \par\end{center}
     \begin{center}\large#1\end{center}
     \vskip0.5em}%
+}                
+
+
+\hypersetup{%
+    pdfborder = {0 0 0}
 }
 
+                                    
 \title{Projet PSAR :\\ Dispositif Autonome de Synthèse Sonore}
 \subtitle{Encadrant : Hugues Genevois \\ Cahier de Charges}
 
@@ -45,13 +51,81 @@
 
 \newpage
 
-\section{Présentation et contexte du projet}
+\section{Contexte}
+DASS, Dispositif Autonome de Synthèse Sonore,
+
+parlé du l'idée du dispositif 
+parler du compositeur 
+parler du projet et que cela doit etre reproductible
+
 
 \section{Le produit}
+\subsection{Description de la demande}
 
-\section{Fonctionnalités et Contraintes}
+\paragraph{}
+Le but du projet est de créer un dispositif électroacoustiques portable interagissant avec son environnement.
+Ce dispositif doit capter l'environnement qui l'entour a l'aide de capteurs diverses (micro, luminosité, température...). Il devra traiter ces données pour en extraire des informations pertinent sur les changements se produisant autour de lui (chant d'oiseaux, passage d'une personne au alentour...).
+Grâce a ses informations, il pourra interagir en synthétisant des signaux acoustiques. \\
+Cette synthèse devra être paramétrable, pour permettre au compositeur de modifier l’influence des informations capter sur la synthèse.
+
+\paragraph{}
+Une interface utilisateur, permettant au compositeur de simuler des données captés, sera intégrer au dispositif. Cela lui permettra de faire des expérimentations pour sa composition.
+
+\paragraph{}
+Dans l'optique de la reproduction de ce dispositif pour des installations plus important. Une procédure devra être pour permettre a un utilisateur de pouvoir reproduire le système, aussi bien matériel que logiciel.
+
+\paragraph{}
+Le dispositif devant être portable, le programme doit fonctionner sur une nano-ordinateur Udoo. Et le langage du programme principal est PureData, pour assurer une maintenabilité et une extensionnalité plus facile.
+
+
+
+\subsection{Fonctions du produit}
+\paragraph{}
+L’acquisition des donnée des capteurs devra être traité en temps réel pour permettre une bonne interaction avec son environnement. Les ressources du nano-ordianteur étant limité, l'analyse des données devra être économe en temps de calcule. Ainsi que de la taille des données devant être stocké sur la carte mémoire.\\
+La production de son du dispositif devra être une synthèse sonore et non un lecture de sons prêts enregistrés. De plus la synthèse sonore aura pour rôle de souligner les éléments déjà présent dans l’environnement  et on ne faire un imitation de celle-ci.
+
+\paragraph{}
+La synthèse paramétrable devra être modifiable par un interface ergonomique sans avoir à brancher d’écran, ni de clavier au nano-ordinateur. Cette interface permet de définir ce que chaque capteur contrôle au niveau de la synthèse.
+
+\paragraph{}
+L'interface utilisateur devra permettre a l'utilisateur de fournir, a l'aide d'un fichier ou en traçant une courbe, les valeurs désiré pour chaque capteur pour faire des simulations du comportement du dispositif en condition réel. Des paramètres variant tres lentement comme la température ou la pression, l'utilisateur pourra également modifier la vitesse de lecture de ses valeurs.
+
+\paragraph{}
+La procédure permettant la reproduction du dispositif un tutoriel détaillant toute les actions a faire sera fourni pour le coté logiciel ainsi que les schémas des divers montages pour le coté matériel. En parallèle a ce tutoriel, une image de la carte mémoire du nano-ordinateur sera fourni. Ce qui permettra la duplication rapide pour le même type de carte (même modelé, même version).
+
+\paragraph{}
+Une fois le dispositif installé, il faudra pouvoir savoir, sans le toucher, si il fonctionne correctement et si aucun capteur n'est défectueux.
+
+
+\section{Contraintes}
+\subsection{Contraintes materiel/logiciel}
+\paragraph{}
+Le programme doit fonctionner sur un nano-ordinateur Udoo et doit utiliser majoritairement les possibilités du langage PureData avec possibilité de réaliser des portions de code dans d'autres langages.
+
+\subsection{Contraintes fonctionnement}
+\paragraph{}
+Le dispositif doit être autonome; l'utilisateur allume le nano-ordineur puis le système se charge et peut doit pouvoir s’exécuter pendant plusieurs heurs (voir plusieurs jours) sans besoin de l’intervention quelconque.
+
+\paragraph{}
+De plus il serai envisager, pour une future version, que le dispositif soit autonome énergétiquement en embarquant des panneaux photo-voltaïques.
+
+\subsection{Contraintes d'extensibilité}
+\paragraph{}
+Le dispositif n'est qu'une première version qui devra être re-utilisable pour des versions plus élaboré du projet, qui permettrai de le rendre autonome énergiquement, ou permettrai de faire communiquer les dispositifs entre eux.\\ Dans cet optique le projet doit être maintenable et extensible le plus facilement possible.
+
+\subsection{Contraintes de Temps}
+\paragraph{}
+Le produit doit être livrée le 12/05/2015.
 
 \section{Tests de validation}
+
+\subsection{Test de paramétrage}
+\paragraph{Séquencement}
+L'utilisateur allume le nano-ordinateur
+
+\subsection{Test d'interaction}
+
+\subsection{Test de duplication}
 
  
 \end{document}
