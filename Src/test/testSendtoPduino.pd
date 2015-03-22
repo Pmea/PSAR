@@ -1,24 +1,34 @@
-#N canvas 1018 82 869 531 10;
-#X obj 389 383 comport 9600;
-#X msg 471 348 close;
-#X msg 469 325 devices;
-#X obj 385 428 print [pduino];
-#X msg 372 287 0;
-#X obj 169 136 vsl 15 128 -100 500 0 0 empty empty empty 0 -9 0 10
--262144 -1 -1 10600 1;
-#X msg 451 248 devicename /dev/ttymxc3;
-#X obj 448 204 t b b;
-#X obj 451 170 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X floatatom 104 280 5 0 0 0 - - -;
-#X msg 450 276 devicename /dev/ttyACM1;
-#X obj 167 344 spigot;
-#X obj 167 424 spigot;
-#X obj 170 290 t f f;
-#X obj 167 370 t f f;
-#X obj 190 320 > 0;
-#X obj 188 399 < 256;
-#X connect 0 0 3 0;
+#N canvas 1012 92 869 531 10;
+#X obj 403 260 comport 9600;
+#X msg 485 225 close;
+#X msg 483 202 devices;
+#X obj 379 495 print [pduino];
+#X msg 386 164 0;
+#X obj 183 13 vsl 15 128 -100 500 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X msg 465 125 devicename /dev/ttymxc3;
+#X obj 462 81 t b b;
+#X obj 465 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 118 157 5 0 0 0 - - -;
+#X msg 464 153 devicename /dev/ttyACM1;
+#X obj 181 221 spigot;
+#X obj 161 313 spigot;
+#X obj 184 167 t f f;
+#X obj 181 247 t f f;
+#X obj 204 197 > 0;
+#X obj 202 276 < 256;
+#X obj 424 311 ../compt;
+#X obj 425 330 % 2;
+#X obj 391 373 spigot;
+#X obj 332 367 spigot;
+#X obj 357 419 pack a f;
+#X obj 358 454 route 108;
+#X obj 425 350 == 1;
+#X obj 365 345 == 0;
+#X connect 0 0 17 0;
+#X connect 0 0 19 0;
+#X connect 0 0 20 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 4 0 0 0;
@@ -37,3 +47,12 @@
 #X connect 14 1 16 0;
 #X connect 15 0 11 1;
 #X connect 16 0 12 1;
+#X connect 17 0 18 0;
+#X connect 18 0 23 0;
+#X connect 18 0 24 0;
+#X connect 19 0 21 1;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 3 0;
+#X connect 23 0 19 1;
+#X connect 24 0 20 1;

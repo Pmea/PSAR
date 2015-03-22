@@ -44,7 +44,7 @@ void loop(void) {
  
 
   analogWrite(LEDpin, LEDbrightness);
-  
+  Serial.print('l');
   Serial.write(photocellReading);
  
   delay(valDelay*10);
