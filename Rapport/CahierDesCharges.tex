@@ -40,7 +40,7 @@
 \title{Projet PSAR :\\ Dispositif Autonome de Synthèse Sonore}
 \subtitle{Encadrant : Hugues Genevois \\ Cahier de Charges}
 
-\author{Pierre Mahé \& Adrien Hug-Korda}
+\author{Pierre Mahé \& (Adrien Hug-Korda)}
 \date{\today}
  
  
@@ -53,56 +53,76 @@
 \section{Contexte}
 
 \paragraph{}
-\textbf{Maîtrise d’œuvre :} Hugues GENEVOIS, Michel RISSE
+\textbf{Maîtrise d’œuvre :} Hugues GENEVOIS
 \vspace{-5mm}
 \paragraph{}
-\textbf{Maîtrise d’ouvrage :} Pierre MAHÉ, Adrien HUG-KORDA 
+\textbf{Maîtrise d’ouvrage :} Pierre MAHÉ, (Adrien HUG-KORDA )
 
 \paragraph{}
-Michel RISSE, compositeur de Décor sonore, a à son actif de nombreuses création et dispositifs sonore.
-Le projet DASS, Dispositif Autonome de Synthèse Sonore, est un nouveau projet de Michel RISSE, compositeur de Décor sonore aillant a à a son actif de nombreuses créations et dispositifs sonores. Ce projet en fait en collaboration avec Hugues GENEVOIS, Chercheur au LAM de l’Institut Jean le Rond d’Alembert.
+Le projet DASS, Dispositif Autonome de Synthèse Sonore, est un nouveau projet de Michel RISSE, compositeur de Décor sonore ayant à son actif de nombreuses créations et dispositifs sonores. Ce projet est une collaboration avec Hugues GENEVOIS, Chercheur au LAM de l’Institut Jean le Rond d’Alembert.\\
 
-Le projet consiste a mettre en place un dispositif permettant, à l'aide de capteurs de recueillir des informations sur l'environnement qui l’entour et en émettant des sons, interagir avec cette environnement. 
+Le projet consiste à mettre en place un dispositif permettant de le faire interagir avec son environnement dans le but de souligner les sons existant dans cet environnement.
+Le dispositif recueillera les informations nécessaire grâce à des capteurs, permettant de récupérer les bruits ambiants, la luminosité, le température...\\
 
-Dans un premier temps, ce dispositif devrait être utilisé pour une installation en juillet prochain dans le contexte de [nom de l’événement] à [nom du lieux].
-Dans un second temps Hugues GENEVOIS et Michel RISSE voudraient réaliser une installation plus importante avec de plusieurs dispositifs avec pour chacun des comportements et des caractéristiques au niveau de la synthèse sonore. 
+Dans un premier temps, ce dispositif devrait être utilisé pour une installation artistique, en juillet prochain, dans le contexte de [nom de l’événement] à [nom du lieux].
+Dans un second temps, Hugues GENEVOIS et Michel RISSE voudraient réaliser une installation plus importante de nombreux dispositifs avec pour chacun des comportements et des caractéristiques propre.
 
 \section{Le produit}
 \subsection{Description de la demande}
 
 \paragraph{}
 Le but du projet est de créer un dispositif électroacoustiques portable interagissant avec son environnement.
-Ce dispositif doit capter l'environnement qui l'entour a l'aide de capteurs diverses (micro, luminosité, température...). Il devra traiter ces données pour en extraire des informations pertinent sur les changements se produisant autour de lui (chant d'oiseaux, passage d'une personne au alentour...).
-Grâce a ses informations, il pourra interagir en synthétisant des signaux acoustiques. \\
-Cette synthèse devra être paramétrable, pour permettre au compositeur de modifier l’influence des informations capter sur la synthèse.
+Ce dispositif doit capter l'environnement qui l'entour à l'aide de capteurs diverses (microphone, luminosité, température...). 
+Il devra traiter ces données pour en extraire des informations pertinent sur les changements se produisant autour de lui (chant d'oiseaux, passage d'une personne au alentour...).
+Grâce à ces informations, il pourra interagir en synthétisant des signaux acoustiques.
 
 \paragraph{}
-Une interface utilisateur, permettant au compositeur de simuler des données captés, sera intégrer au dispositif. Cela lui permettra de faire des expérimentations pour sa composition.
+La synthèse devra être paramétrable, pour permettre au compositeur de modifier l’influence des informations récupéré des capteurs sur la synthèse.
 
 \paragraph{}
-Dans l'optique de la reproduction de ce dispositif pour des installations plus important. Une procédure devra être pour permettre a un utilisateur de pouvoir reproduire le système, aussi bien matériel que logiciel.
+Une interface utilisateur, permettant au compositeur de simuler des données captés, sera intégrer au dispositif. Cela lui permettra de faire des expérimentations pour sa composition.\\
 
 \paragraph{}
-Le dispositif devant être portable, le programme doit fonctionner sur une nano-ordinateur Udoo. Et le langage du programme principal est PureData, pour assurer une maintenabilité et une extensionnalité plus facile.
+Dans l'optique de la reproduction de ce dispositif pour des installations plus important. Une procédure devra permettre à un utilisateur de pouvoir reproduire l'ensemble du système, aussi bien niveau matériel que logiciel.
 
+\paragraph{}
+Le dispositif devant être portable, le programme doit fonctionner sur une nano-ordinateur de type Udoo Quad. De plus le langage du programme principal est PureData, pour assurer une maintenabilité et une extensionnalité plus facile.
 
 
 \subsection{Fonctions du produit}
 \paragraph{}
-L’acquisition des donnée des capteurs devra être traité en temps réel pour permettre une bonne interaction avec son environnement. Les ressources du nano-ordianteur étant limité, l'analyse des données devra être économe en temps de calcule. Ainsi que de la taille des données devant être stocké sur la carte mémoire.\\
-La production de son du dispositif devra être une synthèse sonore et non un lecture de sons prêts enregistrés. De plus la synthèse sonore aura pour rôle de souligner les éléments déjà présent dans l’environnement  et on ne faire un imitation de celle-ci.
+L’acquisition des données fourni par les capteurs devra être traité en temps réel pour permettre une bonne interaction avec son environnement. Les ressources du nano-ordianteur étant limitées, l'analyse des données devra être économe en temps de calcule, ainsi quand place occupée sur la carte mémoire.\\
+La production de sons du dispositif devra être de la synthèse sonore et non une lecture de sons pré-enregistrés. De plus la synthèse sonore aura pour rôle de souligner les éléments déjà présent dans l’environnement et on ne faire un imitation de celle-ci.
 
 \paragraph{}
-La synthèse paramétrable devra être modifiable par un interface ergonomique sans avoir à brancher d’écran, ni de clavier au nano-ordinateur. Cette interface permet de définir ce que chaque capteur contrôle au niveau de la synthèse.
+Deux groupes de capteurs sont à distinguer, les capteurs qui vont simplement influer sur les paramètres de la synthèse, comme le capteur de luminosité, de température... \\
+Et le microphone qui lui à deux fonctions principal: extraire le motif rythmique et le motif mélodie.\\
+Le motif rythmique devra être une sequence minimale, extrait d'un événement ponctuel ou d'une sequence rythmique période.
+Le motif mélodie, elle ne sera limité que par un nombre maximum de notes. Pour garder la structure de la mélodie, si il y en a une.\\
+
+Les ressources du nano-ordinateur étant limité, la détection rythmique et mélodie ne pourra être qu'approximative. Pour la détection mélodie, le programme détectera uniquement la mélodie émergente (la plus forte) d'une mélodie polyphonique. Pour la détection rythmique, le programme ne pourra pas détecter un rythme périodique uniquement si le motif rythmique est exactement identique, sans impact parasite ou bruit. Une approximation rythmique sera tolérer tant qu'elle ne dépasse pas un certain seuil.\\
+
+\hspace{-6mm}\textbf{Liste des capteurs}
+\begin {itemize}
+\item[-] Microphone.
+\item[-] Luminosité.
+\item[-] Température.
+\item[-] Pression.
+\item[-] ???
+\end{itemize}
 
 \paragraph{}
-L'interface utilisateur devra permettre a l'utilisateur de fournir, a l'aide d'un fichier ou en traçant une courbe, les valeurs désiré pour chaque capteur pour faire des simulations du comportement du dispositif en condition réel. Certains paramètres variant tres lentement comme la température ou la pression, l'utilisateur pourra également modifier la vitesse de lecture de ses valeurs.
+La synthèse paramétrable devra être paramétrable. Ce paramétrage sera accessible par un interface graphique. Permettant à l'utilisateur de définir se que chaque capteur contrôle comme paramètre de la synthèse. Pour plus d’ergonomie cette interface devra être exécutable à distance ou du moins sans avoir à brancher de périphérique (clavier ou écran) au nano-ordinateur.
 
 \paragraph{}
-La procédure permettant la reproduction du dispositif un tutoriel détaillant toute les actions a faire sera fourni pour le coté logiciel ainsi que les schémas des divers montages pour le coté matériel. En parallèle a ce tutoriel, une image de la carte mémoire du nano-ordinateur sera fourni. Ce qui permettra la duplication rapide pour le même type de carte (même modelé, même version).
+Une seconde interface graphique devra permettre à l'utilisateur de fournir, à l'aide d'un fichier ou en entrant des valeurs dans un tableau, les données reçu de chaque capteur. Cela lui permettra de simuler le comportement du dispositif dans un environnement donné.\\
+Certains paramètres variant très lentement comme la température ou la pression, l'utilisateur pourra également modifier la vitesse de lecture de ces valeurs.
 
 \paragraph{}
-Une fois le dispositif installé, il faudra pouvoir savoir, sans le toucher, si il fonctionne correctement et si aucun capteur n'est défectueux.
+La procédure détaillant toute les actions permettant la reproduction du dispositif sera fourni pour la partie logiciel, ainsi que des schémas des divers montages électrique pour la partie matériel. En parallèle à ce tutoriel, une image de la carte mémoire du nano-ordinateur sera fourni. Ce qui permettra la duplication rapide pour le même type de carte (même modèle, même version).
+
+\paragraph{}
+Une fois le dispositif installé, il faudra pouvoir savoir, sans toucher au dispositif, ni brancher de périphérique, si il fonctionne correctement et si aucun capteur n'est défectueux.
 
 
 \section{Contraintes}
@@ -112,14 +132,14 @@ Le programme doit fonctionner sur un nano-ordinateur Udoo et doit utiliser major
 
 \subsection{Contraintes fonctionnement}
 \paragraph{}
-Le dispositif doit être autonome; l'utilisateur allume le nano-ordineur puis le système se charge et peut doit pouvoir s’exécuter pendant plusieurs heurs (voir plusieurs jours) sans besoin de l’intervention quelconque.
+Le dispositif doit être autonome; l'utilisateur allume le nano-ordineur puis le système se charge et doit pouvoir s’exécuter pendant plusieurs heurs (voir plusieurs jours) sans besoin d'une intervention quelconque.
 
 \paragraph{}
-De plus il serai envisager, pour une future version, que le dispositif soit autonome énergétiquement en embarquant des panneaux photo-voltaïques.
+Pour une future version, il serait envisagé que le dispositif soit autonome énergétiquement en embarquant par exemple des panneaux photo-voltaïques. Cela est doit déjà être prit en compte sur la première version.
 
 \subsection{Contraintes d'extensibilité}
 \paragraph{}
-Le dispositif n'est qu'une première version qui devra être re-utilisable pour des versions plus élaboré du projet, qui permettrai de le rendre autonome énergiquement, ou permettrai de faire communiquer les dispositifs entre eux.\\ Dans cet optique le projet doit être maintenable et extensible le plus facilement possible.
+Le dispositif n'est qu'une première version qui devra être réutilisable pour des versions plus élaboré du projet, qui permettrait de faire communiquer les dispositifs entre eux pour les faire interagir ensemble.\\ Dans cet optique le projet doit être maintenable et extensible le plus facilement possible.
 
 \subsection{Contraintes de Temps}
 \paragraph{}
@@ -139,12 +159,12 @@ Néant.
 
 \paragraph{Enchaînement nominal}
 \begin {enumerate}
-\item L'utilisateur démarre le système. Il attend que le système soit prêts.
+\item L'utilisateur démarre le système. Il attend que le système soit prêt.
 \item L'utilisateur fait une suite de plusieurs claquements de main.
 \end{enumerate}
 
 \paragraph{Résultat attendu\\}
-Le système doit répondre a ses claquements de main en émettant un son en lien (rythme, fréquence) avec l'action de l'utilisateur.
+Le système doit répondre à ces claquements de main en émettant un son en lien (rythme, fréquence) avec l'action de l'utilisateur.
 
 \subsection{Test de l'interface d'utilisation}
 \paragraph{Test\\}
@@ -158,11 +178,10 @@ Le nano-ordinateur est éteint.
 nom du fichier \"capteur\_val.dat\" contenant un ensemble de valeurs.\\
 Le capteur de température comme le capteur cible.
 
-
 \paragraph{Enchaînement nominal}
 \begin {enumerate}
 \item L'utilisateur démarre le système.
-\item L'utilisateur envoi a l'aide de l'interface le fichier \"capteur\_val.dat\" et choisi le capteur de température comme capteur correspond ces valeurs.
+\item L'utilisateur envoi à l'aide de l'interface le fichier \"capteur\_val.dat\" et choisi le capteur de température comme capteur correspond ces valeurs.
 \item L'utilisateur confirme.
 \end{enumerate}
 
@@ -176,7 +195,7 @@ Les valeurs on était enregistré par le dispositif. Le dispositif doit génére
 Ce test permet de voir si le tutoriel fourni avec le projet est suffisant pour reproduire le dispositif.
 \paragraph{Hypothèse\\}
 L'utilisateur dispose de tous le matériel nécessaire pour faire le montage.
-De plus il possède un ordinateur sous Linux a ça disposition.
+De plus il possède un ordinateur sous Linux à sa disposition.
 
 \paragraph{Entrée\\}
 Une carte microSD.
@@ -184,11 +203,11 @@ Une carte microSD.
 \paragraph{Enchaînement nominal}
 \begin {enumerate}
 \item L'utilisateur fait les montages indiqué sur les schémas fourni avec le projet.
-\item L'utilisateur suit la procédure d'installation détaillé dans le tutoriel. Qui lui permet d'installer le logiciel sur le nano-ordinateur.
+\item L'utilisateur suit la procédure d'installation détaillé dans le tutoriel.
 \item L'utilisateur redémarre le nano-ordinateur.
 \end{enumerate}
 
 \paragraph{Résultat attendu\\}
-Le dispositif fonctionne, les voyants des capteurs indiquent qu'ils fonctionnes. Le dispositif émet des sons.
+Le dispositif fonctionne, les voyants des capteurs indiquent qu'ils fonctionnent. Le dispositif émet des sons.
 
 \end{document}
