@@ -50,3 +50,24 @@ Nous avons parlé de Max NeuHaus qui a fait des installations ainsi que de de Mu
 
 Comme pour la reunion avec le chercheur, elle a etait court. 
 La partie detection de frequence ne marchant pas, Mr Genevois a bien voulu voir notre code pour trouvé ou etait le probleme. Et a demandé a etre plus tenue au courant pour l'avancé du projet (par mail et Google Doc).
+
+
+COMPTE RENDU REUNION 6
+Creation du cahier des chargers ainsi que decouverte de l'envoie de donnée entre PD et d'autre langagge C ou Java pour l'interface de parametrage ou autre.
+
+samedi 28 mars 2015, 16:09:59 (UTC+0100)
+COMPTE RENDU REUNION 7
+
+Abandon d'un des étudiants Adrien Hug-Korda
+Nous avons discuté des capteurs, il serait utilise d'avoir simplement un  valeur arbitaire entre 0 255 mais egalement d'avoir un liste des changement pour pouvoir avoir la valeur de variation, ce qui serai plus utilise de plus il faudrait faire un systement de moyenne pour pouvoir adapter l'arduino a l'environement.
+L'idée d'utiliser une arduino et raps 2 est envirager pour un question de consommation d'energie.
+
+Pour l'instant la synthese devra resté limité car surmeent quelque chose de sime a faire plus que les capteurs.
+
+Il serait utile de faire un systeme de detection de rythme et melodie minimal et non de chercher a avoir un structure ce qui parait asses dure et asses inutile comme la natrure ne va que tres tres rarement fournir de motifs rythmiques tres periodiques. 
+
+Le maitre de stage est asses comptant du cachier des charge il devra etre corriger et amelioré mais cela peut attendre un peu.
+
+La melodie doit etre global plus que filtré. De plus il serait utilise simplement d'avoir l'enronemment.
+
+On se concentre sur l'amelioration du systeme actuelle plus que l'inverse 
