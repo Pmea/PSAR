@@ -1,0 +1,31 @@
+#N canvas 562 314 450 300 10;
+#X obj 166 95 simple;
+#X obj 150 66 tosymbol;
+#X obj 69 104 print [IN];
+#X obj 167 127 print [OUT];
+#X msg 181 32 3;
+#X msg 141 39 2;
+#X msg 98 36 1;
+#X obj 107 -83 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 105 -41 t b b b b b b b;
+#X msg 271 54 size_seq 2;
+#X obj 44 65 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X connect 0 0 3 0;
+#X connect 0 0 10 0;
+#X connect 1 0 2 0;
+#X connect 1 0 0 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 6 0 1 0;
+#X connect 7 0 8 0;
+#X connect 8 0 4 0;
+#X connect 8 1 5 0;
+#X connect 8 2 6 0;
+#X connect 8 3 4 0;
+#X connect 8 4 6 0;
+#X connect 8 5 5 0;
+#X connect 8 6 6 0;
+#X connect 9 0 0 1;
+#X connect 10 0 1 0;

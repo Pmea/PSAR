@@ -1,0 +1,2 @@
+NAME= simple
+SRCS=main.cpp

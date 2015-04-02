@@ -735,7 +735,7 @@
 #X connect 39 0 40 0;
 #X connect 40 0 38 0;
 #X restore 968 1447 pd test;
-#N canvas 568 82 1351 998 rythme 0;
+#N canvas 562 92 1351 998 rythme 1;
 #X obj 240 17 loadbang;
 #X obj 242 45 t b b b;
 #X msg 299 79 debounce 0;
@@ -773,7 +773,7 @@
 #X msg 261 121 minvel 10;
 #X msg 273 101 thresh 20 80;
 #X obj 467 342 delay 2000;
-#X obj -180 37 inlet~;
+#X obj 73 49 inlet~;
 #X msg 261 1375 list;
 #X obj 237 980 t b b;
 #X msg 241 1034 set list;
@@ -790,7 +790,7 @@
 #X obj 387 626 round;
 #X obj 346 1418 outlet;
 #X msg 384 583 \$3;
-#X obj 102 86 adc~;
+#X obj 55 103 adc~;
 #X obj 308 769 print [test];
 #X obj 390 670 t f;
 #X msg 391 727 \$2 \$1;
@@ -1167,8 +1167,7 @@
 #X obj 312 385 timer;
 #X obj 231 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg -11 598 list -11 499 2 499 2 499 -1 12 2 488 1 511 2 499 2 499
--11 499 2;
+#X msg -11 598 list;
 #X obj 295 330 t b f b b;
 #X obj 340 408 round;
 #X obj 272 252 spigot;
