@@ -16,15 +16,15 @@ using namespace std;
 
 
 
-class simple:
+class analyserythme:
 	public flext_base
 {
 	// obligatory flext header (class name,base class name)
-	FLEXT_HEADER(simple,flext_base)
+	FLEXT_HEADER(analyserythme,flext_base)
  
 public:
 	// constructor
-	simple()
+	analyserythme()
 	{ 
 
 
@@ -156,5 +156,5 @@ private:
 };
 
 // instantiate the class
-FLEXT_NEW("simple", simple)
+FLEXT_NEW("analyserythme", analyserythme)
 

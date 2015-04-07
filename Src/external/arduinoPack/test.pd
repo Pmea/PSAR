@@ -1,0 +1,13 @@
+#N canvas 435 571 450 300 10;
+#X obj 176 135 arduinoPack;
+#X obj 184 232 print;
+#X obj 179 101 tosymbol;
+#X obj 177 163 fromsymbol;
+#X floatatom 128 233 5 0 0 0 - - -;
+#X msg 184 78 light:100;
+#X msg 107 67 1000;
+#X connect 0 0 3 0;
+#X connect 2 0 0 0;
+#X connect 3 0 1 0;
+#X connect 5 0 2 0;
+#X connect 6 0 2 0;

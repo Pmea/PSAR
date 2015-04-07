@@ -1,2 +1,2 @@
-NAME= simple
+NAME= analyserythme
 SRCS=main.cpp
