@@ -1,3 +1,5 @@
+#include <SimpleTimer.h>
+
 int photocellPin = 0;     // pin pour connecter la photocell avec resitance (pulldown de 2K) pour les donnees a0
 int photocellReading;     // the analog reading from the sensor divider
 int LEDpin = 11;          // connect LED to pin 11 
@@ -10,10 +12,13 @@ int valMin;
 
 int moy;
 int lastVal;
-long nbEchant=0;
+long nbEchant=1;
 
 void setup(void) {
-  Serial.begin(9600);   
+  Serial.begin(9600);  
+  //SimpleTimer timer;
+  //int timerId= timer.setInterval(1000/**3600*/, periodique);
+  //timer.enable(timerId);
   
   moy= analogRead(photocellPin);
   valMax= moy + moy * ( 20 / 100 );
@@ -23,52 +28,87 @@ void setup(void) {
  
 void loop(void) {
   Serial.flush();
+  
   if(Serial.available()){
-    valDelay= Serial.parseInt();  // ou sinon avec OSC a voir 
+          valDelay= Serial.parseInt();
+    /*char* cmd;
+    cmd= recv_cmd(5);
+    if( strcmp(cmd, "delay")){
+      valDelay= Serial.parseInt();
+      //Serial.println(valDelay);
+    }*/
+    delay(1000);
   }
   
-  
   lastVal= photocellReading;
-  photocellReading = analogRead(photocellPin);    
-  nbEchant++;  
-  moy= moy +  ((float)photocellReading /(float)nbEchant);
+  photocellReading = analogRead(photocellPin);
   
+  moy= moy +  ((float)photocellReading /(float)nbEchant);
+  nbEchant++;  
+
   if(valMin > photocellReading){
-    //Serial.print("New Min = ");
-    //Serial.println(photocellReading);
     valMin= photocellReading;
   }
   
   if(valMax < photocellReading){
-    //Serial.print("New Max = ");
-    //Serial.println(photocellReading);
     valMax= photocellReading;
   }
   
   LEDbrightness= map(photocellReading, valMin, valMax, 0, 255);
-  //Serial.print("Analog reading = ");
-  //Serial.println(photocellReading);     // the raw analog reading
- 
-  //Serial.print("\tLed brightness = ");
-  //Serial.println(LEDbrightness);     // led data
- 
 
-  analogWrite(LEDpin, LEDbrightness);
+
+  //analogWrite(LEDpin, LEDbrightness);
   
-  Serial.print('valphotocell: ');
-  Serial.println(photocellReading);
-  
-  Serial.print('lastphotocell:');
-  Serial.println(lastVal);
+  char buff [64]="";
+  sprintf(buff, "cellval: %d", photocellReading);
+  Serial.println(buff);
+  sprintf(buff, "cellvar: %d", photocellReading -lastVal);
+  Serial.println(buff);
  
   delay(valDelay);
 }
 
-void periodique(int lastVal, int lastMoy){
-  
-  nbEchant=0;
-  lastVal= lastVal;   // en theorie inutile
-  moy= lastMoy;      // en theorie inutile
+void periodique(void){
+  Serial.println("PERIODIQUE");
+  nbEchant=1;
   valMax= moy + moy * ( 20 / 100 );
   valMin= moy - moy * ( 20 / 100 );
 }
+
+
+
+char* recv_cmd(int len_cmd){
+  char cmd[len_cmd];
+  int val;
+  
+  int i=0;
+  char tmp;
+  
+   while(i < len_cmd+1){        // +1 pour les ':'
+      if(Serial.available()){
+        tmp=Serial.read();
+        if(tmp == ':')
+          break;
+        if(tmp >'0' && tmp< 'z'){    // 0-9, A-Z et a-z
+          cmd[i]= tmp;
+          i++;
+        }
+      }
+    }
+    
+     if(tmp == ':'){
+        cmd[i]='\0';
+     }
+     else{
+       Serial.println("Error");
+       Serial.flush(); // vider la liste
+       while(Serial.available()){
+         Serial.read();
+       }
+       
+       return "";
+     }
+     return cmd;
+
+}
+
