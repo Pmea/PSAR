@@ -26,7 +26,8 @@ public:
 	arduinoPack()
 	{ 
 
-
+		sep= ';';
+		
 		// define inlets:
 		AddInAnything();  // add one inlet for values
 
@@ -52,6 +53,7 @@ protected:
 			ss << (int) tab[i];
 			ss << " ";
 		}
+		ss << (int) sep;
 		string out= ss.str();
 		ToOutString(0, out.c_str()); 
 	}
@@ -61,7 +63,7 @@ protected:
 	}
 
 private:
-
+	char sep;
 
 	FLEXT_CALLBACK_S(m_pack)  
 	FLEXT_CALLBACK_A(m_nothing)

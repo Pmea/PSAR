@@ -27,6 +27,7 @@ public:
 	arduinoUnPack()
 	{ 
 
+		sep= ';';
 
 		// define inlets:
 		AddInAnything();  // add one inlet for values
@@ -51,15 +52,22 @@ protected:
 		*/
 		char* tmp= strtok((char*) s.c_str(), " ");
 
-		ostringstream ss;
 		while(tmp != NULL){
-			ss << (char) atoi(tmp);
-			
+
+			if((char) atoi(tmp) == sep){
+				ostringstream ss;
+				for(int i=0; i<msg.size(); i++){
+					ss << msg.at(i);
+				}
+				string out= ss.str();
+				ToOutString(0, out.c_str());
+				msg.clear();
+			}
+			else{
+				msg.push_back((char) atoi(tmp));
+			}
 			tmp= strtok(NULL, " ");
 		}
-		string out= ss.str();
-		ToOutString(0, out.c_str());
-	
 	}
 
 	void m_nothing(const t_symbol *s,int argc,const t_atom *argv){
@@ -68,6 +76,9 @@ protected:
 
 private:
 
+	vector<char> msg;
+
+	char sep;
 
 	FLEXT_CALLBACK_S(m_unpack)  
 	FLEXT_CALLBACK_A(m_nothing)

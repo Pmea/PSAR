@@ -14,11 +14,11 @@ int moy;
 int lastVal;
 long nbEchant=1;
 
+SimpleTimer timer;
+
 void setup(void) {
   Serial.begin(9600);  
-  //SimpleTimer timer;
-  //int timerId= timer.setInterval(1000/**3600*/, periodique);
-  //timer.enable(timerId);
+  timer.setInterval(1000 * 6 /* * 60*/, periodique);
   
   moy= analogRead(photocellPin);
   valMax= moy + moy * ( 20 / 100 );
@@ -27,17 +27,21 @@ void setup(void) {
 }
  
 void loop(void) {
+  timer.run();
+
   Serial.flush();
   
   if(Serial.available()){
-          valDelay= Serial.parseInt();
-    /*char* cmd;
-    cmd= recv_cmd(5);
-    if( strcmp(cmd, "delay")){
-      valDelay= Serial.parseInt();
-      //Serial.println(valDelay);
-    }*/
-    delay(1000);
+   char cmd[5+1];   // +1 pour '\0'
+   int tmp= recv_cmd(5, cmd);
+   
+   if( strcmp(cmd, "delay") == 0){
+     valDelay= tmp;
+      
+      char buff[64];
+      sprintf(buff,"%s: %d;", cmd, valDelay);
+      Serial.println(buff);
+    }
   }
   
   lastVal= photocellReading;
@@ -60,31 +64,28 @@ void loop(void) {
   //analogWrite(LEDpin, LEDbrightness);
   
   char buff [64]="";
-  sprintf(buff, "cellval: %d", photocellReading);
+  sprintf(buff, "cellval: %d;", photocellReading);
   Serial.println(buff);
-  sprintf(buff, "cellvar: %d", photocellReading -lastVal);
+  sprintf(buff, "cellvar: %d;", photocellReading -lastVal);
   Serial.println(buff);
  
   delay(valDelay);
 }
 
 void periodique(void){
-  Serial.println("PERIODIQUE");
+ // Serial.println("TIMER;");
   nbEchant=1;
   valMax= moy + moy * ( 20 / 100 );
   valMin= moy - moy * ( 20 / 100 );
 }
 
-
-
-char* recv_cmd(int len_cmd){
-  char cmd[len_cmd];
+int recv_cmd(int len_cmd, char* cmd){
   int val;
   
   int i=0;
   char tmp;
   
-   while(i < len_cmd+1){        // +1 pour les ':'
+    while(i < len_cmd+1){
       if(Serial.available()){
         tmp=Serial.read();
         if(tmp == ':')
@@ -98,17 +99,11 @@ char* recv_cmd(int len_cmd){
     
      if(tmp == ':'){
         cmd[i]='\0';
+        val= Serial.parseInt();
+        Serial.read(); //pour supprimer le ;
+        return val;
      }
-     else{
-       Serial.println("Error");
-       Serial.flush(); // vider la liste
-       while(Serial.available()){
-         Serial.read();
-       }
-       
-       return "";
-     }
-     return cmd;
-
-}
+     Serial.println("Error");
+     return -1;
+   }
 
