@@ -27,7 +27,6 @@ public:
 	analyserythme()
 	{ 
 
-
 		tuple t={0,0};
 		tuple_max= t;
 
@@ -50,7 +49,7 @@ public:
 		FLEXT_ADDBANG(0,m_bang);	
 
 		FLEXT_ADDMETHOD(1, m_nothing);
-		FLEXT_ADDMETHOD_(1, "size_seq", m_size_seq);
+		FLEXT_ADDMETHOD_(1, "min_size_seq", m_size_seq);
 	}
 
 protected:
@@ -63,7 +62,6 @@ protected:
 
 	vector<float> buff;
 
-
 	vector<struct tuple> seq;
 	int min_size_seq; 
 	
@@ -71,49 +69,53 @@ protected:
 
 	int p;
 
-	//useless
-	bool present_tuple(int indi){
-		for(int i=0; i<seq.size(); i++){
-			if(seq.at(i).start == indi && seq.at(i).end == seq.at(i).start ){
-				return true;
-			}
-		}
 
-		return false;
-	}
-	// quand retourne ton la sequence quand il y en a une ou quand on envoi un bang ?
+
 	void m_analyse(const t_symbol * input_Sym)	
 	{
 		string s=GetString(input_Sym);
 
-		buff.push_back(atof(s.c_str()));
+		char* elem= strtok((char*) s.c_str(), " ");
 		
-		for(int i=0; i<seq.size(); i++){
-			if(buff.at(p) == buff.at(seq.at(i).end + 1)){	
-				seq.at(i).end ++;
-			}
-			if( (seq.at(i).end - seq.at(i).start) > (tuple_max.end - tuple_max.start)){
-				tuple_max= seq.at(i);
+		if(tuple_max.end - tuple_max.start + 1 < min_size_seq ){
+			while(elem != NULL){
+				buff.push_back(atof(elem));
+
+					for(int i=0; i<seq.size(); i++){
+						if(buff.at(p) == buff.at(seq.at(i).end + 1)){	
+							seq.at(i).end ++;
+						}
+						if( (seq.at(i).end - seq.at(i).start) > (tuple_max.end - tuple_max.start)){
+							tuple_max= seq.at(i);
+						}
+					}
+					for(int i=0; i< p; i++){
+						if(buff.at(i) == buff.at(p)){
+							tuple t={i, i};
+							seq.push_back(t);
+						}
+					}
+
+					p++;
+				
+				elem= strtok(NULL, " ");
+
+				/*si on veut un message strictement de taille min_size_seq
+				if(tuple_max.end - tuple_max.start >= min_size_seq -1)
+					break;
+					*/
 			}
 		}
-
-		for(int i=0; i< p; i++){
-			if(buff.at(i) == buff.at(p)){
-				tuple t={i, i};
-				seq.push_back(t);
-			}
-		}
-
-		p++;
 
 		// output value to outlet
-		if(tuple_max.end - tuple_max.start >= min_size_seq -1){
-			
+		if(tuple_max.end - tuple_max.start + 1 >= min_size_seq){
+
 			ostringstream ss;
-			for(int i=tuple_max.start; i< min_size_seq + tuple_max.start; i++){
+			for(int i=tuple_max.start; i< tuple_max.start + min_size_seq ; i++){
 				ss << buff.at(i);
 				ss << " ";
 			}
+
 			string patern_found= ss.str();
 			ToOutString(0, patern_found.c_str()); 
 		}
@@ -129,24 +131,27 @@ protected:
 
 		p=0;
 	}
-//*
 
 	void m_nothing(const t_symbol *s,int argc,const t_atom *argv){
 		ToOutBang(0);
 	}
 
-
 	void m_size_seq(int input_size){
+		if(input_size <= 1){
+			ToOutString(0, "Error: sequence must have 2 minimun");
+			return;
+		}
+
+		m_bang(NULL, 0, NULL);
+
 		if( input_size > 0){
 			min_size_seq= input_size;
 		}
 		ToOutInt(0, min_size_seq);
 	}
-	//*/
 
 
 private:
-
 
 	FLEXT_CALLBACK_S(m_analyse)  
 	FLEXT_CALLBACK_A(m_bang)
