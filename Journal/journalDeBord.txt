@@ -71,3 +71,22 @@ Le maitre de stage est asses comptant du cachier des charge il devra etre corrig
 La melodie doit etre global plus que filtré. De plus il serait utilise simplement d'avoir l'enronemment.
 
 On se concentre sur l'amelioration du systeme actuelle plus que l'inverse 
+
+
+depart hug-korda
+
+DATE ??
+apres la piste de l'osc on se penche sur notre propre protocole avec conversion arduino et pure data
+de plus nous regardons comment envoyé sur la arduino mais aussi d'un logiciel tierse.
+
+DATE ??
+creation external pour pouvoir avoir le plus petit pattern rythmique d'une section.
+external C++ et algo avec le moins possible de memoire.
+Pourquoi ne pas le faire avec un arduino nano et raspberry 2 => moins cher et moins energivore.
+
+mardi 14 avril 2015, 23:38:16 (UTC+0200)
+Pas de reunion du 10 au 21 avril car le professeur est en deplacement.
+le groupe va donc pofiner les toutes l'analyse pour pouvoir faire la synthese au retour du chercheur.
+amelioration analyserythmique.
+
+En vu => la meme chose pour l'analyse melodique
