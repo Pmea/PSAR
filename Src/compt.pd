@@ -1,4 +1,4 @@
-#N canvas 365 583 450 300 10;
+#N canvas 362 588 450 300 10;
 #X obj 133 69 inlet;
 #X obj 264 132 + 1;
 #X obj 217 177 outlet;
@@ -10,7 +10,7 @@
 #X obj 309 67 inlet;
 #X msg 308 90 0;
 #X text 202 38 entree froide;
-#X text 350 67 entrée chaude;
+#X text 353 64 entrée chaude;
 #X obj 199 64 inlet;
 #X msg 199 96 0;
 #X connect 0 0 4 0;
