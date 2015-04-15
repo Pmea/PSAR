@@ -73,54 +73,58 @@ protected:
 
 	void m_analyse(const t_symbol * input_Sym)	
 	{
-		string s=GetString(input_Sym);
+					if(tuple_max.end - tuple_max.start + 1 < min_size_seq){
 
-		char* elem= strtok((char*) s.c_str(), " ");
-		
-		if(tuple_max.end - tuple_max.start + 1 < min_size_seq ){
-			while(elem != NULL){
-				buff.push_back(atof(elem));
+			string s=GetString(input_Sym);
 
-					for(int i=0; i<seq.size(); i++){
-						if(buff.at(p) == buff.at(seq.at(i).end + 1)){	
-							seq.at(i).end ++;
+			char* elem= strtok((char*) s.c_str(), " ");
+			
+			if(tuple_max.end - tuple_max.start + 1 < min_size_seq ){
+				while(elem != NULL){
+					buff.push_back(atof(elem));
+
+						for(int i=0; i<seq.size(); i++){
+							if(buff.at(p) == buff.at(seq.at(i).end + 1)){	
+								seq.at(i).end ++;
+							}
+							if( (seq.at(i).end - seq.at(i).start) > (tuple_max.end - tuple_max.start)){
+								tuple_max= seq.at(i);
+							}
 						}
-						if( (seq.at(i).end - seq.at(i).start) > (tuple_max.end - tuple_max.start)){
-							tuple_max= seq.at(i);
+						for(int i=0; i< p; i++){
+							if(buff.at(i) == buff.at(p)){
+								tuple t={i, i};
+								seq.push_back(t);
+							}
 						}
-					}
-					for(int i=0; i< p; i++){
-						if(buff.at(i) == buff.at(p)){
-							tuple t={i, i};
-							seq.push_back(t);
-						}
-					}
 
-					p++;
-				
-				elem= strtok(NULL, " ");
+						p++;
+					
+					elem= strtok(NULL, " ");
 
-				/*si on veut un message strictement de taille min_size_seq
-				if(tuple_max.end - tuple_max.start >= min_size_seq -1)
-					break;
+					/*
+					si on veut un message strictement de taille min_size_seq
+					if(tuple_max.end - tuple_max.start >= min_size_seq -1)
+						break;
 					*/
-			}
-		}
-
-		// output value to outlet
-		if(tuple_max.end - tuple_max.start + 1 >= min_size_seq){
-
-			ostringstream ss;
-			for(int i=tuple_max.start; i< tuple_max.start + min_size_seq ; i++){
-				ss << buff.at(i);
-				ss << " ";
+				}
 			}
 
-			string patern_found= ss.str();
-			ToOutString(0, patern_found.c_str()); 
-		}
+			// output value to outlet
+			if(tuple_max.end - tuple_max.start + 1 >= min_size_seq){
+
+				ostringstream ss;
+				for(int i=tuple_max.start; i< tuple_max.start + min_size_seq ; i++){
+					ss << buff.at(i);
+					ss << " ";
+				}
+
+				string patern_found= ss.str();
+				ToOutString(0, patern_found.c_str()); 
+			}
 	}
-
+}
+	
 	void m_bang(const t_symbol *s,int argc,const t_atom *argv){
 		//reset all 
 		buff.clear();
