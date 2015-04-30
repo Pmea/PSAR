@@ -59,10 +59,9 @@ void loop(void) {
   if(Serial.available()){
    char cmd[5+1];   // +1 pour '\0'
    int tmp= recv_cmd(5, cmd);
-   
    if( strcmp(cmd, "delay") == 0){
      valDelay= tmp;
-      
+     
       char buff[64];
       sprintf(buff,"%s: %d;", cmd, valDelay);
       Serial.println(buff);
@@ -78,7 +77,7 @@ void loop(void) {
   temperatureCellReading= dht.readTemperature();
   humidityCellReading= dht.readHumidity();
   
- sprintf(buff, "lgtvl: %d;", photoCellReading);
+  sprintf(buff, "lgtvl: %d;", photoCellReading);
   Serial.println(buff);
   sprintf(buff, "lgtvr: %d;", photoCellReading -lastValPhoto);
   Serial.println(buff);
@@ -93,7 +92,6 @@ void loop(void) {
   sprintf(buff, "hmdvr: %d;", humidityCellReading -lastValHumi);
   Serial.println(buff);
 
-  
   delay(valDelay);
 }
 
@@ -115,10 +113,12 @@ int recv_cmd(int len_cmd, char* cmd){
   
   int i=0;
   char tmp;
-  
+
     while(i < len_cmd+1){
+      
       if(Serial.available()){
         tmp=Serial.read();
+          
         if(tmp == ':')
           break;
         if(tmp >'0' && tmp< 'z'){    // 0-9, A-Z et a-z
@@ -127,6 +127,7 @@ int recv_cmd(int len_cmd, char* cmd){
         }
       }
     }
+
      if(tmp == ':'){
         cmd[i]='\0';
         val= Serial.parseInt();
