@@ -1,4 +1,4 @@
-#N canvas 3118 286 612 616 10;
+#N canvas 3112 296 612 616 10;
 #X obj 138 -628 cnv 15 365 200 empty empty Temperature 20 12 0 14 -86277
 -262144 0;
 #X obj 150 -603 cnv 15 350 170 empty empty empty 20 12 0 14 -228856
@@ -7,10 +7,10 @@
 -262144 0;
 #X obj 150 -399 cnv 15 350 170 empty empty empty 20 12 0 14 -228856
 -66577 0;
-#N canvas 2707 227 913 824 temperature_send 0;
+#N canvas 2704 232 913 824 temperature_send 0;
 #X floatatom 216 586 5 0 0 0 - - -;
-#N canvas 65 107 450 300 (subpatch) 0;
-#X array \$0_temperature 256 float 5;
+#N canvas 65 112 450 300 (subpatch) 0;
+#X array \$0_temperature 256 float 1;
 #A 0 -0.836685 -0.87954 -0.87954 -0.808114 -0.793829 -0.793829 -0.793829
 -0.793829 -0.793829 -0.786687 -0.779544 -0.779544 -0.779544 -0.779544
 -0.779544 -0.779544 -0.765259 -0.765259 -0.736689 -0.379562 -0.379562
@@ -144,10 +144,10 @@
 #X connect 43 1 8 1;
 #X coords 0 -1 1 1 350 170 2 0 0;
 #X restore 150 -603 pd temperature_send;
-#N canvas 2083 196 913 824 temperature_send 0;
+#N canvas 2080 201 913 824 temperature_send 0;
 #X floatatom 216 586 5 0 0 0 - - -;
-#N canvas 65 87 450 300 (subpatch) 0;
-#X array \$0_lumiere 254 float 5;
+#N canvas 65 92 450 300 (subpatch) 0;
+#X array \$0_lumiere 256 float 1;
 #A 0 -0.0756589 -0.089945 -0.089945 -0.089945 -0.097088 -0.104231 -0.104231
 -0.104231 -0.104231 -0.104231 -0.104231 -0.104231 -0.104231 -0.104231
 -0.104231 -0.089945 -0.089945 -0.089945 -0.089945 -0.089945 -0.089945
@@ -182,10 +182,16 @@
 -0.089945 -0.097088 -0.104231 -0.111374 -0.118517 -0.132803 -0.139946
 -0.147089 -0.154232 -0.161375 -0.168518 -0.175661 -0.189947 -0.199471
 -0.208995 -0.218519 -0.225662 -0.232805 -0.239948 -0.247091 -0.261377
--0.275663 -0.28995 -0.304236;
+-0.275663 -0.28995 -0.304236 0 0;
 #X coords 0 1 255 -1 200 140 1 0 0;
 #X restore 130 16 graph;
-#X msg 216 664 send light;
+#X msg 216 664 send light -0.0756589 -0.089945 -0.089945 -0.089945
+-0.097088 -0.104231 -0.104231 -0.104231 -0.104231 -0.104231 -0.104231
+-0.104231 -0.104231 -0.104231 -0.104231 -0.089945 -0.089945 -0.089945
+-0.089945 -0.089945 -0.089945 -0.089945 -0.089945 -0.089945 -0.089945
+-0.089945 -0.089945 -0.089945 -0.089945 -0.0828019 -0.0756589 -0.0756589
+-0.0756589 -0.0756589 -0.0613729 -0.0613729 -0.0470868 -0.0470868 -0.0185148
+-0.0185148 -0.0185148 0.0100573;
 #X obj 216 450 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 213 629 add2 \$1;
@@ -233,7 +239,7 @@
 #X obj 193 698 bng 15 250 50 0 light empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 254 689 s val_lum_to_send;
-#X obj 216 532 moses 256;
+#X obj 216 531 moses 256;
 #X connect 0 0 10 0;
 #X connect 2 0 39 0;
 #X connect 2 0 41 0;
@@ -285,10 +291,10 @@
 -262144 0;
 #X obj 150 -195 cnv 15 350 170 empty empty empty 20 12 0 14 -228856
 -66577 0;
-#N canvas 2745 186 913 824 temperature_send 0;
+#N canvas 2742 191 913 824 temperature_send 0;
 #X floatatom 216 586 5 0 0 0 - - -;
 #N canvas 65 87 450 300 (subpatch) 0;
-#X array \$0_humidite 256 float 5;
+#X array \$0_humidite 256 float 1;
 #A 0 -0.735708 -0.692851 0.570534 0.58482 0.499106 0.491964 0.484821
 0.484821 0.470535 0.463392 0.45625 0.45625 0.441964 0.441964 0.434821
 0.427678 0.427678 0.427678 0.413393 0.413393 0.413393 0.413393 0.413393
@@ -438,7 +444,7 @@
 #X msg 72 -569 4242;
 #X msg -79 -588 connect;
 #X msg -78 -569 disconnect;
-#N canvas 2810 265 1018 785 connection 0;
+#N canvas 2017 223 1018 785 connection 0;
 #X obj 213 178 inlet;
 #X obj 276 182 inlet;
 #X obj 151 178 inlet;
@@ -448,7 +454,7 @@
 #X symbolatom 3 6 25 0 0 0 - - -;
 #X obj 169 340 tosymbol;
 #X obj 176 659 netsend;
-#X floatatom 186 755 5 0 0 0 - - send_sensor;
+#X floatatom 180 742 5 0 0 0 - - send_sensor;
 #X obj 220 625 spigot;
 #X obj 102 565 == 0;
 #X obj 83 219 route connect;
@@ -468,6 +474,9 @@
 #X obj 363 600 r val_lum_to_send;
 #X obj 374 620 r val_humi_to_send;
 #X obj 347 579 r val_temp_to_send;
+#X msg 409 738 disconnect;
+#X msg 258 737 connect 127.0.0.1 4242;
+#X floatatom 187 701 5 0 0 0 - - connect;
 #X connect 0 0 3 0;
 #X connect 1 0 4 2;
 #X connect 2 0 12 0;
@@ -478,6 +487,7 @@
 #X connect 7 0 6 0;
 #X connect 8 0 9 0;
 #X connect 8 0 24 0;
+#X connect 8 0 31 0;
 #X connect 10 0 8 0;
 #X connect 10 0 20 0;
 #X connect 11 0 10 1;
@@ -502,21 +512,23 @@
 #X connect 26 0 8 0;
 #X connect 27 0 8 0;
 #X connect 28 0 8 0;
+#X connect 29 0 8 0;
+#X connect 30 0 8 0;
 #X coords 0 -1 1 1 160 30 2 0 0;
 #X restore -59 -540 pd connection;
 #X obj -94 -495 cnv 15 220 80 empty empty Info 20 12 0 18 -233017 -99865
 0;
-#X text -74 -450 Envoie effectuer;
-#X obj 67 -447 tgl 15 0 empty fin_send_sensor empty 17 7 0 10 -262144
--1 -1 1 1;
+#X text -74 -444 Envoie effectuer;
+#X obj 67 -441 tgl 15 0 empty fin_send_sensor empty 17 7 0 10 -204786
+-1 -1 0 1;
 #X obj -92 -398 cnv 15 220 260 empty empty Chargement_fichier 20 12
 0 14 -233017 -66577 0;
 #X obj -92 -130 cnv 15 220 100 empty empty Info 20 12 0 18 -233017
 -99865 0;
 #X text -71 -98 Envoie effectuer;
-#X obj 69 -95 tgl 15 0 empty disconnect_file_bang empty 17 7 0 10 -262144
+#X obj 69 -95 tgl 15 0 empty disconnect_file_bang empty 17 7 0 10 -204786
 -1 -1 0 1;
-#X obj 68 -68 tgl 15 0 empty disconnect_file_bang empty 17 7 0 10 -262144
+#X obj 69 -68 tgl 15 0 empty disconnect_file_bang empty 17 7 0 10 -204786
 -1 -1 0 1;
 #N canvas 2491 92 1305 962 send_file 0;
 #X obj 21 15 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -615,6 +627,9 @@
 #X text -83 -368 Nom du fichier;
 #X text -72 -77 Besoin de relancer;
 #X text -72 -64 le dispositif;
+#X text -74 -469 Connnecté;
+#X obj 66 -464 tgl 15 0 empty connect empty 17 7 0 10 -204786 -1 -1
+1 1;
 #X connect 12 0 16 1;
 #X connect 13 0 16 2;
 #X connect 14 0 16 0;
