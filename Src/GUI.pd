@@ -1,15 +1,15 @@
-#N canvas 827 196 615 689 10;
-#X obj 241 -121 cnv 15 365 200 empty empty Temperature 20 12 0 14 -86277
+#N canvas 418 100 1496 927 10;
+#X obj 241 117 cnv 15 365 200 empty empty Temperature 20 12 0 14 -86277
 -262144 0;
-#X obj 257 501 netreceive 4242;
-#X floatatom 337 529 5 0 0 0 - - -;
-#X obj 253 -96 cnv 15 350 170 empty empty empty 20 12 0 14 -191407
+#X obj 257 739 netreceive 4242;
+#X floatatom 337 767 5 0 0 0 - - -;
+#X obj 253 142 cnv 15 350 170 empty empty empty 20 12 0 14 -191407
 -66577 0;
-#X obj 240 85 cnv 15 365 200 empty empty Luminosité 20 12 0 14 -86277
+#X obj 240 323 cnv 15 365 200 empty empty Luminosité 20 12 0 14 -86277
 -262144 0;
-#X obj 252 110 cnv 15 350 170 empty empty empty 20 12 0 14 -191407
+#X obj 252 348 cnv 15 350 170 empty empty empty 20 12 0 14 -191407
 -66577 0;
-#N canvas 1985 113 913 824 temperature_send 1;
+#N canvas 1985 118 913 824 temperature_send 0;
 #X floatatom 216 586 5 0 0 0 - - -;
 #N canvas 65 97 450 300 (subpatch) 0;
 #X array \$0_temperature 257 float 1;
@@ -71,7 +71,7 @@
 #X msg 392 266 1;
 #X msg 392 288 10;
 #X obj 64 23 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144 -1
--1 0;
+-1 1;
 #X obj 207 324 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 228 324 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -145,8 +145,8 @@
 #X connect 40 0 39 0;
 #X connect 42 0 2 0;
 #X coords 0 -1 1 1 350 170 2 0 0;
-#X restore 254 -96 pd temperature_send;
-#N canvas 2511 154 913 824 temperature_send 1;
+#X restore 254 142 pd temperature_send;
+#N canvas 2508 159 913 824 temperature_send 0;
 #X floatatom 216 586 5 0 0 0 - - -;
 #N canvas 65 87 450 300 (subpatch) 0;
 #X array \$0_lumiere 257 float 1;
@@ -210,7 +210,7 @@
 #X msg 392 266 1;
 #X msg 392 288 10;
 #X obj 64 23 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144 -1
--1 3;
+-1 1;
 #X obj 207 324 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 228 324 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -283,12 +283,12 @@
 #X connect 41 0 40 0;
 #X connect 42 0 0 0;
 #X coords 0 -1 1 1 350 170 2 0 0;
-#X restore 252 110 pd temperature_send;
-#X obj 241 291 cnv 15 365 200 empty empty Humidité 20 12 0 14 -86277
+#X restore 252 348 pd temperature_send;
+#X obj 241 529 cnv 15 365 200 empty empty Humidité 20 12 0 14 -86277
 -262144 0;
-#X obj 253 316 cnv 15 350 170 empty empty empty 20 12 0 14 -191407
+#X obj 253 554 cnv 15 350 170 empty empty empty 20 12 0 14 -191407
 -66577 0;
-#N canvas 2920 176 913 824 temperature_send 1;
+#N canvas 2090 268 913 824 temperature_send 0;
 #X floatatom 216 586 5 0 0 0 - - -;
 #N canvas 65 87 450 300 (subpatch) 0;
 #X array \$0_humidite 257 float 1;
@@ -374,11 +374,14 @@
 #X msg 396 317 20;
 #X floatatom 176 407 5 0 0 0 - send_lumiere_fin -;
 #X obj 177 427 moses 1;
-#X floatatom 212 709 5 0 0 0 - - fin_send_sensor;
+#X floatatom 198 748 5 0 0 0 - - fin_send_sensor;
 #X msg 212 688 1;
 #X obj 216 554 tabread \$0_humidite;
 #X msg 272 634 set send humid;
 #X obj 169 691 bng 15 250 50 0 humid empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 146 717 5 0 0 0 - disconnect_bang -;
+#X obj 147 755 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X connect 0 0 11 0;
 #X connect 2 0 5 0;
@@ -425,29 +428,30 @@
 #X connect 40 0 39 0;
 #X connect 41 0 0 0;
 #X connect 42 0 2 0;
+#X connect 44 0 39 0;
+#X connect 44 0 45 0;
 #X coords 0 -1 1 1 350 170 2 0 0;
-#X restore 253 315 pd temperature_send;
-#X floatatom 218 527 5 0 0 0 - fin_send_sensor -;
-#X obj 0 19 cnv 15 235 470 empty empty empty 20 12 0 14 -13381 -66577
+#X restore 253 553 pd temperature_send;
+#X obj 0 257 cnv 15 235 470 empty empty empty 20 12 0 14 -13381 -66577
 0;
-#X obj 2 -121 cnv 15 235 135 empty empty empty 20 12 0 14 -45076 -66577
+#X obj 2 117 cnv 15 235 135 empty empty empty 20 12 0 14 -45076 -66577
 0;
-#X obj 8 -114 cnv 15 220 120 empty empty Connexion 20 12 0 18 -191407
+#X obj 8 124 cnv 15 220 120 empty empty Connexion 20 12 0 18 -191407
 -66577 0;
-#X msg 118 -62 127.0.0.1;
-#X msg 185 -62 4242;
-#X msg 35 -83 connect;
-#X msg 36 -64 disconnect;
-#N canvas 3373 240 1018 785 connection 1;
+#X msg 118 176 127.0.0.1;
+#X msg 185 176 4242;
+#X msg 35 155 connect;
+#X msg 36 174 disconnect;
+#N canvas 2819 250 1018 785 connection 0;
 #X obj 213 178 inlet;
 #X obj 276 182 inlet;
 #X obj 151 178 inlet;
 #X obj 194 212 tosymbol;
-#X obj 183 246 pack s s f;
-#X obj 183 270 route list;
+#X obj 177 276 pack s s f;
+#X obj 177 300 route list;
 #X symbolatom 3 6 25 0 0 0 - - -;
 #X obj 169 340 tosymbol;
-#X obj 175 656 netsend;
+#X obj 176 659 netsend;
 #X floatatom 175 688 5 0 0 0 - - send_sensor;
 #X obj 220 625 spigot;
 #X obj 102 565 == 0;
@@ -460,8 +464,14 @@
 #X msg 354 203 disconnect;
 #X msg 104 527 0;
 #X obj 295 707 print;
-#X text 91 534;
 #X obj 124 496 loadbang;
+#X obj 405 244 tosymbol;
+#X text 63 549;
+#X floatatom 142 735 5 0 0 0 - - disconnect_bang;
+#X obj 221 718 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 134 664 == 0;
+#X msg 134 691 0;
 #X connect 0 0 3 0;
 #X connect 1 0 4 2;
 #X connect 2 0 12 0;
@@ -471,6 +481,8 @@
 #X connect 5 0 10 0;
 #X connect 7 0 6 0;
 #X connect 8 0 9 0;
+#X connect 8 0 25 0;
+#X connect 8 0 26 0;
 #X connect 10 0 8 0;
 #X connect 10 0 20 0;
 #X connect 11 0 10 1;
@@ -478,23 +490,30 @@
 #X connect 12 1 8 0;
 #X connect 12 1 7 0;
 #X connect 12 1 19 0;
+#X connect 12 1 27 0;
 #X connect 13 0 4 0;
 #X connect 14 0 17 0;
 #X connect 15 0 4 2;
-#X connect 16 0 4 1;
+#X connect 16 0 22 0;
 #X connect 17 0 18 0;
 #X connect 17 1 16 0;
 #X connect 17 2 15 0;
 #X connect 18 0 7 0;
 #X connect 19 0 11 0;
-#X connect 22 0 19 0;
+#X connect 21 0 19 0;
+#X connect 22 0 4 1;
+#X connect 26 0 27 0;
+#X connect 27 0 24 0;
 #X coords 0 -1 1 1 160 30 2 0 0;
-#X restore 44 -33 pd connection;
-#X obj 8 25 cnv 15 220 455 empty empty empty 20 12 0 14 -233017 -66577
+#X restore 44 205 pd connection;
+#X obj 8 263 cnv 15 220 125 empty empty Info 20 12 0 18 -233017 -99865
 0;
+#X text 29 295 Envoie effectuer;
+#X obj 170 298 tgl 15 0 empty fin_send_sensor empty 17 7 0 10 -262144
+-1 -1 1 1;
 #X connect 1 1 2 0;
-#X connect 15 0 19 1;
-#X connect 16 0 19 2;
-#X connect 17 0 19 0;
-#X connect 18 0 19 0;
-#X coords 0 689 1 688 85 60 0;
+#X connect 14 0 18 1;
+#X connect 15 0 18 2;
+#X connect 16 0 18 0;
+#X connect 17 0 18 0;
+#X coords 0 927 1 926 85 60 0;
