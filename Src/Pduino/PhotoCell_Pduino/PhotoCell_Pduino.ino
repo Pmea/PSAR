@@ -1,29 +1,54 @@
+// rapport valeur moyenne changement d'idee
+
 #include <SimpleTimer.h>
+#include "DHT.h"
 
-int photocellPin = 0;     // pin pour connecter la photocell avec resitance (pulldown de 2K) pour les donnees a0
-int photocellReading;     // the analog reading from the sensor divider
-int LEDpin = 11;          // connect LED to pin 11 
-int LEDbrightness;        
+#define DHTPIN 2     // what pin we're connected to
+#define DHTTYPE DHT11   // DHT 11 
+#define VOYANTPIN 13
 
-int valDelay=100;      // en miliseconde
+DHT dht(DHTPIN, DHTTYPE);
 
-int valMax;    //pour adapter le systeme a l'environement
-int valMin;
+int photoCellPin = A7;     // pin pour connecter la photocell avec resitance (pulldown de 2K) pour les donnees a0
+int photoCellReading;    
+int temperatureCellReading;
+int humidityCellReading;
 
-int moy;
-int lastVal;
-long nbEchant=1;
+
+boolean on_off;
+
+
+int valDelay=500;      // en miliseconde
+
+int lastValPhoto=0;
+int lastValTemp=0;
+int lastValHumi=0;
 
 SimpleTimer timer;
 
+char buff [64];
+
 void setup(void) {
-  Serial.begin(9600);  
-  timer.setInterval(1000 * 6 /* * 60*/, periodique);
+  pinMode(photoCellPin, INPUT);
+  pinMode(DHTPIN, INPUT);
+  pinMode(VOYANTPIN, OUTPUT);
+  dht.begin();
   
-  moy= analogRead(photocellPin);
-  valMax= moy + moy * ( 20 / 100 );
-  valMin= moy - moy * ( 20 / 100 );
-  lastVal= moy;
+  Serial.begin(9600);  
+  timer.setInterval(1000, periodique);
+ 
+  lastValPhoto=0;
+ lastValTemp=0;
+ lastValHumi=0;
+ 
+ delay(500);
+  photoCellReading= analogRead(photoCellPin);
+  temperatureCellReading= dht.readTemperature();
+  humidityCellReading= dht.readHumidity();
+  
+  lastValPhoto= photoCellReading;
+  lastValTemp= temperatureCellReading;
+  lastValHumi= humidityCellReading;
 }
  
 void loop(void) {
@@ -44,40 +69,46 @@ void loop(void) {
     }
   }
   
-  lastVal= photocellReading;
-  photocellReading = analogRead(photocellPin);
+  lastValPhoto= photoCellReading;  
+  lastValTemp= temperatureCellReading;
+  lastValHumi= humidityCellReading;
   
-  moy= moy +  ((float)photocellReading /(float)nbEchant);
-  nbEchant++;  
-
-  if(valMin > photocellReading){
-    valMin= photocellReading;
-  }
+  photoCellReading= analogRead(photoCellPin);
+  photoCellReading= map(photoCellReading, 0, 1023, 0, 100);
+  temperatureCellReading= dht.readTemperature();
+  humidityCellReading= dht.readHumidity();
   
-  if(valMax < photocellReading){
-    valMax= photocellReading;
-  }
-  
-  LEDbrightness= map(photocellReading, valMin, valMax, 0, 255);
-
-
-  //analogWrite(LEDpin, LEDbrightness);
-  
-  char buff [64]="";
-  sprintf(buff, "cellval: %d;", photocellReading);
+ sprintf(buff, "lgtvl: %d;", photoCellReading);
   Serial.println(buff);
-  sprintf(buff, "cellvar: %d;", photocellReading -lastVal);
+  sprintf(buff, "lgtvr: %d;", photoCellReading -lastValPhoto);
   Serial.println(buff);
  
+  sprintf(buff, "tmpvl: %d;", temperatureCellReading);
+  Serial.println(buff);
+  sprintf(buff, "tmpvr: %d;", temperatureCellReading -lastValTemp);
+  Serial.println(buff);
+  
+  sprintf(buff, "hmdvl: %d;", humidityCellReading);
+  Serial.println(buff);
+  sprintf(buff, "hmdvr: %d;", humidityCellReading -lastValHumi);
+  Serial.println(buff);
+
+  
   delay(valDelay);
 }
 
 void periodique(void){
- // Serial.println("TIMER;");
-  nbEchant=1;
-  valMax= moy + moy * ( 20 / 100 );
-  valMin= moy - moy * ( 20 / 100 );
+  if(on_off){
+    digitalWrite( VOYANTPIN, HIGH);
+    on_off=false;
+  }
+  else{
+    digitalWrite( VOYANTPIN, LOW);
+    on_off=true;
+  }
 }
+
+
 
 int recv_cmd(int len_cmd, char* cmd){
   int val;
@@ -96,7 +127,6 @@ int recv_cmd(int len_cmd, char* cmd){
         }
       }
     }
-    
      if(tmp == ':'){
         cmd[i]='\0';
         val= Serial.parseInt();
