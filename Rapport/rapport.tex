@@ -17,12 +17,13 @@
 \usepackage{titling}%                  pour le titre
 \usepackage[framemethod=TikZ]{mdframed}% print frames
 \usepackage{caption}%                  for captionof
-\usepackage{listings}
+\usepackage{listings}%				  pour insertion de codes 
 \usepackage{enumitem}%                 pour les listes numérotées
 \usepackage{microtype}%                améliorations typographiques
 \usepackage{csvsimple}%                convertir un fichier .csv en tableau
 \usepackage{url}%					  amélioration afficahge url
 \usepackage{hyperref}%                 gestion des hyperliens
+\usepackage{svg}	%					  gestion des svg	
 
 \usepackage{titling} %  				  gestion des subtitles 
 \newcommand{\subtitle}[1]{%			  definition d'une nouvelle commande sous-titre
@@ -131,12 +132,12 @@ Pure Data est un logiciel, open source, de programmation graphique pour la creat
 Pure Data est un systeme module où il est possible de definir des sous-modules qu'il est possible de re-utiliser a sa gise dans d'autre programme appelé \texttt{patch}.
 En Pure Data tous les objets (modules ou donnée) sont des \texttt{boites}.
 Ce langage est un langage tres faiblement typé. Il existe quatres types de données de base:\\
-\begin{enumerate}
+\begin{itemize}
 \item \textbf{Les Nombres}, qui peuvent reprensenter des nombres entiers comme à virgules
 \item \textbf{Les Message}, qui sont des messages purement textuels 
 \item \textbf{Les Symboles}, qui corresponde aux messages mixtes, caractère, chiffre...
 \item \textbf{Les Tableaux}, qui sont uniquement des tableaux de nombres.
-\end{enumerate}
+\end{itemize}
 Il exite d'autre type de donnée comme les listes qui même avec une representation interne différante ou message ou symboles sont graphiquement identique a un message (avec comme premier mot \texttt{list}). De plus pour changer une liste en message, il suffit de supprimer ce mot clé.
 
 \paragraph{}
@@ -152,11 +153,47 @@ En Pure Data, le stockage de donnee est asses complexe c'est pour cela que pour 
 Les externals sont des boites programmées en \texttt{c++}. 
 
 \paragraph{}
-Il existe plusieurs API, dans ce projet nous avons choisi d'utiliser \texttt{Flext} pour ca simplicité d'utilisation. De plus cette API est développé par Thomas GRILL, un des principal contributeur de Pure Data ce qui garantie un plus grande parfaite compatibilité avec Pd et une certaine assurance que l'outils reste longtemps maintenu. La communauté des développeurs Pure Data etant limité (une dizaine de personne a travers le monde), cela a une importance car malheuresement beaucoup d'outil ne son pas maintenu suffisant ou sont souvant obselette.  
+Il existe plusieurs API, dans ce projet nous avons choisi d'utiliser \texttt{Flext} pour ca simplicité d'utilisation. De plus cette API est développé par Thomas GRILL, un des principal contributeur de Pure Data ce qui garantie un plus grande parfaite compatibilité avec Pd et une certaine assurance que l'outils reste longtemps maintenu. La communauté des développeurs Pure Data etant limité (une dizaine de personne a travers le monde), cela a une importance car malheuresement beaucoup d'outils ne son pas maintenu suffisant ou sont souvent obsolète.  
 
 
 \subsection{Structure du projet}
-%TODO schema decoupage
+\paragraph{}
+Nous avons décider de diviser le programme en cinq modules pour le cote synthèse.\\
+
+\paragraph{}
+La partie acquisition des données des capteurs ce fera par le bien de la communication entre la partie Arduino et Pure Data.\\
+Nous avons ecrit un programme arduino qui va envoyé periodiquement les valeurs des differant capteurs au programme Pd.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=400px]{structprojet.jpg}
+\end{figure}
+
+Information collecté par la partie arduino:
+\begin{itemize}
+\item Luminosite
+\item Temperature
+\item Humidité
+\end{itemize}
+
+\paragraph{}
+Une seconde partie acquisition est la reception du signal sonore, que l'on doit traiter pour pouvoir en extraire des informations pertinante.\\
+Le son capté par le micro est pollué par des sons ambiant, typiquement le bruit d'une route proche ou d'une marchine bruyante. Ces bruits sont généralement continu, grave (moins  de 100 hertz) donc très énergétique. Ils peuvent donc fausser les résultats des traitement en aval.\\
+ Les buits naturel a cette frequence sont tres rare dans la nature. De plus musicalement ces bruits sont asses pauvres.\\
+ Pour toute ces raisons il est préférable de les filtrers.\\
+ 
+ Pour les même raisons, les sons a plus de 8000 Hertz sont tres rare, 
+
+
+
+\begin{itemize}
+\item Acquisition du signal audio
+\item Extraction des informations pertinente du signal audio.
+\item Composition et musique, la partie qui correspond a la partie composition du projet et qui ne releve des choix du compositeur.
+\item \textbf{Synthese et diffusion}, génération du son et transmission a la carte son.
+\end{itemize}
+
+
 \newpage
 \section{Traitement audio}
 \subsection{Aquisition audio}
