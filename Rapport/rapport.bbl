@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{Acoustique-Informatique-Musique}
+And{\'e}a-Novel Brigitte, Fabre Benoit, and Jouvelot Pierre.
+\newblock {\em Acoustique-Informatique-Musique}.
+\newblock Presses des Mines, 2012.
+
+\bibitem{Acoustique_et_Musique}
+Leipp {\'E}mile.
+\newblock {\em Acoustique et Musique}.
+\newblock Presses des Mines, 2010.
+
+\bibitem{pdSite3}
+Thomas Grill.
+\newblock Pure data patch repository, 2008(accessed mars, 2015).
+
+\bibitem{pdSite1}
+Hans.
+\newblock pd, 2006 (accessed avril, 2015).
+
+\bibitem{pdSite2}
+Adam Hyde.
+\newblock Pure data, (accessed mars, 2015).
+
+\bibitem{traitement_du_signal_audiovisuel}
+Laurent Millot.
+\newblock {\em Traitement du signal audiovisuel, Applications avec Pure Data}.
+\newblock Dunod, 2008.
+
+\end{thebibliography}

@@ -1,0 +1,54 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Contexte Global}{3}{subsection.1.1}
+\contentsline {paragraph}{}{3}{paragraph*.1}
+\contentsline {paragraph}{}{3}{paragraph*.2}
+\contentsline {paragraph}{}{3}{paragraph*.3}
+\contentsline {paragraph}{}{3}{paragraph*.4}
+\contentsline {subsection}{\numberline {1.2}Presentation de la demande}{3}{subsection.1.2}
+\contentsline {paragraph}{}{3}{paragraph*.5}
+\contentsline {paragraph}{}{3}{paragraph*.6}
+\contentsline {paragraph}{}{4}{paragraph*.7}
+\contentsline {paragraph}{}{4}{paragraph*.8}
+\contentsline {subsection}{\numberline {1.3}La Carte Udoo}{4}{subsection.1.3}
+\contentsline {paragraph}{}{4}{paragraph*.9}
+\contentsline {subsection}{\numberline {1.4}Pure Data}{4}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}Externals}{4}{subsubsection.1.4.1}
+\contentsline {subsection}{\numberline {1.5}Structure du projet}{4}{subsection.1.5}
+\contentsline {section}{\numberline {2}Traitement audio}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Aquisition audio}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Traitement bas niveau}{5}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Filtrage}{5}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}D\IeC {\'e}tecteur de notes}{5}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Bandes de fr\IeC {\'e}quences}{5}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Extraction des m\IeC {\'e}ta-donn\IeC {\'e}es}{5}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}M\IeC {\'e}lodie et rythme}{5}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Pattern minimal}{5}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}R\IeC {\'e}cup\IeC {\'e}ration de l'environnement}{6}{section.3}
+\contentsline {paragraph}{}{6}{paragraph*.10}
+\contentsline {paragraph}{}{6}{paragraph*.11}
+\contentsline {subsection}{\numberline {3.1}Dispositif et capteurs}{6}{subsection.3.1}
+\contentsline {paragraph}{}{6}{paragraph*.12}
+\contentsline {paragraph}{}{6}{paragraph*.13}
+\contentsline {subsection}{\numberline {3.2}Communication inter plate-forme}{6}{subsection.3.2}
+\contentsline {paragraph}{}{6}{paragraph*.14}
+\contentsline {paragraph}{}{7}{paragraph*.15}
+\contentsline {paragraph}{}{7}{paragraph*.16}
+\contentsline {subsection}{\numberline {3.3}External pour la communication}{7}{subsection.3.3}
+\contentsline {paragraph}{}{7}{paragraph*.17}
+\contentsline {section}{\numberline {4}Synth\IeC {\`e}se musical}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}Modele physique au longterme}{8}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Synth\IeC {\`e}se impl\IeC {\'e}ment\IeC {\'e}}{8}{subsection.4.2}
+\contentsline {section}{\numberline {5}Interface Utilisateur}{9}{section.5}
+\contentsline {subsection}{\numberline {5.1}Premiere id\IeC {\'e}e d'implementation}{9}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Envoie des donn\IeC {\'e}es capteur}{9}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Envoie d'objet Pure data}{9}{subsection.5.3}
+\contentsline {section}{\numberline {6}Tutoriel et Documentation}{10}{section.6}
+\contentsline {subsection}{\numberline {6.1}\IeC {\'E}criture documentation Pure data}{10}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}\IeC {\'E}criture du Tutoriel d'installation}{10}{subsection.6.2}
+\contentsline {section}{\numberline {7}Pour aller plus loin}{11}{section.7}
+\contentsline {subsection}{\numberline {7.1}Tests en environnement reel}{11}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Tests \IeC {\'e}nerg\IeC {\'e}tiques}{11}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Serveur distant}{11}{subsection.7.3}
+\contentsline {section}{\numberline {8}Bibliographie}{12}{section.8}
+\contentsfinish 
