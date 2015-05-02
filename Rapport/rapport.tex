@@ -124,14 +124,39 @@ La carte utilise une carte micro sd pour stocker ses données, ce qui est égale
 Le systeme d'exploitation installer est un version simplifié d'Ubuntu, permettant d'utiliser l’environnement linux.
 
 \subsection{Pure Data}
-% logo pure data
+\subsubsection{Presentation generale}
+% logo pure data ou image
+\paragraph{}
+Pure Data est un logiciel, open source, de programmation graphique pour la creation muscale et multimedia en temps reel. Il permet également de gérer des signaux entrants dans l'ordinateur (signaux de capteurs ou événements réseau par exemple) et de gérer des signaux sortants (par des protocoles de réseau ou protocoles électroniques pour le pilotage de matériels divers).\\
+Pure Data est un systeme module où il est possible de definir des sous-modules qu'il est possible de re-utiliser a sa gise dans d'autre programme appelé \texttt{patch}.
+En Pure Data tous les objets (modules ou donnée) sont des \texttt{boites}.
+Ce langage est un langage tres faiblement typé. Il existe quatres types de données de base:\\
+\begin{enumerate}
+\item \textbf{Les Nombres}, qui peuvent reprensenter des nombres entiers comme à virgules
+\item \textbf{Les Message}, qui sont des messages purement textuels 
+\item \textbf{Les Symboles}, qui corresponde aux messages mixtes, caractère, chiffre...
+\item \textbf{Les Tableaux}, qui sont uniquement des tableaux de nombres.
+\end{enumerate}
+Il exite d'autre type de donnée comme les listes qui même avec une representation interne différante ou message ou symboles sont graphiquement identique a un message (avec comme premier mot \texttt{list}). De plus pour changer une liste en message, il suffit de supprimer ce mot clé.
 
-% 4 types
-% compilation des sources
+\paragraph{}
+Le Pure Data étant un logiciel orienter interation, il est possible a tous moment de modifier son patch en ajoutant des boites au cours de l'execution du programme, il n'est pas nessesaire de relancer le programme. Cela peut permet de modifier le patch en direct sans avoir l’interruption dans le flux audio sortant.
+
+\paragraph{}
+Pure Data a aussi l'avant d'etre facilement documentable car il est possible d'associer à une boite quelconque, une boite d'aide avec une explication et des exemples.\\
+Cela s'avaire tres utilie pour la compréhension de certaines boites complexe et permet de bien dissocier code et documentation.
+
 \subsubsection{Externals}
-% flext
-\subsection{Structure du projet}
+\paragraph{}
+En Pure Data, le stockage de donnee est asses complexe c'est pour cela que pour procéder a des algorithme complexe, il est possible d'avoir recours à des\texttt{Externals}.\\
+Les externals sont des boites programmées en \texttt{c++}. 
 
+\paragraph{}
+Il existe plusieurs API, dans ce projet nous avons choisi d'utiliser \texttt{Flext} pour ca simplicité d'utilisation. De plus cette API est développé par Thomas GRILL, un des principal contributeur de Pure Data ce qui garantie un plus grande parfaite compatibilité avec Pd et une certaine assurance que l'outils reste longtemps maintenu. La communauté des développeurs Pure Data etant limité (une dizaine de personne a travers le monde), cela a une importance car malheuresement beaucoup d'outil ne son pas maintenu suffisant ou sont souvant obselette.  
+
+
+\subsection{Structure du projet}
+%TODO schema decoupage
 \newpage
 \section{Traitement audio}
 \subsection{Aquisition audio}
