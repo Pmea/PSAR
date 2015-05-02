@@ -146,6 +146,8 @@ Le Pure Data étant un logiciel orienter interation, il est possible a tous mome
 \paragraph{}
 Pure Data a aussi l'avant d'etre facilement documentable car il est possible d'associer à une boite quelconque, une boite d'aide avec une explication et des exemples.\\
 Cela s'avaire tres utilie pour la compréhension de certaines boites complexe et permet de bien dissocier code et documentation.
+\paragraph{}
+Un autre atout de Pd est le nombre de d'outils deja implementé dans le logiciel et les boites creer par la comunoté. Certaine proceder a des traitements complexe, comme la detection en temps reel de frequence ou le filtrage performent.
 
 \subsubsection{Externals}
 \paragraph{}
@@ -158,16 +160,16 @@ Il existe plusieurs API, dans ce projet nous avons choisi d'utiliser \texttt{Fle
 
 \subsection{Structure du projet}
 \paragraph{}
-Nous avons décider de diviser le programme en cinq modules pour le cote synthèse.\\
-
-\paragraph{}
-La partie acquisition des données des capteurs ce fera par le bien de la communication entre la partie Arduino et Pure Data.\\
-Nous avons ecrit un programme arduino qui va envoyé periodiquement les valeurs des differant capteurs au programme Pd.
+Nous avons décider de diviser le programme en cinq modules pour le cote synthèse.
 
 \begin{figure}
   \centering
   \includegraphics[width=400px]{structprojet.jpg}
 \end{figure}
+
+\paragraph{}
+La partie acquisition des données des capteurs ce fera par le bien de la communication entre la partie Arduino et Pure Data.\\
+Nous avons ecrit un programme arduino qui va envoyé périodiquement les valeurs des différant capteurs au programme Pd.
 
 Information collecté par la partie arduino:
 \begin{itemize}
@@ -177,38 +179,23 @@ Information collecté par la partie arduino:
 \end{itemize}
 
 \paragraph{}
-Une seconde partie acquisition est la reception du signal sonore, que l'on doit traiter pour pouvoir en extraire des informations pertinante.\\
+Une seconde partie acquisition est la réception du signal sonore, que l'on doit traiter pour pouvoir en extraire des informations pertinente.\\
 Le son capté par le micro est pollué par des sons ambiant, typiquement le bruit d'une route proche ou d'une marchine bruyante. Ces bruits sont généralement continu, grave (moins  de 100 hertz) donc très énergétique. Ils peuvent donc fausser les résultats des traitement en aval.\\
- Les buits naturel a cette frequence sont tres rare dans la nature. De plus musicalement ces bruits sont asses pauvres.\\
- Pour toute ces raisons il est préférable de les filtrers.\\
- 
- Pour les même raisons, les sons a plus de 8000 Hertz sont tres rare, 
+ Les buits naturel à cette fréquence sont tres rare dans la nature. De plus musicalement ces bruits sont asses pauvres.\\
+Pour toute ces raisons il est préférable de les filtrer. Pour les même raisons, nous avons ajouter un filtrer pour eliminer les fréquences au dessus de 6000 Hertz.
 
 
-
-\begin{itemize}
-\item Acquisition du signal audio
-\item Extraction des informations pertinente du signal audio.
-\item Composition et musique, la partie qui correspond a la partie composition du projet et qui ne releve des choix du compositeur.
-\item \textbf{Synthese et diffusion}, génération du son et transmission a la carte son.
-\end{itemize}
+\paragraph{}
+Dans la partie extraction, avec le compositeur et le chercheur nous nous sommes questionner sur les informations pertinente a extraire pour la composition musicale.\\ 
+En prenant en compte le fait que la carte a un capacité de calcul limité, cela ne permet pas d'avoir de faire tous les traitements complexes.
 
 
-\newpage
-\section{Traitement audio}
-\subsection{Aquisition audio}
+\paragraph{}
+La composition musicale est plus la partie propre au compositeur, et correspond a la partie creation artistique. Plus qu'une fabrication de ce module, la question a etait comment pouvoir permaitre au compositeur de la creer et de pouvoir la modifier sur le dispositif a distance sans ecran ni clavier.
 
-\subsection{Traitement bas niveau}
+\paragraph{}
+Il y plusieurs techniques de synthèse musicale certaine sont plus complexe et gourmand en ressources.\\ Nous avons choisis un synthèse très simples car la synthèse est tres lié a la partie création musicale. 
 
-\subsubsection{Filtrage}
-\subsubsection{Détecteur de notes}
-\subsubsection{Bandes de fréquences}
-
-\subsection{Extraction des méta-données}
-\subsubsection{Mélodie et rythme}
-\subsubsection{Pattern minimal}
-
-\newpage
 \section{Récupération de l'environnement}
 \paragraph{}
 L'un des avantages de la carte Udoo est d'etre compatible Arduino est de proposer les même connectique qu'une Arduino Mega. Cela permet d'utiliser le même langage, d'utiliser les bibliotheques deja écrites ainsi que les mêmes capteurs.\\
@@ -246,7 +233,7 @@ Pour ajouter un capteur, il suffit d'écrire sur le port série avec un nom de c
 \paragraph{}
 Puis pour il nous ai venu l'idée de permettre à Pure data de pouvoir changer le délai entre chaque envoi de valeur. 
 Pour cela il a fallu permettre a l'arduino de pouvoir recevoir des données avec des messages ayant la même forme que l'envoi de donnée avec l'étiquette \texttt{delay}.\\
-C'est a ce moment la que nous avons découvert un vice de Pure Data, étant un langage tres faiblement typé. Les donnée recu de l'arduino sont des octets que Pure Data caste en type Nombre et il n'existe pas d'objet permettant a partir de ce flux d'octets de recuperer des integers (valeur des capteurs envoyé par la parite arduino).\\
+C'est a ce moment la que nous avons découvert un vice de Pure Data, étant un langage tres faiblement typé. Les donnée recu de l'arduino sont des octets que Pure Data caste en type Nombre et il n'existe pas d'objet permettant a partir de ce flux d'octets de recuperer des integers (valeur des capteurs envoyé par la parite Arduino).\\
 
 Au premiere abord nous avons voulu utiliser l'objet \texttt{PakcOSC} qui permet a la base de convertir un message quelconque en commande OSC (\texttt{Open Sound Control}). Ce protocole etant un protocole avec un codage ascii nous pouvions l'utiliser pour encoder et decoder les communications avec l'arduino. \\
 Mais cela aurai ete une manipulation de l'objet de base de plus cela pourrai porter a confusion car nous ne gerions en rien le protocole.\\
@@ -257,6 +244,24 @@ Nous avons discuté avec Hugues GENEVOIS et nous avons utilisé de programmer no
 En s'inspirant du fonctionnement des objets \texttt{PackOSC} et \texttt{UnPackOSC}, nous avons programmé deux externals, un qui recoi un message et qui le transforme en tableau d'octects (en code ascii plus particulierement) en ajoutant le code ascii d'un point virgule a la fin.\\
 Le second recoi un flux d'octets et le stock dans un tableau jusqu'a recevoir un point virgule, a ce momment là il envoi toute la chaine récu.\\
 Le fait d'utiliser le caractere ';' n'est pas un probleme car en PureData ce caratere est generalement le delimiter de fin de chaine, la fin de liste et de tableau ainsi quand interne pour fin des messages tcp ainsi que la fin d'une lecture de fichier.
+
+\section{Traitement audio}
+\subsection{Aquisition audio}
+\paragraph{}
+Comme nous l'avons dit dans l'introduction du projet, Nous avons filtré le signal audio capté par le micro pour supprimer les bases frequence et les haut fréquence.\\
+Nous avons chercher a savoir determiner les frequences de coupure a partir du quelle il n'y as plus d'information pertinente. Nous nous somme rendu compte qu'au dessus de 6000 Hertz il n'y avait plus de son avec une fondamentale a cette haute, et qu'il n'y avait que des harmonique de son plus grave. (Voir l'annexe rappel musical pour les explications sur les fondamentales et les harmoniques).\\
+Pour les sons tres graves, il n'existe pa de sons produits par la nature à des fréquence inférieur à 100 Hertz. Nous avons donc ajouter un filtre a notre acquisition pour pouvoir supprimer les bruits qui pour nous sont des bruits parasites.
+
+\subsection{Traitement du son bas niveau}
+
+\subsubsection{Filtrage}
+\subsubsection{Détecteur de notes}
+\subsubsection{Bandes de fréquences}
+
+\subsection{Traitement du son haut niveau - Extraction des méta-données}
+\subsubsection{Mélodie et rythme}
+\subsubsection{Pattern minimal}
+
 
 \newpage
 \section{Synthèse musical}
@@ -293,5 +298,9 @@ Le fait d'utiliser le caractere ';' n'est pas un probleme car en PureData ce car
 \bibliographystyle{plain}
 \bibliography{biblio-projet-DASS}
 %\addcontentsline{toc}{chapter}{Bibliographie}
+
+\section{Annexe}
+\subsection{Rappel musical}
+% rappel sur les harmoniques 
 
 \end{document}
