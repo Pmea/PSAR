@@ -20,8 +20,8 @@
 \usepackage{listings}
 \usepackage{enumitem}%                 pour les listes numérotées
 \usepackage{microtype}%                améliorations typographiques
-\usepackage{csvsimple}%                 convertir un fichier .csv en tableau
-\usepackage{url}
+\usepackage{csvsimple}%                convertir un fichier .csv en tableau
+\usepackage{url}%					  amélioration afficahge url
 \usepackage{hyperref}%                 gestion des hyperliens
 
 \usepackage{titling} %  				  gestion des subtitles 
@@ -78,10 +78,40 @@
 
 \newpage
 \section{Introduction}
-\subsection{Presentation du projet}
+\subsection{Contexte Global}
+\paragraph{}
+\textbf{Maîtrise d’œuvre :} Hugues GENEVOIS
+\vspace{-5mm}
+\paragraph{}
+\textbf{Maîtrise d’ouvrage :} Pierre MAHÉ
 
+\paragraph{}
+Le projet DASS, Dispositif Autonome de Synthèse Sonore, est une collaboration de Michel RISSE, compositeur de "Décor Sonore" ayant à son actif de nombreuses créations et dispositif sonores, et de Hugues GENEVOIS, chercheur au LAM de L'Institut Jean le Rond d'Alembert.
+
+\paragraph{}
+Le projet consiste à mettre en place un dispositif générant du son en prennent en compte sont environnement dans le but de souligner les sons pres-exsitant dans cet environement. Le dispositif recueille les informations a l'aide de capteurs diverses permettant de récupérer les buits ambiant, la luminosité, la tempature.
+
+Dans un premiere tant devrait être la base pour une installation artistique, se deroulant en juillet prochain, dans le cadre d'un festival de musique à Noirlac. Dans un second temps Hugues GENEVOIS et Michel RISSE voudraient réaliser une installation plus importante avec de nombreux dispositifs avec pour chacun d'eux des comportements et des caractéristique propre, pour voir l'interation qu'ils pourraient avoir ensemble et les comportements qui en emergerait.
+
+\subsection{Presentation de la demande}
+\paragraph{}
+Dans le cadre de mon projet PSAR, mon but etais de créer un premier prototype du projet pour s'en service comme base par la suite.\\
+J'avais donc pour mission de créer un dispositif portable interagissant avec son environnement. Ce dispositif doit capter l'environnement a l'aide
+Le but du projet est de créer un dispositif portable interagissant avec son environnement. Ce dispositif doit capter l'environnement a l'aide de capteurs : micro, luminosité, température, et humidité. Il devra traiter ces données pour en extraire des informations pertinent sur les changements se produisant autour de lui (chants d'oiseaux, passage d'une personne au alentour...). Grâce à ces informations, il devra synthétiser du son.
+\paragraph{}
+La synthèse devra être paramétrable, pour permettre au compositeur de modifier
+l’influence des différant capteurs sur la synthèse sonore.\\
+De plus une interface utilisateur devra être présente permettant au compositeur de simuler des données
+captés. Cela lui permettra de faire des expérimentations de sa composition.
+\paragraph{}
+Dans l’optique de la reproduction de ce dispositif pour des installations plus important. Une procédure devra permettre à un utilisateur de pouvoir reproduire l’ensemble du système, aussi bien niveau matériel que logiciel.
+\paragraph{}
+Le dispositif devant être portable, le programme doit fonctionner sur une nano-
+ordinateur de type \texttt{Udoo Quad}. De plus le langage du programme principal doit etre le 
+PureData, pour assurer une maintenabilité et une extensionnalité plus facile.
 \subsection{La Carte Udoo}
-
+\paragraph{}
+La 
 \subsection{Pure Data}
 \subsubsection{Externals}
 
@@ -102,12 +132,54 @@
 \subsubsection{Pattern minimal}
 
 \newpage
-\section{Récuperation de l'environnement}
+\section{Récupération de l'environnement}
+\paragraph{}
+L'un des avantages de la carte Udoo est d'etre compatible Arduino est de proposer les même connectique qu'une Arduino Mega. Cela permet d'utiliser le même langage, d'utiliser les bibliotheques deja écrites ainsi que les mêmes capteurs.\\
+De plus la partie  micro controleur etant connecté directement a la partie nano ordinateur via un bus special, la vite de comunication est plus rapide et avec une plus courte latence par rapport a une connexion usb classique.
+
+\paragraph{}
+Dans les valeurs envoyés par un capteur deux choses sont interessante, la premiere la valeur et la variation de celci (si elle augmente ou si elle diminue).
 \subsection{Dispositif et capteurs}
+\paragraph{}
+Dans le cadre du projet, seul trois capteurs étaient prevu mais le programme devrait permettre un ajout de capteurs  aisé.\\
+Les capteurs utilisés sont des capteurs les plus basique : un capteur de luminosité, de temperature et d'humidité.\\
+% photo du montage 
+Pour capteur la luminosité, nous avons utilisé une photo-resistance, son fonctionnement est asses simple, plus la luminosité va etre forte plus la resitance interne de composant va etre faible. Il suffit de recupere la tension au borne de composant pour connaitre l'indice de luminosité.\\ 
+Malheureusement cette indice ne permet pas de connaitre l'intancité lumineuse en Candela ou en Lux mais permet d'avoir une echelle d'avoir des valeur relavite. Ce qui est suffisant dans le cadre de ce projet.
+\paragraph{}
+Pour la Temperature et l'humidité le fonctionnement est tres similaire. Contrairement a la luminosité grace a une formule (dépendent de chaque capteur) il sera possible d'avoir la température ou l'hygrométrie précise. 
 
 \subsection{Communication inter plate-forme}
+\paragraph{}
+Pour la partie micro-controleur l'envoi de donnnées est asses intruitive car il suffit d'ecrire sur le port Série (Serial port), avec des primite d'ecriture basique.\\
+Pour la partie ordinateur avec le logiciel Pure Data, il faut utiliser une boite pour se connecter a un périphérique puis on peut lire et ecrire sur celui.\\
+La connexion entre l'arduino et Pure data devant etre unique, il a fallu trouver un moyen de pouvoir differensier les données des différant capteur. 
+% photo montage du composant
+
+\paragraph{}
+Pour communiquer entre les deux parties, j'ai donc define un micro-protocole qui étiquette les données envoyés.\\
+Tous les X secondes le programme arduino li les valeurs des capteurs et envoi un message de la forme :
+\begin{lstlisting}
+NOM_CAPTEURvl: VALEUR;		//vl pour la valeur
+MON_CAPTEURvr: VALEUR;		//vr pour la variation
+\end{lstlisting}
+
+Pour ajouter un capteur, il suffit d'écrire sur le port série avec un nom de capteur pas encore utiliser et c'est dans la partie Pure data que nous traiterons la nouvelle étiquette.
+
+\paragraph{}
+Puis pour il nous ai venu l'idée de permettre à Pure data de pouvoir changer le délai entre chaque envoi de valeur. 
+Pour cela il a fallu permettre a l'arduino de pouvoir recevoir des données avec des messages ayant la même forme que l'envoi de donnée avec l'étiquette \texttt{delay}.\\
+C'est a ce moment la que nous avons découvert un vice de Pure Data, étant un langage tres faiblement typé. Les donnée recu de l'arduino sont des octets que Pure Data caste en type Nombre et il n'existe pas d'objet permettant a partir de ce flux d'octets de recuperer des integers (valeur des capteurs envoyé par la parite arduino).\\
+
+Au premiere abord nous avons voulu utiliser l'objet \texttt{PakcOSC} qui permet a la base de convertir un message quelconque en commande OSC (\texttt{Open Sound Control}). Ce protocole etant un protocole avec un codage ascii nous pouvions l'utiliser pour encoder et decoder les communications avec l'arduino. \\
+Mais cela aurai ete une manipulation de l'objet de base de plus cela pourrai porter a confusion car nous ne gerions en rien le protocole.\\
+Nous avons discuté avec Hugues GENEVOIS et nous avons utilisé de programmer nos prope externals.
 
 \subsection{External pour la communication}
+\paragraph{}
+En s'inspirant du fonctionnement des objets \texttt{PackOSC} et \texttt{UnPackOSC}, nous avons programmé deux externals, un qui recoi un message et qui le transforme en tableau d'octects (en code ascii plus particulierement) en ajoutant le code ascii d'un point virgule a la fin.\\
+Le second recoi un flux d'octets et le stock dans un tableau jusqu'a recevoir un point virgule, a ce momment là il envoi toute la chaine récu.\\
+Le fait d'utiliser le caractere ';' n'est pas un probleme car en PureData ce caratere est generalement le delimiter de fin de chaine, la fin de liste et de tableau ainsi quand interne pour fin des messages tcp ainsi que la fin d'une lecture de fichier.
 
 \newpage
 \section{Synthèse musical}
