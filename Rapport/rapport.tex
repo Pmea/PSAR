@@ -253,10 +253,38 @@ Nous avons chercher a savoir determiner les frequences de coupure a partir du qu
 Pour les sons tres graves, il n'existe pa de sons produits par la nature à des fréquence inférieur à 100 Hertz. Nous avons donc ajouter un filtre a notre acquisition pour pouvoir supprimer les bruits qui pour nous sont des bruits parasites.
 
 \subsection{Traitement du son bas niveau}
-
 \subsubsection{Filtrage}
+\paragraph{}
+Une inforation qui nous paraissé esentiel a extraire etait les notes et les melodies qui sont jouer dans l'environement.\\
+Il est asses facile de determiner la frequence principal d'un signal, il suffit de prendre la forme generale du signal. Il existe plusieurs boites en Pd pour le faire tel que \texttt{Fiddle} ou \texttt{Signum}.\\
+Pour detecter les notes jouer simultanement ou suivre plusieurs de melodies simultanement est tres quasiment impossible et fait encore partie l'objet de recherche.\\
+L'une des meilleurs compromis entre le temps de calcul et la fiabilité de la sortie est de faire 
+En Pd il existe des boites pour déterminer la frequence pour cela nous avons pensé a utiliser la transformé de fourrier (voir Annexe) pour déterminer l'ensemble des notes jouer. \\
+Nous avons implémenter un programme en \texttt{C} pour pour faire une transformée Fourrier rapide (FFT), dans l'optique d'en faire une boite pour l'utiliser dans Pure Data mais nous nous sommes rendu compte que ce proceder etait beaucoup trop gourmand pour la carte. Meme si la complexité de la FFT est en Nlog(N), avec N le taux d'echantillonnage du signal (nombre de point du signal). Notre signal est echantilloné a 44k Hertz il y a donc 44100 points a traiter par seconde ce qui est trop lourd pour la carte (si nous voulons pouvoir faire d'autres traitements en parallèle).
+
+\paragraph{}
+%TODO faire un graphique 
+
+Apres ces tests insatisfesant, nous nous sommes donc orienter dans une autre direction, le chercheur nous a conseiller de partager le spectre sonore en plusieurs bandes de fréquences a l'aide de filtre passe-band et de suivre de deterter la frequence la plus principal de chaque bande, avec un \texttt{fiddle}.\\
+Apres avoir implémenté en pure data ce mecanisme un nouveau probleme est apparu. Les filtres ne coupant pas parfaitement les frequences en dehors de sa bande, les objet \texttt{fiddle} detecter parfois des frequences n'appartennent pas a leurs bande de frequence. Il y avait donc plusieurs filtre qui detecter donc la même frequence ce qui etait asses problematique.\\
+
+\paragraph{}
+Pour resoudre ce second probleme nous avons utilisé des noiseGate.\\
+Une noiseGate est un element souvant utliser en musique, il correspond simplement a un boite qui ne laisse passer que les signals sonore d'une certaine intensité, si le signal est trop faible le signal en sortie de la boite est egale a 0.
+Cela permet de supprimer les sons venant des autres bandes de frequences, etant atenuer par les filtres, ces sons ne passe pas la NoiseGates, ce qui resolvé le problemee de la detection de fréquence erroné.
+
 \subsubsection{Détecteur de notes}
+\paragraph{}
+Ce dispositif était bien mieux que les précèdent mais ne permettait pas de suivre les melodies qui etait etaler sur plusieurs bandes de fréquences. Ce qui se traduisé par la detection de morceau de melodie souvant haché.\\
+Nous avons donc decider d'abandonner l'idée de suivre plusieurs melodie simulanement et de ne garde que la melodie principal du signal. \\
+Et de ne n'utilsier les notes récupérer par les filtres uniquement  pour savoir quelle note sont jouer pendant un labse de temps.\\
+Ce choix choix peut semblé un peu etonnant mais il est tres important pour le dispositif de savoir quel note son jouer, si la melodie qu'il capte utiliser uniquement deux notes, il serait tres disonnant que le disposirif en joue une troisieme note qui n'a rien a voir avec les deux premieres.\\
+Donc implementé un compteur de notes qui collecte les notes reconnues a la sortie des filtres. A intervalle régulier le compteur va nous donner la fréquence des notes joué. Pour ne pas faire trop de dissonnance il suffira au module de synthese de jouer des note tiré au hasard dans la liste de note en tenant compte de la frequence d'apparition d'une note.
+
 \subsubsection{Bandes de fréquences}
+\paragraph{}
+Avec ce systeme de detection de note, ils est possible de savoir la frequence d'appartion des notes mais il n'est pas possible de savoir la hauteur des sons capté.\\
+Nous avons donc ajouter un module pour mesurer l'amplitude du signal sur chaque bande de fréquence pour savoir où sont reparti les notes sur les bandes de frequences, si les bruits capté par le micro sont plutot aigue ou grave.
 
 \subsection{Traitement du son haut niveau - Extraction des méta-données}
 \subsubsection{Mélodie et rythme}
