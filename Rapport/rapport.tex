@@ -24,6 +24,7 @@
 \usepackage{url}%					  amélioration afficahge url
 \usepackage{hyperref}%                 gestion des hyperliens
 \usepackage{svg}	%					  gestion des svg	
+\usepackage{float}%					  gestion des figure non flotante
 
 \usepackage{titling} %  				  gestion des subtitles 
 \newcommand{\subtitle}[1]{%			  definition d'une nouvelle commande sous-titre
@@ -283,13 +284,50 @@ Donc implementé un compteur de notes qui collecte les notes reconnues a la sort
 
 \subsubsection{Bandes de fréquences}
 \paragraph{}
-Avec ce systeme de detection de note, ils est possible de savoir la frequence d'appartion des notes mais il n'est pas possible de savoir la hauteur des sons capté.\\
-Nous avons donc ajouter un module pour mesurer l'amplitude du signal sur chaque bande de fréquence pour savoir où sont reparti les notes sur les bandes de frequences, si les bruits capté par le micro sont plutot aigue ou grave.
+Avec ce systeme de detection de note, ils est possible de savoir la fréquence d'appartion des notes mais il n'est pas possible de savoir la hauteur des sons capté.\\
+Nous avons donc ajouter un module pour mesurer l'amplitude du signal sur chaque bande de fréquence pour savoir où sont reparti les notes sur les bandes de fréquences, si les bruits capté par le micro sont plutot aigue ou grave.
 
 \subsection{Traitement du son haut niveau - Extraction des méta-données}
 \subsubsection{Mélodie et rythme}
-\subsubsection{Pattern minimal}
+\paragraph{}
+Comme expliqué dans la section percedente, nous avons implementé un module pour detecter la melodie principal du signal.\\
+%TODO image pour detection de note
+Nous avons donc voulu implementé un module homologue a la detection de note, mais pour déterminer les rythmes. Pour synthetiser du son avec des rythmes proche de l'environement.\\
+Concretement si une personne marche pres de du dispositif il peut repondre en jouer des son sur le même rythme ou dans le cas ou le il capte un chant d'oiseau, il peut reponse en jouant des notes semblable avec le même rythme.\\
 
+\paragraph{}
+Apres en avoir discuté avec notre encadrant, il nous est apparu que pour connaitre pouvoir detecter un debut de note, la maniere de proceder est de detecter les impacts, generalement caracteristique d'une debut de note. Pour cela  nous avons calcule l'energie du signal (voir annexe). 
+% TODO SCHEMA avec seuil max et min
+Il suffit ensuite de regarder son evolution, si une augmentation brusque apparait, cela induit la presense d'un impact et donc du debut de note.\\
+Pour raffiner la détection d'impact, nous avons ajouter un seuil minimal et manimal a depasser pour considerer que l'evenement est bien un debut de note.
+ 
+
+\paragraph{}
+Dans l'environement les bruit sont intermiant, il nous nous sommes dit qu'il serait interessant de grouper les evenements ryhtmique en sequence. Un sequence commence quand le dispositif detecte le debut d''un note et termine apres un labse de temps sans imparte (de quelque secondes). Pour eviter de faire des sequences trop longeux dans le cas d'un environnement tres bruillant nous avons decider arbitrairement de limiter un mnombre d'evenement maximum dans une sequence (de l'ordre de la centaine).
+
+\paragraph{}
+Pour permaitre au dispositif de jouer la même structure rythmique mais a differante vitesse. Nous avons decider de normaliser notre notation de rythme.
+%TODO ajoute schema interval  example
+Le premier intervalle entre deux notes sera la reference pour toute la sequence, elle aura une valeur "1", tous les autres intervalle seront des multiples de cette valeurs.\\
+Avec ce systemes il est possible de mesurer des divisions de cette valeurs jusqu'a la quadruple croche (1/16) ce qui nous parrait etre une precision suffisante.\\
+Nous avons rajouter une certaine tolérante au calcule de valeur pour permaitre une certaine approximation dans les rythmes. Il est quasiment impossible de jouer rigoureusement plusieurs notes parfaitement égales.\\
+Les sequences dete ter son au final de la forme:\\
+\begin{figure}[H]
+	\includegraphics[width=100px] {sequence_ryhtmique.jpg}
+	\caption{\label{étiquette} Sequence Rythmique detecté}
+	\includegraphics[width=140px]{sequence_rytmique_possible.jpg}
+	\caption{\label{étiquette} Deux ryhtmes pouvant produire la sequence}
+\end{figure}
+
+\subsubsection{Détection de Motif minimal}
+\paragraph{}
+Nous avons beaucoup discuter de la detection melodie et rythmique avec Hugues GENEVOIS, et nous en avons tirer la conclusion qui serai interessant d'extraire des sequences rythmes les rythme les motifs melodie et rythmique qui revienne dans ce sequence.\\
+Cette operation s'averant tres complexe en Pure Data a cause du fait qu'il est compliquer de stocker des données. Nous avons donc decider de faire deux externals un pour les motifs melodie et un pour le motif rythmique.\\
+Nous allons vous decrire le fonctionnement detailler de l'external de detection de motif rythmique, il sauf savoir que le l'external pour de detection de motif melodie fonctionne de maniere homologue.\\
+On donner en parametre a l'external le nombre minimal du motif. Et nous lui envoyons la sequence rythmique à la volé, des que le module de tection rythmique détecte un nouveau intervalle il est directement envoyer au module de detection de motif rythmqiue.\\
+Il stock les valeurs est a chaque recpetion de nouvelle valeur va tester si il n'a pas deja rencontre un motif contenant ce rythme. Des qu'un motif sera detecter l'external va envoyer ce motif rythmique pour qu'il soit utiliser pour la synthese.\\
+Ce module ne permet pas de faire reconnaitre la plus long des motifs rythmiques present dans la sequence mais pour pouvoir interagir rapidement avec son environnement, il est preferable d'avoir un motif court, le plus vite possible plutot qu'un motif plus grand mais qu'il faille que la sequence soit terminer et donc que l'interation avec le dispostif soit moindre. Le dispositif n'ayant la plus longue sequence uniquement une fois que l'emetteur a fini de jouer.
+% TODO schema detection de motif
 
 \newpage
 \section{Synthèse musical}
@@ -327,7 +365,7 @@ Nous avons donc ajouter un module pour mesurer l'amplitude du signal sur chaque 
 \bibliography{biblio-projet-DASS}
 %\addcontentsline{toc}{chapter}{Bibliographie}
 
-\section{Annexe}
+\newpage\section{Annexe}
 \subsection{Rappel musical}
 % rappel sur les harmoniques 
 
