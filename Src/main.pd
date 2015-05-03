@@ -1,4 +1,4 @@
-#N canvas 1985 82 927 998 10;
+#N canvas 1985 54 1855 1026 10;
 #N canvas 2057 189 668 891 Pduino 0;
 #X obj 267 330 comport 9600;
 #X obj 411 47 inlet;
@@ -36,7 +36,7 @@
 #X restore -45 155 pd Pduino;
 #X msg -45 105 start;
 #X msg -32 125 stop;
-#N canvas 65 97 927 998 reception_web 0;
+#N canvas 65 102 927 998 reception_web 0;
 #X obj 471 120 outlet;
 #X obj 364 126 outlet;
 #X obj 384 83 netreceive 4242;
@@ -174,7 +174,7 @@
 #X obj -45 205 spigot;
 #X obj 833 176 s netprio;
 #X obj -12 181 r netprio;
-#N canvas 2912 82 927 998 analyse 1;
+#N canvas 2909 87 927 998 analyse 0;
 #X obj 668 355 outlet;
 #X obj 458 -58 inlet~;
 #N canvas 1001 82 912 998 traitement_Melodie 0;
@@ -1961,7 +1961,7 @@
 #X connect 4 0 5 0;
 #X connect 5 0 2 1;
 #X restore 481 618 pd diffusion;
-#N canvas 992 82 927 998 synthese 1;
+#N canvas 989 87 927 998 synthese 0;
 #X obj 409 37 inlet;
 #X obj 464 38 inlet;
 #X obj 515 38 inlet;
@@ -2000,7 +2000,7 @@
 #X coords 0 1 440 -1 200 140 1;
 #X restore 622 538 graph;
 #X obj 499 674 metro 100;
-#X obj 499 651 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 499 651 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 499 626 loadbang;
 #X obj 499 697 tabwrite~ visu;
@@ -2015,6 +2015,9 @@
 #X connect 21 0 20 0;
 #X connect 22 0 21 0;
 #X restore 480 489 pd synthese;
+#N canvas 3271 356 450 300 reception_modification 0;
+#X obj 180 61 netreceive 4343;
+#X restore 1328 112 pd reception_modification boite;
 #X connect 0 0 8 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
