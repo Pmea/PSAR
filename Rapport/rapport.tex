@@ -25,7 +25,8 @@
 \usepackage{hyperref}%                 gestion des hyperliens
 \usepackage{svg}	%					  gestion des svg	
 \usepackage{float}%					  gestion des figure non flotante
-
+\usepackage{fullpage}
+    
 \usepackage{titling} %  				  gestion des subtitles 
 \newcommand{\subtitle}[1]{%			  definition d'une nouvelle commande sous-titre
   \posttitle{%
@@ -118,8 +119,13 @@ Le dispositif devant être portable, le programme doit fonctionner sur une nano-
 ordinateur de type \texttt{Udoo Quad}. De plus le langage du programme principal doit etre le 
 PureData, pour assurer une maintenabilité et une extensionnalité plus facile.
 \subsection{La Carte Udoo}
+\begin{figure}
+  \centering
+  \includegraphics[width=300px]{udoo.jpg}
+  \caption{Carte Udoo}
+\end{figure}
+
 \paragraph{}
-% photo udoo
 La carte Udoo est un nano ordinateur embarquant un processeur ARM et la connectique d'un ordinateur classique. Avec une entre et sortie micro. La qualité étant suffisante pour notre projet.\\
 La caractéristique de cette carte est d'etre compatible arduino et d'offrir les mêmes connectique qu'une Arduino Mega ce qui permet de simplifier la réception des capteurs ainsi que le d'utiliser les bibliothèques déjà implémenter par la vaste communauté Arduino.\\
 La carte utilise une carte micro sd pour stocker ses données, ce qui est également un avantage pour le projet car cela permet de dupliquer la partie software du dispositif avec une simple copie de carte mémoire.\\
@@ -127,7 +133,11 @@ Le systeme d'exploitation installer est un version simplifié d'Ubuntu, permetta
 
 \subsection{Pure Data}
 \subsubsection{Presentation generale}
-% logo pure data ou image
+\begin{figure}
+  \centering
+  \includegraphics[width=200px]{pd.jpg}
+  \caption{Patch Pure Data}
+\end{figure}
 \paragraph{}
 Pure Data est un logiciel, open source, de programmation graphique pour la creation muscale et multimedia en temps reel. Il permet également de gérer des signaux entrants dans l'ordinateur (signaux de capteurs ou événements réseau par exemple) et de gérer des signaux sortants (par des protocoles de réseau ou protocoles électroniques pour le pilotage de matériels divers).\\
 Pure Data est un systeme module où il est possible de definir des sous-modules qu'il est possible de re-utiliser a sa gise dans d'autre programme appelé \texttt{patch}.
@@ -166,6 +176,7 @@ Nous avons décider de diviser le programme en cinq modules pour le cote synthè
 \begin{figure}
   \centering
   \includegraphics[width=400px]{structprojet.jpg}
+  \caption{Structure du projet}
 \end{figure}
 
 \paragraph{}
@@ -208,10 +219,16 @@ De plus la partie  micro controleur etant connecté directement a la partie nano
 \paragraph{}
 Dans les valeurs envoyés par un capteur deux choses sont interessante, la premiere la valeur et la variation de celci (si elle augmente ou si elle diminue).
 \subsection{Dispositif et capteurs}
+\begin{figure}
+	\centering
+	\includegraphics[width=200px]{montage.jpg}
+		\includegraphics[width=200px]{montagephoto.jpg}
+	\caption{Montage du dispositif}
+\end{figure}
 \paragraph{}
 Dans le cadre du projet, seul trois capteurs étaient prevu mais le programme devrait permettre un ajout de capteurs  aisé.\\
 Les capteurs utilisés sont des capteurs les plus basique : un capteur de luminosité, de temperature et d'humidité.\\
-% photo du montage 
+
 Pour capteur la luminosité, nous avons utilisé une photo-resistance, son fonctionnement est asses simple, plus la luminosité va etre forte plus la resitance interne de composant va etre faible. Il suffit de recupere la tension au borne de composant pour connaitre l'indice de luminosité.\\ 
 Malheureusement cette indice ne permet pas de connaitre l'intancité lumineuse en Candela ou en Lux mais permet d'avoir une echelle d'avoir des valeur relavite. Ce qui est suffisant dans le cadre de ce projet.
 \paragraph{}
@@ -259,16 +276,23 @@ Pour les sons tres graves, il n'existe pa de sons produits par la nature à des 
 \subsection{Traitement du son bas niveau}
 \subsubsection{Filtrage}
 \paragraph{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=300px]{fft.jpg}
+	\caption{Transformée de Fourrier}
+\end{figure}
 Une inforation qui nous paraissé esentiel a extraire etait les notes et les melodies qui sont jouer dans l'environement.\\
 Il est asses facile de determiner la frequence principal d'un signal, il suffit de prendre la forme generale du signal. Il existe plusieurs boites en Pd pour le faire tel que \texttt{Fiddle} ou \texttt{Signum}.\\
 Pour detecter les notes jouer simultanement ou suivre plusieurs de melodies simultanement est tres quasiment impossible et fait encore partie l'objet de recherche.\\
 L'une des meilleurs compromis entre le temps de calcul et la fiabilité de la sortie est de faire 
 En Pd il existe des boites pour déterminer la frequence pour cela nous avons pensé a utiliser la transformé de fourrier (voir Annexe) pour déterminer l'ensemble des notes jouer. \\
 Nous avons implémenter un programme en \texttt{C} pour pour faire une transformée Fourrier rapide (FFT), dans l'optique d'en faire une boite pour l'utiliser dans Pure Data mais nous nous sommes rendu compte que ce proceder etait beaucoup trop gourmand pour la carte. Meme si la complexité de la FFT est en Nlog(N), avec N le taux d'echantillonnage du signal (nombre de point du signal). Notre signal est echantilloné a 44k Hertz il y a donc 44100 points a traiter par seconde ce qui est trop lourd pour la carte (si nous voulons pouvoir faire d'autres traitements en parallèle).
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=300px]{filtre.jpg}
+	\caption{Bandes de Fréquences}
+\end{figure}
 \paragraph{}
-%TODO faire un graphique 
-
 Apres ces tests insatisfesant, nous nous sommes donc orienter dans une autre direction, le chercheur nous a conseiller de partager le spectre sonore en plusieurs bandes de fréquences a l'aide de filtre passe-band et de suivre de deterter la frequence la plus principal de chaque bande, avec un \texttt{fiddle}.\\
 Apres avoir implémenté en pure data ce mecanisme un nouveau probleme est apparu. Les filtres ne coupant pas parfaitement les frequences en dehors de sa bande, les objet \texttt{fiddle} detecter parfois des frequences n'appartennent pas a leurs bande de frequence. Il y avait donc plusieurs filtre qui detecter donc la même frequence ce qui etait asses problematique.\\
 
@@ -294,13 +318,18 @@ Nous avons donc ajouter un module pour mesurer l'amplitude du signal sur chaque 
 \subsubsection{Mélodie et rythme}
 \paragraph{}
 Comme expliqué dans la section percedente, nous avons implementé un module pour detecter la melodie principal du signal.\\
-%TODO image pour detection de note
+
 Nous avons donc voulu implementé un module homologue a la detection de note, mais pour déterminer les rythmes. Pour synthetiser du son avec des rythmes proche de l'environement.\\
 Concretement si une personne marche pres de du dispositif il peut repondre en jouer des son sur le même rythme ou dans le cas ou le il capte un chant d'oiseau, il peut reponse en jouant des notes semblable avec le même rythme.\\
 
 \paragraph{}
-Apres en avoir discuté avec notre encadrant, il nous est apparu que pour connaitre pouvoir detecter un debut de note, la maniere de proceder est de detecter les impacts, generalement caracteristique d'une debut de note. Pour cela  nous avons calcule l'energie du signal (voir annexe). 
-% TODO SCHEMA avec seuil max et min
+Apres en avoir discuté avec notre encadrant, il nous est apparu que pour connaitre pouvoir detecter un debut de note, la maniere de proceder est de detecter les impacts, generalement caracteristique d'une debut de note. Pour cela  nous avons calcule l'energie du signal. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=300px]{bonk.jpg}
+	\caption{Detection de debut de note.}
+	\caption{En rouge les seuils min et max\\Les fleches reprensente les notes détectés}
+\end{figure}
 Il suffit ensuite de regarder son evolution, si une augmentation brusque apparait, cela induit la presense d'un impact et donc du debut de note.\\
 Pour raffiner la détection d'impact, nous avons ajouter un seuil minimal et manimal a depasser pour considerer que l'evenement est bien un debut de note.
  
@@ -310,16 +339,18 @@ Dans l'environement les bruit sont intermiant, il nous nous sommes dit qu'il ser
 
 \paragraph{}
 Pour permaitre au dispositif de jouer la même structure rythmique mais a differante vitesse. Nous avons decider de normaliser notre notation de rythme.
-%TODO ajoute schema interval  example
+
 Le premier intervalle entre deux notes sera la reference pour toute la sequence, elle aura une valeur "1", tous les autres intervalle seront des multiples de cette valeurs.\\
 Avec ce systemes il est possible de mesurer des divisions de cette valeurs jusqu'a la quadruple croche (1/16) ce qui nous parrait etre une precision suffisante.\\
 Nous avons rajouter une certaine tolérante au calcule de valeur pour permaitre une certaine approximation dans les rythmes. Il est quasiment impossible de jouer rigoureusement plusieurs notes parfaitement égales.\\
 Les sequences dete ter son au final de la forme:\\
 \begin{figure}[H]
-	\includegraphics[width=100px] {sequence_ryhtmique.jpg}
-	\caption{\label{étiquette} Sequence Rythmique detecté}
-	\includegraphics[width=140px]{sequence_rytmique_possible.jpg}
-	\caption{\label{étiquette} Deux ryhtmes pouvant produire la sequence}
+	\centering
+	\includegraphics[width=200px] {rythme.jpg}
+	\caption{ Sequence Rythmique détecté}
+	\includegraphics[width=300px]{structurerythme.jpg}
+	\caption{Deux ryhtmes pouvant produire la sequence.
+	}
 \end{figure}
 
 \subsubsection{Détection de Motif minimal}
@@ -330,8 +361,11 @@ Nous allons vous decrire le fonctionnement detailler de l'external de detection 
 On donner en parametre a l'external le nombre minimal du motif. Et nous lui envoyons la sequence rythmique à la volé, des que le module de tection rythmique détecte un nouveau intervalle il est directement envoyer au module de detection de motif rythmqiue.\\
 Il stock les valeurs est a chaque recpetion de nouvelle valeur va tester si il n'a pas deja rencontre un motif contenant ce rythme. Des qu'un motif sera detecter l'external va envoyer ce motif rythmique pour qu'il soit utiliser pour la synthese.\\
 Ce module ne permet pas de faire reconnaitre la plus long des motifs rythmiques present dans la sequence mais pour pouvoir interagir rapidement avec son environnement, il est preferable d'avoir un motif court, le plus vite possible plutot qu'un motif plus grand mais qu'il faille que la sequence soit terminer et donc que l'interation avec le dispostif soit moindre. Le dispositif n'ayant la plus longue sequence uniquement une fois que l'emetteur a fini de jouer.
-% TODO schema detection de motif
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=350px]{motifrythme.jpg}
+	\caption{En rouge le motif minimal. En bleu le motif le plus long de la sequence}
+\end{figure}
 \section{Synthèse musical}
 \subsection{Modele physique au longterme}
 \paragraph{}
@@ -362,24 +396,42 @@ Apres plusieurs experimentations ous avons decouvert que le caratere etait le ';
 
 \paragraph{}
 Apres quelque teste nous sommes dit que le parametrage du dispositif ne pouvait pas ce faire sans connaissances en Pure Data. Par consequent, nous decider de change d'idéee et de fournir un interface graphique fait en Pure Data, l'utilisateur serai plus a l'aise avec une interface fait dans un langage qu'il connait et qui a la philosophie que le programme embarqué dans le dispositif. L'utilisateur pourra egalement l'adaper selon ses besoins.
-%TODO photo de l'affichage graphique
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=250px] {GUI.jpg}
+	\caption{Interface Graphique}
+\end{figure}
 \subsection{Envoie des données capteur}
 \paragraph{}
 Nous avons recontré plusieurs fois le compositieur pour savoir ce qui lui serait le plus facile pour l'envoie de données. Il lui a paru interessant de dessiner des coubes pour chaque capteur. Il a pense egalement que pouvoir choisir changer la précision des courbes pour pouvoir similer de grande variations ou au contraire des tres petit variation.\\
+
 \paragraph{fonctionnement}
-L'utilisateur peut dessinerl les courbes qui desir pour capteur, quand il a fini il se connecte au dispositif a ce moment l'interface envoie les doonées au dispositif qui va les socker et tant que la connectio n'est rompu par l'utilisateur va les lire en boucle et s'en servir comme si ses informations etait celle des capteurs.\\
+L'utilisateur peut dessinerl les courbes qui desir pour capteur, quand il a fini il se connecte au dispositif a ce moment l'interface envoie les doonées au dispositif qui va les socker et tant que la connectio n'est rompu par l'utilisateur. Le dispositif va les lire en boucle, en espacent chaque lecture d'un certain delais (fixé a 100 millis second). et va s'en servir comme si ses informations etait celle recu par les capteurs.\\
 Pour envoyer de nouvelle données, il suffira a l'utilisateur de tracer de nouvelle courbe, de se deconnecter et de se reconnecte pour que l'envoie de face a nouveau.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=250px] {senddata.jpg}
+	\caption{Message envoyé par l'interface au dispositif}
+\end{figure}
+
+\paragraph{}
+Le nombre d'echantillon envoyer a chaque fois est fixe dans les patchs, elle est fixé a 256 mais il est possible de modifier cela agrandicent les tableaux contentat les courbes de l'interface utiliser ainsi que le programme embarqué dans le dispositif.
+\paragraph{}
+Pour savoir a quoi corespond cahque liste de données envoi, le premier mot en debut de liste correspond au capteur (tempe pour la température, humid pour l'humidité ...). 
+
 
 \subsection{Envoie d'objet Pure data}
 \paragraph{}
-En Pure Data, il est impossible de pouvoir modifier un patch autrement que par l'interface du logiciel en ajoutant des boites ou des connections. Et donc la creation du module "Creation Musicale" génerique que l'utilisateur pourrai modelé a ca guise serait impossible a programmer. La Creation d'une mouveau module serait obligatoire pour chaque evenement.
+En Pure Data, il est impossible de pouvoir modifier un patch autrement que par l'interface du logiciel en ajoutant des boites ou des connections. Et donc la creation du module "Creation Musicale" génerique que l'utilisateur pourrai modelé a ca guise serait impossible a programmer. La Creation d'une nouveau module serait obligatoire pour chaque evenement.
 \paragraph{}
 Nous nous sommes questionné sur comment  pouvoir changer la partie "Creation musicale" à distance.\\
 La premiere chose envisage a etait de faire un simple script \texttt{Bash} pour envoyer un pathc programmé par sur l'ordinateur de l'utilisateur vers le dispositif. Le defaut majeur de cette technique est le cela force l'utilisateur a connaitre les commandes utile pour maintenir le script et les bases du ssh. Ce qui peut paraitre evident pour une personne travaillant dans le domaine de l'informatique mais qui est rare pour les utilisateurs de PureData. Utilisant un langague graphique pour s'abstraire du code informatique. De plus cela  oblige à utiliser un autre outils que Pd.
 
 \paragraph{}
 Nous avons vite laisser le problème de coté, par manque de solutions satisfaisante.\\
-En effectuant des teste sur l'evoi de données pour les capteurs l'idée mes venu de ne pas envoyer une liste de données (venant des courbes) mais d'envoyer une liste qui serai le contenu d'un fichier, et plus particulierement d'une fichier Pd.\\
+En effectuant des teste sur l'evoi de données pour les capteurs l'idée mes venu de ne pas envoyer une liste de données (venant des courbes) mais d'envoyer une liste qui serai le contenu d'un fichier, et plus particulierement d'une fichier Pd. Un fichier Pure Data etant ecrit en \texttt{ascii}.\\
 L'idée est que l'utiliateur ecrive un module de creation qu'il envoi le ficher par l'interface graphique et que de l'autre cote, le dispositif le recpetion et ecrive est remplace le module de "Creation Sonore" par le fichier recu.
 \paragraph{}
 Comme le caractere de ceparation dans les fichiers Pd est le point virgule, et que ce point virgule est aussi utiliser en interne pour delimiter les messages, les fin d'envoi... Cela a lecture et le traitement de ce genre de fichier n'a etait sans difficultés.
@@ -402,7 +454,6 @@ Elle decrit la partie Hardware avec les differant montage des capteurs mais auss
 \paragraph{}
 Une image de la carte micro sd sera fourmi pour pouvoir mettre en place le dispositif sur la même carte.\\
 De plus un tutoriel est present pour pouvoir permetre a un neofite de faire de nouvelle image, si le dispositif venait a changer.
-% sauvegarde de carte et tuto
 
 \section{Pour aller plus loin}
 \subsection{Tests en environnement reel}
