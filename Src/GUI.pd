@@ -1,4 +1,4 @@
-#N canvas 793 250 612 616 10;
+#N canvas 790 255 612 616 10;
 #X obj 138 -628 cnv 15 365 200 empty empty Temperature 20 12 0 14 -86277
 -262144 0;
 #X obj 150 -603 cnv 15 350 170 empty empty empty 20 12 0 14 -228856
@@ -354,7 +354,7 @@
 #X msg 392 266 1;
 #X msg 392 288 10;
 #X obj 64 23 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144 -1
--1 2;
+-1 1;
 #X obj 207 324 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 228 324 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -527,12 +527,11 @@
 0 14 -233017 -66577 0;
 #X obj -92 -130 cnv 15 220 100 empty empty Info 20 12 0 18 -233017
 -99865 0;
-#X text -71 -98 Envoie effectuer;
 #X obj 69 -95 tgl 15 0 empty disconnect_file_bang empty 17 7 0 10 -204786
 -1 -1 0 1;
 #X obj 69 -68 tgl 15 0 empty disconnect_file_bang empty 17 7 0 10 -204786
 -1 -1 0 1;
-#N canvas 2491 92 1305 962 send_file 0;
+#N canvas 2488 97 1305 962 send_file 0;
 #X obj 21 15 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 226 506 msgfile;
@@ -574,7 +573,7 @@
 #X msg 392 294 set read;
 #X msg 564 212 127.0.0.1;
 #X symbolatom 22 79 25 0 0 0 - - -;
-#X text 21 62 Nom du fichier a envoyer;
+#X text 21 62 Nom du fichier à envoyer;
 #X connect 0 0 25 0;
 #X connect 1 0 3 0;
 #X connect 1 1 4 0;
@@ -632,11 +631,12 @@
 #X text -74 -469 Connnecté;
 #X obj 67 -464 tgl 15 0 empty connect empty 17 7 0 10 -204786 -1 -1
 0 1;
+#X text -71 -98 Envoi effectué;
 #X connect 12 0 16 1;
 #X connect 13 0 16 2;
 #X connect 14 0 16 0;
 #X connect 15 0 16 0;
-#X connect 26 0 25 0;
-#X connect 27 0 25 1;
-#X connect 28 0 25 2;
+#X connect 25 0 24 0;
+#X connect 26 0 24 1;
+#X connect 27 0 24 2;
 #X coords 0 616 1 615 85 60 0;
