@@ -195,7 +195,7 @@ En prenant en compte le fait que la carte a un capacité de calcul limité, cela
 La composition musicale est plus la partie propre au compositeur, et correspond a la partie creation artistique. Plus qu'une fabrication de ce module, la question a etait comment pouvoir permaitre au compositeur de la creer et de pouvoir la modifier sur le dispositif a distance sans ecran ni clavier.
 
 \paragraph{}
-Il y plusieurs techniques de synthèse musicale certaine sont plus complexe et gourmand en ressources.\\ Nous avons choisis un synthèse très simples car la synthèse est tres lié a la partie création musicale. 
+Il y plusieurs techniques de synthèse musicale certaine sont plus complexe et gourmand en ressources.\\ Nous avons choisis un synthèse simples car la synthèse etant tres lié a la partie création musicale. Dans ce projet le module de creation musical etant rudimenaire, il en est donc disproportioner de faire un module de synthese tres complexe. 
 
 \paragraph{}
 En plus de cette stucture implente dans le dispositif, une interface graphique a etait crée, elle comunique a distante avec le dispositif. L'utilisateur peux envoyer des données pour remplacer les informations recu des capteurs, il peut de egalmenet changer la partie creation musicale.
@@ -333,12 +333,21 @@ Ce module ne permet pas de faire reconnaitre la plus long des motifs rythmiques 
 % TODO schema detection de motif
 
 \section{Synthèse musical}
-% changement de boite pour chaque execution
 \subsection{Modele physique au longterme}
+\paragraph{}
+La synthèse par modélisation physique consiste à produire des sons à partir d'un modèle informatique décrivant les propriétés physiques d'objets virtuels.\\
+On donne les caractéristiqaues physique (dimension, densité, élasticité...) de l'objet que l'on veut simuler, et les caracteristique de objet qui sera l'exitateur. Puis on nous utilison cette  simulation d'instrument pour produire du son. Cela permet d'avoir une timbre de sons tres varier.\\
+L'utilisateur de cette synthese a ete evoquer mais ca complexité plus elevé et le temps etant limité nous nous avons preferer faire utliser un modele plus basique.
 
 \subsection{Synthèse implémenté}
+\paragraph{}
+Pour ce projet, nous avons proceder a un implementation d'un synthese hybride utilusant la synthese additive et soustractive pour generer du son.\
+\paragraph{}
+La synthese additive consiste a produire un signal audio complexe en additionnent plusieurs signaux elementres (typiquement des ondes sinusoidal).
+\paragraph{}
+La synthese soustractive quand a elle consiste a produire un signal audio a partir de signaux riche ne harmoniques (comme le signal carré, triangle ou en dent de scie) en filtrant certaine de frequence. 
 
-\newpage
+
 \section{Interface Utilisateur}
 \subsection{Premiere idée d'implementation}
 \paragraph{}
