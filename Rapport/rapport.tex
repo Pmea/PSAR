@@ -197,6 +197,9 @@ La composition musicale est plus la partie propre au compositeur, et correspond 
 \paragraph{}
 Il y plusieurs techniques de synthèse musicale certaine sont plus complexe et gourmand en ressources.\\ Nous avons choisis un synthèse très simples car la synthèse est tres lié a la partie création musicale. 
 
+\paragraph{}
+En plus de cette stucture implente dans le dispositif, une interface graphique a etait crée, elle comunique a distante avec le dispositif. L'utilisateur peux envoyer des données pour remplacer les informations recu des capteurs, il peut de egalmenet changer la partie creation musicale.
+
 \section{Récupération de l'environnement}
 \paragraph{}
 L'un des avantages de la carte Udoo est d'etre compatible Arduino est de proposer les même connectique qu'une Arduino Mega. Cela permet d'utiliser le même langage, d'utiliser les bibliotheques deja écrites ainsi que les mêmes capteurs.\\
@@ -329,7 +332,6 @@ Il stock les valeurs est a chaque recpetion de nouvelle valeur va tester si il n
 Ce module ne permet pas de faire reconnaitre la plus long des motifs rythmiques present dans la sequence mais pour pouvoir interagir rapidement avec son environnement, il est preferable d'avoir un motif court, le plus vite possible plutot qu'un motif plus grand mais qu'il faille que la sequence soit terminer et donc que l'interation avec le dispostif soit moindre. Le dispositif n'ayant la plus longue sequence uniquement une fois que l'emetteur a fini de jouer.
 % TODO schema detection de motif
 
-\newpage
 \section{Synthèse musical}
 % changement de boite pour chaque execution
 \subsection{Modele physique au longterme}
@@ -339,24 +341,71 @@ Ce module ne permet pas de faire reconnaitre la plus long des motifs rythmiques 
 \newpage
 \section{Interface Utilisateur}
 \subsection{Premiere idée d'implementation}
-% pouvoir s'abstrere de pure data
-% avec étude du protocole netsend 
+\paragraph{}
+Le parametrage du dispositif se faisant a distance, les données sont envoyer au dispositif par wifi la carte udoo etant equipé un module wifi.\\
+Comme l'interface graphie et le dispositif communiquaient pas le wifi, nous sommes dit qu'il etait interessant de permettre a l'utilisateur de s'abstraire de la contrainte d'avoir Pure Data sur l'ordinateur configurant le dispositif. \\
+Dans l'optique d'avoir une interface portable et simple d'installation, nous avions pensé au Java.
+\paragraph{}
+En PureData, les communication se sont a l'aide d'une boite du nom de \texttt{netsend} qui permet d'envoyer des messages (Pd) commecent par \texttt{send} et envoie les données a la fin du message. En Tcp ou en Udp selon les parametres de la boites.\\
+\texttt{netreceiver}, la boite complementaire de \texttt{netsend}, stock les données recus jusqu'a recevoir la fin du message, et l'envoie sur la sortie de la boite.\\
+Dans un premier temps il nous a donc fallu trouver comment Pure Data convertiser les messages avant de les envoyer si il sagié d'une ismple convertion en ASCII ou un autre  mecanisme. De plus il a fallu trouvé le caractere ajouter au message par netsebnd ou que netreceiver puisse connaitre la fin du message.\\
+Apres plusieurs experimentations ous avons decouvert que le caratere etait le ';', ce qui nous a permis de faire d'envoyer des messages exterieur (d'une programm) à PureData.
 
+\paragraph{}
+Apres quelque teste nous sommes dit que le parametrage du dispositif ne pouvait pas ce faire sans connaissances en Pure Data. Par consequent, nous decider de change d'idéee et de fournir un interface graphique fait en Pure Data, l'utilisateur serai plus a l'aise avec une interface fait dans un langage qu'il connait et qui a la philosophie que le programme embarqué dans le dispositif. L'utilisateur pourra egalement l'adaper selon ses besoins.
+%TODO photo de l'affichage graphique
 \subsection{Envoie des données capteur}
+\paragraph{}
+Nous avons recontré plusieurs fois le compositieur pour savoir ce qui lui serait le plus facile pour l'envoie de données. Il lui a paru interessant de dessiner des coubes pour chaque capteur. Il a pense egalement que pouvoir choisir changer la précision des courbes pour pouvoir similer de grande variations ou au contraire des tres petit variation.\\
+\paragraph{fonctionnement}
+L'utilisateur peut dessinerl les courbes qui desir pour capteur, quand il a fini il se connecte au dispositif a ce moment l'interface envoie les doonées au dispositif qui va les socker et tant que la connectio n'est rompu par l'utilisateur va les lire en boucle et s'en servir comme si ses informations etait celle des capteurs.\\
+Pour envoyer de nouvelle données, il suffira a l'utilisateur de tracer de nouvelle courbe, de se deconnecter et de se reconnecte pour que l'envoie de face a nouveau.
 
 \subsection{Envoie d'objet Pure data}
+\paragraph{}
+En Pure Data, il est impossible de pouvoir modifier un patch autrement que par l'interface du logiciel en ajoutant des boites ou des connections. Et donc la creation du module "Creation Musicale" génerique que l'utilisateur pourrai modelé a ca guise serait impossible a programmer. La Creation d'une mouveau module serait obligatoire pour chaque evenement.
+\paragraph{}
+Nous nous sommes questionné sur comment  pouvoir changer la partie "Creation musicale" à distance.\\
+La premiere chose envisage a etait de faire un simple script \texttt{Bash} pour envoyer un pathc programmé par sur l'ordinateur de l'utilisateur vers le dispositif. Le defaut majeur de cette technique est le cela force l'utilisateur a connaitre les commandes utile pour maintenir le script et les bases du ssh. Ce qui peut paraitre evident pour une personne travaillant dans le domaine de l'informatique mais qui est rare pour les utilisateurs de PureData. Utilisant un langague graphique pour s'abstraire du code informatique. De plus cela  oblige à utiliser un autre outils que Pd.
 
-\newpage
+\paragraph{}
+Nous avons vite laisser le problème de coté, par manque de solutions satisfaisante.\\
+En effectuant des teste sur l'evoi de données pour les capteurs l'idée mes venu de ne pas envoyer une liste de données (venant des courbes) mais d'envoyer une liste qui serai le contenu d'un fichier, et plus particulierement d'une fichier Pd.\\
+L'idée est que l'utiliateur ecrive un module de creation qu'il envoi le ficher par l'interface graphique et que de l'autre cote, le dispositif le recpetion et ecrive est remplace le module de "Creation Sonore" par le fichier recu.
+\paragraph{}
+Comme le caractere de ceparation dans les fichiers Pd est le point virgule, et que ce point virgule est aussi utiliser en interne pour delimiter les messages, les fin d'envoi... Cela a lecture et le traitement de ce genre de fichier n'a etait sans difficultés.
+\paragraph{}
+De plus quand nous avons commencer a implementer cette methode nous ne savions pas cela aller vraiment marcher.\\
+A notre grande supprime il est tous a fait possible de reecrire des fichiers sans fait planté le patch actuelle chargé. L'inconveniant est que Pure Data ne recharge le contenu de la boite qu'apres fermeture et reouverture du patch le contenant. Il aurai etait possible d'ecrire un external qui par une commande \texttt{Bash} recharger le patch, dans la version action du projet, on est obligé de d'eteindre et de relancer le dispositif.
+\paragraph{}
+Un second probleme a etait trouvé si le patch envoyé n'est pas un fichier Pure Data ou que la syntagre du fichier n'est pas rigoureusement suivi. Quant Pure Data ce reouvre avec la nouvelle boite cela produit etrangment pas de message erreur, le chargement du patch s'arret et aucun connexion entre le boite ne sont faite. A ce moment, la seul solution est de re-installer toute la partie Pure Data du dispositif.\\
+Il aurai ete intersant de programme un external charger de verifier la syntaxe du fichier envoyé a l'aide de \texttt{regexp} mais faut de temps nous n'avons pas eu le temps de le faire.   
+
 \section{Tutoriel et Documentation}
 \subsection{Écriture documentation Pure data}
 \subsection{Écriture du Tutoriel d'installation}
 % sauvegarde de carte et tuto
 
-\newpage
 \section{Pour aller plus loin}
 \subsection{Tests en environnement reel}
+\paragraph{}
+Faire des testes sur le son n'est jamais quelques choses de faciles surtout quand il faut les buits envivorant. ces sons etant souvnat de faible intensiter et de nature tres diverse.
+Nous tous de même essayer de faire le plus de teste possible que cela soit de son synthetiser par ordinateur ou des enregistre d'environement. Mais il aurait etait interse de teste les dispositif plus emplement dans des conditoon reeln, que nous n'avons pas eu le temps de faire faute de temps. 
+
 \subsection{Tests énergétiques}
+\paragraph{}
+La carte Udoo malgrés tous c'est avantage et par toute ca connection et le micro controleur pour un nano-ordinateur. Même si sur certaine document non officiel, estime la consomation moyenne d'energie de la carte a environs 10 Watts. Les specifications et les divers documents officiel trouvé parlent d'une consomation maximum de 24 Watts.\\
+Ce qui est considerable pour dispositif devant etre le plus autonome energetique energetiquement.\\
+Il aurait etait interessant de faire des testes avec d'autres cartes moins gourmandes en energie.\\
+Comme par example combiné une carte Arduino Nano pour l'aquisition de données et un Raspberry Pi V2 pour les traitement, consomerait moins de 5 Watts (environ  0.5 Watts pour l'Arduino et 4 pour la Raspberry).\\
+Des testes des programmes sur d'autre platforme et voir si la traitement pourrai se faire en temps reel.
+
 \subsection{Serveur distant}
+\paragraph{}
+Dans l'optique d'etre de diminuer la consomation d'energie, il aurait peut etre possible d'essayer une implementation centraliser. La carte n'aurai pour role que de collecer les donné pour les envoyer a un serveur qui lui ferrai les traitement et renveré la flux audio ou simplement les parametres a la carte pour synthetiser du son.\\
+Cela permaittre de ne plus ce soucier du temps de calcul et permaitre d'avoir une supervision des dispositifs. De plus il serait possible de partagerdes capteurs entre plusieurs dispositifs, comme la pression qui varie que tres peu dans un endroit donné.\\
+La modification des modules de creation musical serai egalement simplifié.
+ 
 
 \newpage
 \section{Bibliographie}
