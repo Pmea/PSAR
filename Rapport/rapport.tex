@@ -16,7 +16,7 @@
 \usepackage{fancyhdr}%                 pour les en-têtes
 \usepackage{titling}%                  pour le titre
 \usepackage[framemethod=TikZ]{mdframed}% print frames
-\usepackage{caption}%                  for captionof
+\usepackage[justification=centering]{caption}%                  for captionof
 \usepackage{listings}%				  pour insertion de codes 
 \usepackage{enumitem}%                 pour les listes numérotées
 \usepackage{microtype}%                améliorations typographiques
@@ -69,10 +69,10 @@
 
                                     
 \title{Rapport du Projet PSAR :\\ Dispositif Autonome de Synthèse Sonore}
-\subtitle{Encadrant : Hugues Genevois \\ Cahier de Charges}
+\subtitle{Encadrant : Hugues Genevois}
 
 \author{Pierre Mahé}
-\date{\today}
+\date{4 mai 2015}
 
 \begin{document}  
  \begin{figure}[b]
@@ -88,36 +88,27 @@
 \newpage
 \section{Introduction}
 \subsection{Contexte Global}
-\paragraph{}
-\textbf{Maîtrise d’œuvre :} Hugues GENEVOIS
-\vspace{-5mm}
-\paragraph{}
-\textbf{Maîtrise d’ouvrage :} Pierre MAHÉ
 
 \paragraph{}
 Le projet DASS, Dispositif Autonome de Synthèse Sonore, est une collaboration de Michel RISSE, compositeur de "Décor Sonore" ayant à son actif de nombreuses créations et dispositif sonores, et de Hugues GENEVOIS, chercheur au LAM de L'Institut Jean le Rond d'Alembert.
 
 \paragraph{}
-Le projet consiste à mettre en place un dispositif générant du son en prennent en compte sont environnement dans le but de souligner les sons pres-exsitant dans cet environement. Le dispositif recueille les informations a l'aide de capteurs diverses permettant de récupérer les buits ambiant, la luminosité, la tempature.
+Le projet consiste à mettre en place un dispositif générant du son en prennent en compte sont environnement dans le but de souligner les sons près-existant dans cet environnement. Le dispositif recueille les informations à l'aide de capteurs diverses permettant de récupérer les bruits ambiants, la luminosité, la température...
 
-Dans un premiere tant devrait être la base pour une installation artistique, se deroulant en juillet prochain, dans le cadre d'un festival de musique à Noirlac. Dans un second temps Hugues GENEVOIS et Michel RISSE voudraient réaliser une installation plus importante avec de nombreux dispositifs avec pour chacun d'eux des comportements et des caractéristique propre, pour voir l'interation qu'ils pourraient avoir ensemble et les comportements qui en emergerait.
+Dans un première temps, le dispositif devrait être la base pour une installation artistique, se déroulant en juillet prochain, dans le cadre d'un festival de musique de Noirlac. Dans un second temps Hugues GENEVOIS et Michel RISSE voudraient réaliser une installation plus importante avec de nombreux dispositifs, avec pour chacun d'eux des comportements et des caractéristiques propre. Dans le but de voir l’interaction qu'ils pourraient avoir ensemble et les comportements qui en émergeraient.
 
-\subsection{Presentation de la demande}
+\subsection{Objectifs du PSAR}
 \paragraph{}
-Dans le cadre de mon projet PSAR, mon but etais de créer un premier prototype du projet pour s'en service comme base par la suite.\\
-J'avais donc pour mission de créer un dispositif portable interagissant avec son environnement. Ce dispositif doit capter l'environnement a l'aide
-Le but du projet est de créer un dispositif portable interagissant avec son environnement. Ce dispositif doit capter l'environnement a l'aide de capteurs : micro, luminosité, température, et humidité. Il devra traiter ces données pour en extraire des informations pertinent sur les changements se produisant autour de lui (chants d'oiseaux, passage d'une personne au alentour...). Grâce à ces informations, il devra synthétiser du son.
+Dans le cadre de mon projet PSAR, mon but était de créer un premier prototype du dispositif pour s'en service comme base par la suite.\\
+J'avais donc pour mission de créer un dispositif portable interagissant avec son environnement. Ce dispositif doit capter l'environnement à l'aide de capteurs : micro, luminosité, température, et humidité. Il devra traiter ces données pour en extraire des informations pertinente sur les changements se produisant autour de lui (chants d'oiseaux, passage d'une personne au alentour...). Grâce à ces informations, il devra synthétiser du son.
 \paragraph{}
 La synthèse devra être paramétrable, pour permettre au compositeur de modifier
-l’influence des différant capteurs sur la synthèse sonore.\\
-De plus une interface utilisateur devra être présente permettant au compositeur de simuler des données
-captés. Cela lui permettra de faire des expérimentations de sa composition.
+l’influence des différents capteurs sur la synthèse sonore.\\
+De plus une interface utilisateur devra être présente permettant au compositeur de simuler des données captés. Cela lui permettra de faire des expérimentations de sa composition.
 \paragraph{}
 Dans l’optique de la reproduction de ce dispositif pour des installations plus important. Une procédure devra permettre à un utilisateur de pouvoir reproduire l’ensemble du système, aussi bien niveau matériel que logiciel.
 \paragraph{}
-Le dispositif devant être portable, le programme doit fonctionner sur une nano-
-ordinateur de type \texttt{Udoo Quad}. De plus le langage du programme principal doit etre le 
-PureData, pour assurer une maintenabilité et une extensionnalité plus facile.
+Le dispositif devant être portable, le programme doit fonctionner sur une nano-ordinateur de type \texttt{Udoo Quad}. De plus le langage du programme principal doit être le Pure Data, pour assurer une maintenabilité et une extensionnalité plus facile.
 \subsection{La Carte Udoo}
 \begin{figure}
   \centering
@@ -126,98 +117,100 @@ PureData, pour assurer une maintenabilité et une extensionnalité plus facile.
 \end{figure}
 
 \paragraph{}
-La carte Udoo est un nano ordinateur embarquant un processeur ARM et la connectique d'un ordinateur classique. Avec une entre et sortie micro. La qualité étant suffisante pour notre projet.\\
-La caractéristique de cette carte est d'etre compatible arduino et d'offrir les mêmes connectique qu'une Arduino Mega ce qui permet de simplifier la réception des capteurs ainsi que le d'utiliser les bibliothèques déjà implémenter par la vaste communauté Arduino.\\
-La carte utilise une carte micro sd pour stocker ses données, ce qui est également un avantage pour le projet car cela permet de dupliquer la partie software du dispositif avec une simple copie de carte mémoire.\\
-Le systeme d'exploitation installer est un version simplifié d'Ubuntu, permettant d'utiliser l’environnement linux.
+La carte Udoo est un nano-ordinateur embarquant un processeur ARM et la connectique d'un ordinateur classique avec une entrée et sortie micro, des sortie USB, HDMI, carte WIFI... L'entrée et la sortie audio étant d'une qualité suffisante pour notre projet, il ne sera pas nécessaire ajouter à la Carte Udoo une carte son externe.\\
+La caractéristique de cette carte est d’être compatible Arduino et d'offrir les mêmes connectiques (GPIO, SPI ...) qu'une Arduino Mega ce qui permet de simplifier la réception des capteurs de plus il permet d'utiliser les bibliothèques déjà implémenté par la vaste communauté Arduino.\\
+Pour stocker les données, la carte utilise une carte micro SD, ce qui est également un avantage pour le projet car cela permet de dupliquer la partie software du dispositif avec une simple copie de carte mémoire.\\
+Le système d'exploitation installé est un version légère d'Ubuntu, permettant d'utiliser l’environnement Linux.
 
 \subsection{Pure Data}
-\subsubsection{Presentation generale}
+\subsubsection{Présentation générale}
 \begin{figure}
   \centering
   \includegraphics[width=200px]{pd.jpg}
   \caption{Patch Pure Data}
 \end{figure}
 \paragraph{}
-Pure Data est un logiciel, open source, de programmation graphique pour la creation muscale et multimedia en temps reel. Il permet également de gérer des signaux entrants dans l'ordinateur (signaux de capteurs ou événements réseau par exemple) et de gérer des signaux sortants (par des protocoles de réseau ou protocoles électroniques pour le pilotage de matériels divers).\\
-Pure Data est un systeme module où il est possible de definir des sous-modules qu'il est possible de re-utiliser a sa gise dans d'autre programme appelé \texttt{patch}.
-En Pure Data tous les objets (modules ou donnée) sont des \texttt{boites}.
-Ce langage est un langage tres faiblement typé. Il existe quatres types de données de base:\\
+Pure Data (\texttt{Pd}) est un logiciel, open source, de programmation graphique pour la création et l’interaction musicale et multimédia en temps réel. Il permet également de gérer des flux entrants dans l'ordinateur (données de périphériques ou événements réseau par exemple) et de gérer des flux sortants (par des protocoles de réseau ou protocoles électroniques pour le pilotage de matériels divers).\\
+Pure Data est un système module où il est possible de définir des sous-modules qu'il est possible de ré-utiliser à sa guise dans d'autre programme appelé \texttt{patch}.\\
+En Pure Data tous les objets (modules ou données) sont des \texttt{boites}.
+Ce langage est un langage très faiblement typé. Il existe quatre types de données:\\
 \begin{itemize}
-\item \textbf{Les Nombres}, qui peuvent reprensenter des nombres entiers comme à virgules
-\item \textbf{Les Message}, qui sont des messages purement textuels 
-\item \textbf{Les Symboles}, qui corresponde aux messages mixtes, caractère, chiffre...
+\item \textbf{Les Nombres}, qui peuvent représenter des nombres entiers comme des nombres à virgules.
+\item \textbf{Les Message}, qui sont des messages strictement textuels.
+\item \textbf{Les Symboles}, qui corresponde aux messages mixtes, caractère, chiffres...
 \item \textbf{Les Tableaux}, qui sont uniquement des tableaux de nombres.
 \end{itemize}
-Il exite d'autre type de donnée comme les listes qui même avec une representation interne différante ou message ou symboles sont graphiquement identique a un message (avec comme premier mot \texttt{list}). De plus pour changer une liste en message, il suffit de supprimer ce mot clé.
+Il existe d'autres types de données comme les listes qui même si leurs représentation interne différant des messages ou des symboles sont graphiquement identique à un message (avec comme premier mot \texttt{list}). De plus pour changer une liste en message, il suffit de supprimer le mot clé \texttt{list}.\\
+Une boite Pure Data à une ou plusieurs entrées et une ou plusieurs sortie, toutes les entrées et sorties peuvent recevoir et envoyer n'importe quel message. On peut connecter deux modules en reliant la sortie de l'une avec l'entrée de l'autre.
+
 
 \paragraph{}
-Le Pure Data étant un logiciel orienter interation, il est possible a tous moment de modifier son patch en ajoutant des boites au cours de l'execution du programme, il n'est pas nessesaire de relancer le programme. Cela peut permet de modifier le patch en direct sans avoir l’interruption dans le flux audio sortant.
+Le Pure Data étant un logiciel orienter interaction, il est possible à tous moment de modifier son patch en ajoutant des boites au cours de l’exécution du programme, il n'est pas nécessaire de relancer le programme. Cela peut permet de modifier le patch en direct sans avoir l’interruption dans le flux audio sortant.
 
 \paragraph{}
-Pure Data a aussi l'avant d'etre facilement documentable car il est possible d'associer à une boite quelconque, une boite d'aide avec une explication et des exemples.\\
-Cela s'avaire tres utilie pour la compréhension de certaines boites complexe et permet de bien dissocier code et documentation.
+Pure Data a aussi l'avant d'être facilement documentable car il est possible d'associer à une boite, une boite d'aide avec une explication et des exemples minimal.\\
+Cela s’avère très utile pour la compréhension de certaines boites complexes et permet de bien dissocier code et documentation.
 \paragraph{}
-Un autre atout de Pd est le nombre de d'outils deja implementé dans le logiciel et les boites creer par la comunoté. Certaine proceder a des traitements complexe, comme la detection en temps reel de frequence ou le filtrage performent.
+Un autre atout de Pd est le nombre de d'outils déjà implémenté dans le logiciel et les boites créé par la communauté. Certaine procéder à des traitements complexes, comme la détection en temps réel de fréquence ou le filtrage performant, lecture de fichier musicaux...
 
 \subsubsection{Externals}
 \paragraph{}
-En Pure Data, le stockage de donnee est asses complexe c'est pour cela que pour procéder a des algorithme complexe, il est possible d'avoir recours à des\texttt{Externals}.\\
+En Pure Data, le stockage de donnée est asses complexes c'est pour cela que pour procéder à des algorithmes complexes, il est possible d'avoir recours à des\texttt{Externals}.\\
 Les externals sont des boites programmées en \texttt{c++}. 
 
 \paragraph{}
-Il existe plusieurs API, dans ce projet nous avons choisi d'utiliser \texttt{Flext} pour ca simplicité d'utilisation. De plus cette API est développé par Thomas GRILL, un des principal contributeur de Pure Data ce qui garantie un plus grande parfaite compatibilité avec Pd et une certaine assurance que l'outils reste longtemps maintenu. La communauté des développeurs Pure Data etant limité (une dizaine de personne a travers le monde), cela a une importance car malheuresement beaucoup d'outils ne son pas maintenu suffisant ou sont souvent obsolète.  
-
+Il existe plusieurs API pour programmer des externals. Dans ce projet nous avons choisi d'utiliser \texttt{Flext} pour sa simplicité d'utilisation. De plus cette API est développé par Thomas GRILL, un des principal contributeurs de Pure Data ce qui garantie une parfaite compatibilité avec Pd et une certaine assurance que l’outil reste longtemps maintenu. \\
+La communauté des développeurs Pure Data étant limitée (une dizaine de personne au total), cela a sont importance car malheureusement beaucoup d'outils ne sont pas maintenus suffisant ou ne sont plus complètement compatible avec Pure Data.  
 
 \subsection{Structure du projet}
 \paragraph{}
-Nous avons décider de diviser le programme en cinq modules pour le cote synthèse.
-
-\begin{figure}
+Nous avons décidé de diviser le programme en cinq modules:
+\begin{figure}[H]
   \centering
   \includegraphics[width=400px]{structprojet.jpg}
   \caption{Structure du projet}
 \end{figure}
 
 \paragraph{}
-La partie acquisition des données des capteurs ce fera par le bien de la communication entre la partie Arduino et Pure Data.\\
-Nous avons ecrit un programme arduino qui va envoyé périodiquement les valeurs des différant capteurs au programme Pd.
+La partie acquisition des données des capteurs se fera par le biais de la communication entre la partie Arduino et Pure Data.\\
+Nous avons écrit un programme Arduino qui va envoyer périodiquement les valeurs des différents capteurs au programme Pd.
 
-Information collecté par la partie arduino:
+Informations collectés par la partie Arduino:
 \begin{itemize}
-\item Luminosite
-\item Temperature
+\item Luminosité
+\item Température
 \item Humidité
 \end{itemize}
 
 \paragraph{}
-Une seconde partie acquisition est la réception du signal sonore, que l'on doit traiter pour pouvoir en extraire des informations pertinente.\\
-Le son capté par le micro est pollué par des sons ambiant, typiquement le bruit d'une route proche ou d'une marchine bruyante. Ces bruits sont généralement continu, grave (moins  de 100 hertz) donc très énergétique. Ils peuvent donc fausser les résultats des traitement en aval.\\
- Les buits naturel à cette fréquence sont tres rare dans la nature. De plus musicalement ces bruits sont asses pauvres.\\
-Pour toute ces raisons il est préférable de les filtrer. Pour les même raisons, nous avons ajouter un filtrer pour eliminer les fréquences au dessus de 6000 Hertz.
+La seconde partie de l'acquisition est la réception du signal sonore, que l'on doit traiter pour pouvoir en extraire des informations pertinentes.\\
+Le son capté par le micro est pollué par des sons ambiant, typiquement le bruit d'une route proche ou d'une machine bruyante. Ces bruits sont généralement continu, grave (moins  de 100 hertz) donc très énergétique. Ils peuvent donc fausser les résultats  et alourdir les traitements en aval.\\
+Les bruits naturels de cette fréquence sont très rare. De plus musicalement ces bruits sont asses pauvres.\\
+Pour toute ces raisons il est préférable de les atténuants en utilisant des filtres.\\
+Pour les mêmes raisons, nous avons filtré pour éliminer les fréquences au dessus de 6000 Hertz.
 
 
 \paragraph{}
-Dans la partie extraction, avec le compositeur et le chercheur nous nous sommes questionner sur les informations pertinente a extraire pour la composition musicale.\\ 
-En prenant en compte le fait que la carte a un capacité de calcul limité, cela ne permet pas d'avoir de faire tous les traitements complexes.
-
-
-\paragraph{}
-La composition musicale est plus la partie propre au compositeur, et correspond a la partie creation artistique. Plus qu'une fabrication de ce module, la question a etait comment pouvoir permaitre au compositeur de la creer et de pouvoir la modifier sur le dispositif a distance sans ecran ni clavier.
+Dans la partie extraction, avec le compositeur et le chercheur nous nous sommes questionné sur les informations pertinentes à extraire pour la composition musicale.\\ 
+En prenant en compte le fait que la carte à une capacité de calcul limité, cela ne permet pas de faire tous les traitements coûteux en temps de calcul.
 
 \paragraph{}
-Il y plusieurs techniques de synthèse musicale certaine sont plus complexe et gourmand en ressources.\\ Nous avons choisis un synthèse simples car la synthèse etant tres lié a la partie création musicale. Dans ce projet le module de creation musical etant rudimenaire, il en est donc disproportioner de faire un module de synthese tres complexe. 
+La composition musicale est la partie propre au compositeur, et correspond réellement à la partie création artistique. Plus que la fabrication de ce module, la question a été :  comment permettre au compositeur de la créer et de pouvoir la modifier le module dans le dispositif à distance, sans avoir besoin  de brancher un écran ou un clavier.
 
 \paragraph{}
-En plus de cette stucture implente dans le dispositif, une interface graphique a etait crée, elle comunique a distante avec le dispositif. L'utilisateur peux envoyer des données pour remplacer les informations recu des capteurs, il peut de egalmenet changer la partie creation musicale.
+Il y plusieurs techniques de synthèses musicales. Certaines sont plus complexes et gourmands en ressources.\\ Nous avons choisi une synthèse simple. La synthèse étant très lié à la partie création musicale, le module de création musical étant rudimentaire, il en est donc disproportionné de faire un module de synthèse très complexe. 
+
+\paragraph{}
+En plus de cette structure installé dans le dispositif, une interface graphique a été crée, elle communique à distante avec le dispositif.\\
+L'utilisateur peut envoyé des données pour remplacer les informations reçu des capteurs, il peut de également changer la partie création musicale.
 
 \section{Récupération de l'environnement}
 \paragraph{}
-L'un des avantages de la carte Udoo est d'etre compatible Arduino est de proposer les même connectique qu'une Arduino Mega. Cela permet d'utiliser le même langage, d'utiliser les bibliotheques deja écrites ainsi que les mêmes capteurs.\\
-De plus la partie  micro controleur etant connecté directement a la partie nano ordinateur via un bus special, la vite de comunication est plus rapide et avec une plus courte latence par rapport a une connexion usb classique.
+L'un des avantages de la carte Udoo est d'être compatible Arduino est donc de proposer les mêmes connectiques qu'une Arduino Mega. Cela permet d'utiliser le même langage, d'utiliser les bibliothèques déjà écrites ainsi que les mêmes capteurs.\\
+De plus la partie  micro contrôleur étant connecté directement à la partie ordinateur via un bus spécial. La vitesse de communication est plus rapide et la latence est plus courte par rapport à une connexion USB classique.
 
 \paragraph{}
-Dans les valeurs envoyés par un capteur deux choses sont interessante, la premiere la valeur et la variation de celci (si elle augmente ou si elle diminue).
+Dans les informations que peuvent envoyés un capteur deux choses sont intéressante, la première la valeur absolu et la variation de celle-ci (si elle augmente ou si elle diminue).
 \subsection{Dispositif et capteurs}
 \begin{figure}
 	\centering
@@ -226,189 +219,199 @@ Dans les valeurs envoyés par un capteur deux choses sont interessante, la premi
 	\caption{Montage du dispositif}
 \end{figure}
 \paragraph{}
-Dans le cadre du projet, seul trois capteurs étaient prevu mais le programme devrait permettre un ajout de capteurs  aisé.\\
-Les capteurs utilisés sont des capteurs les plus basique : un capteur de luminosité, de temperature et d'humidité.\\
+Dans le cadre du projet, seul trois capteurs étaient prévu mais le programme permet un ajout de capteurs aisé.\\
+Les capteurs utilisés sont des capteurs basique: un capteur de luminosité, de température et d'humidité.\\
 
-Pour capteur la luminosité, nous avons utilisé une photo-resistance, son fonctionnement est asses simple, plus la luminosité va etre forte plus la resitance interne de composant va etre faible. Il suffit de recupere la tension au borne de composant pour connaitre l'indice de luminosité.\\ 
-Malheureusement cette indice ne permet pas de connaitre l'intancité lumineuse en Candela ou en Lux mais permet d'avoir une echelle d'avoir des valeur relavite. Ce qui est suffisant dans le cadre de ce projet.
+Pour capteur la luminosité, nous avons utilisé une photo-résistance, son fonctionnement est asses simple, plus la luminosité va être forte plus la résistance interne de composant est faible. \\
+Il suffit donc de récupérer la tension au borne de composant pour connaître l'indice de luminosité.\\ 
+Malheureusement cette indice ne permet pas de connaître l'intensité lumineuse en Candela ou en Lux mais permet d'avoir une échelle relative de valeurs. Cela est suffisant dans le cadre du projet.
 \paragraph{}
-Pour la Temperature et l'humidité le fonctionnement est tres similaire. Contrairement a la luminosité grace a une formule (dépendent de chaque capteur) il sera possible d'avoir la température ou l'hygrométrie précise. 
+Pour la température et l'humidité la récupération la valeur est très similaire. Par contre, contrairement à la luminosité grâce à une formule (dépendant de chaque capteur) il est possible d'avoir la température ou l'hygrométrie précise (degrés Celsius et en pourcentage). 
 
 \subsection{Communication inter plate-forme}
 \paragraph{}
-Pour la partie micro-controleur l'envoi de donnnées est asses intruitive car il suffit d'ecrire sur le port Série (Serial port), avec des primite d'ecriture basique.\\
-Pour la partie ordinateur avec le logiciel Pure Data, il faut utiliser une boite pour se connecter a un périphérique puis on peut lire et ecrire sur celui.\\
-La connexion entre l'arduino et Pure data devant etre unique, il a fallu trouver un moyen de pouvoir differensier les données des différant capteur. 
-% photo montage du composant
+Pour la partie micro-contrôleur l'envoi de données est asses intuitive car il suffit d’écrire sur le port Série (\texttt{Serial port}), grâce à des fonctions implémenté de base en Arduino.\\
+Pour la partie ordinateur avec le logiciel Pure Data, il faut utiliser une boite pour se connecter au périphérique puis il est possible de lire et écrire sur celui.\\
+La connexion entre l'Arduino et Pure Data devant être unique, il a fallu trouver un moyen de pouvoir différencier les données des différant capteurs. 
 
 \paragraph{}
-Pour communiquer entre les deux parties, j'ai donc define un micro-protocole qui étiquette les données envoyés.\\
-Tous les X secondes le programme arduino li les valeurs des capteurs et envoi un message de la forme :
+Pour communiquer entre les deux parties, un micro-protocole à donc était défini pour étiquette les données envoyés.\\
+À intervalle régulier (toutes les seconds) le programme Arduino lit les valeurs des capteurs et les envoi un message de la forme :
 \begin{lstlisting}
 NOM_CAPTEURvl: VALEUR;		//vl pour la valeur
 MON_CAPTEURvr: VALEUR;		//vr pour la variation
 \end{lstlisting}
 
-Pour ajouter un capteur, il suffit d'écrire sur le port série avec un nom de capteur pas encore utiliser et c'est dans la partie Pure data que nous traiterons la nouvelle étiquette.
+Pour ajouter un capteur, il suffit d'écrire un nom de capteur -pas encore utiliser- et de modifier le programme Pure Data pour traiter la nouvelle étiquette.
 
 \paragraph{}
-Puis pour il nous ai venu l'idée de permettre à Pure data de pouvoir changer le délai entre chaque envoi de valeur. 
-Pour cela il a fallu permettre a l'arduino de pouvoir recevoir des données avec des messages ayant la même forme que l'envoi de donnée avec l'étiquette \texttt{delay}.\\
-C'est a ce moment la que nous avons découvert un vice de Pure Data, étant un langage tres faiblement typé. Les donnée recu de l'arduino sont des octets que Pure Data caste en type Nombre et il n'existe pas d'objet permettant a partir de ce flux d'octets de recuperer des integers (valeur des capteurs envoyé par la parite Arduino).\\
+Dans un second temps, il s'est avère utile de pouvoir changer, au cours de l’exécution, le délai entre chaque envoi de valeurs. \\
+Pour cela il a fallu permettre à l'Arduino de pouvoir recevoir des données. Les messages ayant la même forme que l'envoi de données avec l'étiquette \texttt{delay}.\\
+Ce moment là, nous avons découvert un défaut de Pure Data. Étant un langage très faiblement typé. Les données reçu de l'Arduino sont des octets que Pure Data caste en type Nombre et il n'existe pas d'objet permettant à partir de ce flux d'octets de récupérer des \texttt{integers} (valeur des capteurs envoyé par la partie Arduino).\\
 
-Au premiere abord nous avons voulu utiliser l'objet \texttt{PakcOSC} qui permet a la base de convertir un message quelconque en commande OSC (\texttt{Open Sound Control}). Ce protocole etant un protocole avec un codage ascii nous pouvions l'utiliser pour encoder et decoder les communications avec l'arduino. \\
-Mais cela aurai ete une manipulation de l'objet de base de plus cela pourrai porter a confusion car nous ne gerions en rien le protocole.\\
-Nous avons discuté avec Hugues GENEVOIS et nous avons utilisé de programmer nos prope externals.
+\paragraph{}
+Au première abord nous avons voulu utiliser l'objet \texttt{PakcOSC} qui permet de convertir un message quelconque en commande OSC (\texttt{Open Sound Control}). Ce protocole étant un protocole utilisant le codage ascii, il serait possible de l'utiliser pour encoder et décoder les communications avec l'Arduino. \\
+Mais cela aurai été une manipulation de l'objet de base de plus cela pourrai porter à confusion, le dispositif ne gérant en rien le protocole.\\
+Nous avons discuté avec Hugues GENEVOIS et la programmation d'un externals apparaît comme plus adapté.
 
 \subsection{External pour la communication}
 \paragraph{}
-En s'inspirant du fonctionnement des objets \texttt{PackOSC} et \texttt{UnPackOSC}, nous avons programmé deux externals, un qui recoi un message et qui le transforme en tableau d'octects (en code ascii plus particulierement) en ajoutant le code ascii d'un point virgule a la fin.\\
-Le second recoi un flux d'octets et le stock dans un tableau jusqu'a recevoir un point virgule, a ce momment là il envoi toute la chaine récu.\\
-Le fait d'utiliser le caractere ';' n'est pas un probleme car en PureData ce caratere est generalement le delimiter de fin de chaine, la fin de liste et de tableau ainsi quand interne pour fin des messages tcp ainsi que la fin d'une lecture de fichier.
+En s'inspirant du fonctionnement des objets \texttt{PackOSC} et \texttt{UnPackOSC}, nous avons programmé deux externals : Un qui reçois un message et le transforme en tableau d’octets (en code ascii plus exactement) en ajoutant le code ascii d'un point virgule à la fin pour délimiter le message.\\
+Le second reçois un flux d'octets et le stocke dans un tableau jusqu’à recevoir un point virgule, à ce moment là il envoi toute la chaîne reçue.\\
+Le fait d'utiliser le caractère ';' n'est pas un problème car en Pure Data ce caractère est généralement le délimiteur interne pour indiquer la fin de chaîne, de liste et de tableau, d'une lecture fichier ainsi que la fin des messages TCP.
 
 \section{Traitement audio}
-\subsection{Aquisition audio}
+\subsection{Acquisition audio}
 \paragraph{}
-Comme nous l'avons dit dans l'introduction du projet, Nous avons filtré le signal audio capté par le micro pour supprimer les bases frequence et les haut fréquence.\\
-Nous avons chercher a savoir determiner les frequences de coupure a partir du quelle il n'y as plus d'information pertinente. Nous nous somme rendu compte qu'au dessus de 6000 Hertz il n'y avait plus de son avec une fondamentale a cette haute, et qu'il n'y avait que des harmonique de son plus grave. (Voir l'annexe rappel musical pour les explications sur les fondamentales et les harmoniques).\\
-Pour les sons tres graves, il n'existe pa de sons produits par la nature à des fréquence inférieur à 100 Hertz. Nous avons donc ajouter un filtre a notre acquisition pour pouvoir supprimer les bruits qui pour nous sont des bruits parasites.
+Comme nous l'avons dit dans l'introduction du projet, Nous avons filtré le signal audio capté par le micro pour supprimer les bases fréquences et les hauts fréquences.\\
+Nous avons chercher à savoir déterminer les fréquences de coupure à partir des quelles il n'y a plus d'informations pertinentes. Nous nous sommes rendu compte qu'au dessus de 6000 Hertz il n'y avait plus de son avec une fondamentale à cette haute, le signal capté ne sont plus que des harmoniques de sons plus grave.\\ %TODO (Voir l'annexe rappel musical pour les explications sur les fondamentales et les harmoniques).\\
+Pour les sons très graves, il n'existe pas de sons produits par la nature à des fréquences inférieurs à 100 Hertz. Nous avons donc ajouté un filtre à notre module d'acquisition pour pouvoir supprimer les fréquence qui sont des bruits parasites.
 
 \subsection{Traitement du son bas niveau}
 \subsubsection{Filtrage}
 \paragraph{}
+Une information qui paraissait essentiel à extraire était les notes et les mélodies qui sont joué dans l’environnement.\\
+Il est asses facile de déterminer la fréquence principal d'un signal, il suffit de prendre la forme générale du signal. Il existe plusieurs boites en Pd pour le faire tel que \texttt{Fiddle\~} ou \texttt{Signum\~}.\\
+Contrairement au suivis simple la détection de notes joué simultanément ou le suivi de  plusieurs de mélodies simultanément est très difficile et fait encore partie l'objet de recherche.\\
+Il n'est pas possible de déterminer toute les notes joués dans le monde fréquentiel, il est nécessaire de passe dans le monde spectral en utilisant la Transformé de Fourrier. Il existe une boite en Pure Data \texttt{FFT}. La boite manquant de possibilité de paramétrage (nombre de points...).
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=300px]{fft.jpg}
 	\caption{Transformée de Fourrier}
 \end{figure}
-Une inforation qui nous paraissé esentiel a extraire etait les notes et les melodies qui sont jouer dans l'environement.\\
-Il est asses facile de determiner la frequence principal d'un signal, il suffit de prendre la forme generale du signal. Il existe plusieurs boites en Pd pour le faire tel que \texttt{Fiddle} ou \texttt{Signum}.\\
-Pour detecter les notes jouer simultanement ou suivre plusieurs de melodies simultanement est tres quasiment impossible et fait encore partie l'objet de recherche.\\
-L'une des meilleurs compromis entre le temps de calcul et la fiabilité de la sortie est de faire 
-En Pd il existe des boites pour déterminer la frequence pour cela nous avons pensé a utiliser la transformé de fourrier (voir Annexe) pour déterminer l'ensemble des notes jouer. \\
-Nous avons implémenter un programme en \texttt{C} pour pour faire une transformée Fourrier rapide (FFT), dans l'optique d'en faire une boite pour l'utiliser dans Pure Data mais nous nous sommes rendu compte que ce proceder etait beaucoup trop gourmand pour la carte. Meme si la complexité de la FFT est en Nlog(N), avec N le taux d'echantillonnage du signal (nombre de point du signal). Notre signal est echantilloné a 44k Hertz il y a donc 44100 points a traiter par seconde ce qui est trop lourd pour la carte (si nous voulons pouvoir faire d'autres traitements en parallèle).
+\paragraph{}
+Nous avons implémenté un programme en \texttt{C} pour pour faire une transformée Fourrier Rapide (\texttt{FFTW}) dans l'optique d'en faire une boite pour l'utiliser dans Pure Data.
+Ce qui permettrait de pouvoir mieux paramètre la transformation.\\
+
+Apres test notre programme était aussi trop gourmand pour la carte. Malgré le fait que la complexité de la FFT est de N*log(N). Mais le N correspond au taux d’échantillonnage du signal (le nombre de point du signal). Notre signal est échantillonné à 44 kHertz il y a donc 44100 points à traiter par seconde ce qui est lourd pour la carte (si nous voulons pouvoir faire d'autres traitements en parallèle).
+
+\paragraph{}
+Après ces tests insatisfaisante, nous nous sommes orienté dans une autres directions, Hugues GENEVOIS nous a conseillé de partager le spectre sonore en plusieurs bandes de fréquences à l'aide de filtres passe-bande et de suivre de détecter la fréquence principale (la plus forte) de chaque bande, avec un \texttt{fiddle\~}.\\
+Après avoir implémenté ce mécanisme en Pure Data, un nouveau problème est apparu. Les filtres ne coupant pas parfaitement les fréquences en dehors de leur bande, les objets \texttt{fiddle\~} détecte parfois des fréquences principale n’appartenant pas à leurs bande de fréquence. Il y avait donc plusieurs filtres qui détectait la même fréquence se qui était asses problématique.\\
+Ce phénomène arrive fréquemment quand le son enregistré contenait peu de fréquence (voir une seule). Les filtres qui n’étaient pas centrés sur la fréquence capté par le micro avait peu de signal dans leurs bande et par conséquent avoir tendance à récupérer les résidus, et donc la fréquence en dehors de sa bande de fréquence.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=300px]{filtre.jpg}
 	\caption{Bandes de Fréquences}
 \end{figure}
 \paragraph{}
-Apres ces tests insatisfesant, nous nous sommes donc orienter dans une autre direction, le chercheur nous a conseiller de partager le spectre sonore en plusieurs bandes de fréquences a l'aide de filtre passe-band et de suivre de deterter la frequence la plus principal de chaque bande, avec un \texttt{fiddle}.\\
-Apres avoir implémenté en pure data ce mecanisme un nouveau probleme est apparu. Les filtres ne coupant pas parfaitement les frequences en dehors de sa bande, les objet \texttt{fiddle} detecter parfois des frequences n'appartennent pas a leurs bande de frequence. Il y avait donc plusieurs filtre qui detecter donc la même frequence ce qui etait asses problematique.\\
-
-\paragraph{}
-Pour resoudre ce second probleme nous avons utilisé des noiseGate.\\
-Une noiseGate est un element souvant utliser en musique, il correspond simplement a un boite qui ne laisse passer que les signals sonore d'une certaine intensité, si le signal est trop faible le signal en sortie de la boite est egale a 0.
-Cela permet de supprimer les sons venant des autres bandes de frequences, etant atenuer par les filtres, ces sons ne passe pas la NoiseGates, ce qui resolvé le problemee de la detection de fréquence erroné.
+Pour résoudre ce second problème, nous avons utilisé des \texttt{Noise Gates}.\\
+Une \texttt{Noise Gate} est un élément trés utiliser en musique, il correspond à une boite ne laissant passer que le signal sonore au dessus d'une certaine intensité. Si le signal est trop faible le signal en sortie de la boite est égale à zeros.
+Cela permet quand il n'y a pas de fréquence centré sur le bande de fréquence de supprimer les sons venant des autres bandes de fréquences. Étant atténuer par les filtres, ces sons ne passent pas la \texttt{Noise Gate}, ce qui limite le problème de la détection de fréquence erroné.\\
+L’Élément clé pour limiter les erreurs est donc le seuil à partir duquel la \texttt{Noise Gate} laisse passer le signal.\\ Si il est trop faible, il restera beaucoup de fausses détections. Si le seuil est trop élevé, on va avoir tendance à ne pas détecter des fréquences pourtant très proche de la bande passante.
 
 \subsubsection{Détecteur de notes}
 \paragraph{}
-Ce dispositif était bien mieux que les précèdent mais ne permettait pas de suivre les melodies qui etait etaler sur plusieurs bandes de fréquences. Ce qui se traduisé par la detection de morceau de melodie souvant haché.\\
-Nous avons donc decider d'abandonner l'idée de suivre plusieurs melodie simulanement et de ne garde que la melodie principal du signal. \\
-Et de ne n'utilsier les notes récupérer par les filtres uniquement  pour savoir quelle note sont jouer pendant un labse de temps.\\
-Ce choix choix peut semblé un peu etonnant mais il est tres important pour le dispositif de savoir quel note son jouer, si la melodie qu'il capte utiliser uniquement deux notes, il serait tres disonnant que le disposirif en joue une troisieme note qui n'a rien a voir avec les deux premieres.\\
-Donc implementé un compteur de notes qui collecte les notes reconnues a la sortie des filtres. A intervalle régulier le compteur va nous donner la fréquence des notes joué. Pour ne pas faire trop de dissonnance il suffira au module de synthese de jouer des note tiré au hasard dans la liste de note en tenant compte de la frequence d'apparition d'une note.
+Ce dispositif produit beaucoup moins d'erreurs que les précédents mais il n'était pas satisfaisant pour pouvoir faire un suivi de mélodie s'étalant sur plusieurs bandes de fréquences. Cela se traduise par la détection de morceaux de mélodie haché.
+\paragraph{}
+Nous avons donc décidé d'abandonner l'idée de suivre plusieurs mélodies simultanément et de ne garde que la mélodie principal du signal. \\
+Et de n’utiliser les notes récupérer à la sortir des les filtres uniquement pour connaître les notes présentes.\\
+Cette information peut semblé peu pertinente mais il est très important pour le dispositif de savoir quelles notes sont joué, si la mélodie qu'il capte utilise uniquement deux notes, il serait très dissonant que le dispositif joue une troisième note qui n'a rien a voir avec les deux premières.\\ Cela donnerai un rôle trop importante est donc contradictoire avec le projet initial qui était de faire un dispositif m’étant en valeur l’environnement.\\
+Dans ce but, un compteur de notes a était implémenté. Il collecte les notes reconnues à la sortie des filtres et à intervalle régulier le compteur va nous donner la fréquence d’apparitions des notes.\\
+Pour ne pas faire de dissonance il suffira au module de synthèse de piocher des notes tirés au hasard dans les notes les plus fréquemment joués.\\
+Il est également possible d'imaginer une synthèse qui regarderait les notes joués pour jouer des notes pour compléter les accords.
 
 \subsubsection{Bandes de fréquences}
 \paragraph{}
-Avec ce systeme de detection de note, ils est possible de savoir la fréquence d'appartion des notes mais il n'est pas possible de savoir la hauteur des sons capté.\\
-Nous avons donc ajouter un module pour mesurer l'amplitude du signal sur chaque bande de fréquence pour savoir où sont reparti les notes sur les bandes de fréquences, si les bruits capté par le micro sont plutot aigue ou grave.
+Avec ce système de détection de note, ils est possible de savoir la fréquence d'apparition des notes mais il n'est pas possible de savoir la hauteur des sons captés.\\
+Nous avons donc ajouter un module pour mesurer l'amplitude du signal sur chaque bande de fréquence pour savoir comment sont reparti les notes sur les bandes de fréquences, si les bruits captés par le micro sont plutôt aiguë ou grave.
 
 \subsection{Traitement du son haut niveau - Extraction des méta-données}
 \subsubsection{Mélodie et rythme}
 \paragraph{}
-Comme expliqué dans la section percedente, nous avons implementé un module pour detecter la melodie principal du signal.\\
+Comme expliqué dans la section précédente, nous avons implémenté un module pour détecter la mélodie principal du signal.\\
 
-Nous avons donc voulu implementé un module homologue a la detection de note, mais pour déterminer les rythmes. Pour synthetiser du son avec des rythmes proche de l'environement.\\
-Concretement si une personne marche pres de du dispositif il peut repondre en jouer des son sur le même rythme ou dans le cas ou le il capte un chant d'oiseau, il peut reponse en jouant des notes semblable avec le même rythme.\\
+Il était naturel d'implémenter un module homologue à la détection de note, mais là pour déterminer les rythmes.\\
+Pour synthétiser des sons avec des rythmes proches des sons environnent.\\
+Concrètement si une personne marche prés du dispositif, il pourrait répondre en jouer des sons avec le même rythme ou dans le cas ou le il capte un chant d'oiseau, il peut réponse en jouant des notes avec le même rythme.\\
 
 \paragraph{}
-Apres en avoir discuté avec notre encadrant, il nous est apparu que pour connaitre pouvoir detecter un debut de note, la maniere de proceder est de detecter les impacts, generalement caracteristique d'une debut de note. Pour cela  nous avons calcule l'energie du signal. 
+Après en avoir discuté avec notre encadrant, il nous est apparu que la meilleur méthode pour détecter un début de note est d’essayer de détecter les impacts dans un signal audio. Généralement caractéristique d'un début de note. Pour cela  nous avons calculé l’énergie du signal %TODO ANNEXE
+. Puis de regarder son évolution, si une augmentation brusque apparaît (un pente supérieur à un certain seuil), cela induit la présence d'un impact et donc du début de note.\\
+Pour raffiner la détection d'impact, Le module a un seuil minimal et maximal à dépasser pour considérer que l’événement est bien un début de note.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=300px]{bonk.jpg}
-	\caption{Detection de debut de note.}
-	\caption{En rouge les seuils min et max\\Les fleches reprensente les notes détectés}
+	\caption{Détection de début de note.En rouge les seuils min et max\\Les flèches  représentes les notes détectés}
 \end{figure}
-Il suffit ensuite de regarder son evolution, si une augmentation brusque apparait, cela induit la presense d'un impact et donc du debut de note.\\
-Pour raffiner la détection d'impact, nous avons ajouter un seuil minimal et manimal a depasser pour considerer que l'evenement est bien un debut de note.
  
+\paragraph{}
+Dans l’environnement les bruits sont intermittent, il est donc intéressant de grouper les événements rythmique en sequence. \\
+Une sequence commence quand le dispositif détecte le début d'une note et termine après une laps de temps sans impacte (de quelques secondes).\\
+Pour éviter de faire des séquences trop longue, dans le cas d'un environnement très bruyant, nous avons décider arbitrairement de limiter un nombre d’événement maximum dans une sequence (de l'ordre de la centaine).
 
 \paragraph{}
-Dans l'environement les bruit sont intermiant, il nous nous sommes dit qu'il serait interessant de grouper les evenements ryhtmique en sequence. Un sequence commence quand le dispositif detecte le debut d''un note et termine apres un labse de temps sans imparte (de quelque secondes). Pour eviter de faire des sequences trop longeux dans le cas d'un environnement tres bruillant nous avons decider arbitrairement de limiter un mnombre d'evenement maximum dans une sequence (de l'ordre de la centaine).
-
-\paragraph{}
-Pour permaitre au dispositif de jouer la même structure rythmique mais a differante vitesse. Nous avons decider de normaliser notre notation de rythme.
-
-Le premier intervalle entre deux notes sera la reference pour toute la sequence, elle aura une valeur "1", tous les autres intervalle seront des multiples de cette valeurs.\\
-Avec ce systemes il est possible de mesurer des divisions de cette valeurs jusqu'a la quadruple croche (1/16) ce qui nous parrait etre une precision suffisante.\\
-Nous avons rajouter une certaine tolérante au calcule de valeur pour permaitre une certaine approximation dans les rythmes. Il est quasiment impossible de jouer rigoureusement plusieurs notes parfaitement égales.\\
-Les sequences dete ter son au final de la forme:\\
+Pour permettre au dispositif de jouer la même structure rythmique mais à différente vitesse. Le module procède à une normalisation de la duré des rythmes.\\
+Le premier intervalle entre deux notes sera la référence pour toute la sequence, elle aura une valeur '1'. Tous les autres intervalles seront des multiples de cette valeurs.\\
+Avec ce systèmes, il est possible de mesurer des divisions de la valeur de référence jusqu'à la quadruple croche (1/16) ce qui apparaît comme une  precision suffisante pour le dispositif.\\
+Une tolérance est appliqué au calcule des durées des rythmes pour permettre une certaine approximation des rythmes. Jouer rigoureusement  plusieurs notes parfaitement égales étant quasiment impossible.\\
+Les séquences détecté sont au final de la forme:\\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=200px] {rythme.jpg}
-	\caption{ Sequence Rythmique détecté}
+	\caption{ Séquence Rythmique détecté}
 	\includegraphics[width=300px]{structurerythme.jpg}
-	\caption{Deux ryhtmes pouvant produire la sequence.
-	}
+	\caption{Deux rythmes pouvant produire la séquence.}
 \end{figure}
 
 \subsubsection{Détection de Motif minimal}
 \paragraph{}
-Nous avons beaucoup discuter de la detection melodie et rythmique avec Hugues GENEVOIS, et nous en avons tirer la conclusion qui serai interessant d'extraire des sequences rythmes les rythme les motifs melodie et rythmique qui revienne dans ce sequence.\\
-Cette operation s'averant tres complexe en Pure Data a cause du fait qu'il est compliquer de stocker des données. Nous avons donc decider de faire deux externals un pour les motifs melodie et un pour le motif rythmique.\\
-Nous allons vous decrire le fonctionnement detailler de l'external de detection de motif rythmique, il sauf savoir que le l'external pour de detection de motif melodie fonctionne de maniere homologue.\\
-On donner en parametre a l'external le nombre minimal du motif. Et nous lui envoyons la sequence rythmique à la volé, des que le module de tection rythmique détecte un nouveau intervalle il est directement envoyer au module de detection de motif rythmqiue.\\
-Il stock les valeurs est a chaque recpetion de nouvelle valeur va tester si il n'a pas deja rencontre un motif contenant ce rythme. Des qu'un motif sera detecter l'external va envoyer ce motif rythmique pour qu'il soit utiliser pour la synthese.\\
-Ce module ne permet pas de faire reconnaitre la plus long des motifs rythmiques present dans la sequence mais pour pouvoir interagir rapidement avec son environnement, il est preferable d'avoir un motif court, le plus vite possible plutot qu'un motif plus grand mais qu'il faille que la sequence soit terminer et donc que l'interation avec le dispostif soit moindre. Le dispositif n'ayant la plus longue sequence uniquement une fois que l'emetteur a fini de jouer.
+Nous avons beaucoup discuter de la détection mélodie et rythmique avec Hugues GENEVOIS, et nous en avons tiré la conclusion qui serai intéressant d'extraire des séquences rythmes, les motifs rythmiques récupérant dans ce sequence.\\
+Cette opération s’avérant complexe et peu essayé en Pure Data à cause de la difficulté de stocker et parcourir des données. La détection de motif en utilisant des externals était bien plus facile. Deux externals ont était implémenté, un pour détecter les motifs mélodies et un pour les motifs rythmique.\\
+Le fonctionnement des externas étant très proche, nous n'allons ici nous limiter à la description du détecteur de motif rythmique, l'autre external fonctionnant de manière homologue.\\
+L'external prend en paramètre le nombre minimal de note le motif doit être constitué au minimum.\\
+La séquence rythmique est envoyé a la volé, valeur par valeur dès que le module de détection rythmique détecte un nouveau intervalle.\\
+Il stock la valeur à chaque réception et va tester si il n'a pas déjà rencontre un motif contenant cette intervalle. Des qu'un motif est détecté, l'external va envoyer ce motif rythmique pour qu'il soit utilisé pour la synthèse.\\
+A chaque fin de sequence, les valeurs stockés dans l'external sont supprimé, pour accueillir les valeurs de la nouvelle sequence et trouvé un autre motif.\\
+Ce module ne permet pas de faire reconnaître la plus long des motifs rythmiques présent dans la sequence mais par soucis  de faire interagir rapidement le dispositif avec son environnement, il est préférable de récupérer le motif le plus vite possible même si celui ci n'est pas le plus long. Pour être sur d'avoir le plus grand motif obligerai à attendre la fin de sequence et donc à commencer a faire interagir le dispositif qu'après que l'émetteur ai fini de jouer.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=350px]{motifrythme.jpg}
 	\caption{En rouge le motif minimal. En bleu le motif le plus long de la sequence}
 \end{figure}
 \section{Synthèse musical}
-\subsection{Modele physique au longterme}
+\subsection{Synthèse du dispositif à long terme - Modèle physique}
 \paragraph{}
 La synthèse par modélisation physique consiste à produire des sons à partir d'un modèle informatique décrivant les propriétés physiques d'objets virtuels.\\
-On donne les caractéristiqaues physique (dimension, densité, élasticité...) de l'objet que l'on veut simuler, et les caracteristique de objet qui sera l'exitateur. Puis on nous utilison cette  simulation d'instrument pour produire du son. Cela permet d'avoir une timbre de sons tres varier.\\
-L'utilisateur de cette synthese a ete evoquer mais ca complexité plus elevé et le temps etant limité nous nous avons preferer faire utliser un modele plus basique.
+On donne les caractéristiques physiques (dimension, densité, élasticité...) de l'objet que l'on veut simuler, et les caractéristiques de objet qui sera l’excitateur.\\
+Puis nous utilisons cette simulation d'instrument pour produire du son. Cela permet d'avoir une timbre de sons très riches et variés.\\
+L'utilisateur de cette synthèse a été évoqué mais ça complexité plus élevé et son développement plus long, nous a fait préférer l'utilisation dans ce projet, d'une synthèse plus basique.
 
 \subsection{Synthèse implémenté}
 \paragraph{}
-Pour ce projet, nous avons proceder a un implementation d'un synthese hybride utilusant la synthese additive et soustractive pour generer du son.\
+Pour ce projet, nous avons procédé à un implémentation d'un synthèse hybride utilisant la synthèse additive et soustractive pour générer du son.
 \paragraph{}
-La synthese additive consiste a produire un signal audio complexe en additionnent plusieurs signaux elementres (typiquement des ondes sinusoidal).
+La synthèse additive consiste a produire un signal audio complexe en additionnent plusieurs signaux élémentaires (typiquement des ondes sinusoïdal).
 \paragraph{}
-La synthese soustractive quand a elle consiste a produire un signal audio a partir de signaux riche ne harmoniques (comme le signal carré, triangle ou en dent de scie) en filtrant certaine de frequence. 
-
+La synthèse soustractive quand à elle consiste à produire un signal audio en filtrant certaine de fréquence de signaux riche en harmoniques comme le signal carré, triangle ou dent de scie... 
 
 \section{Interface Utilisateur}
-\subsection{Premiere idée d'implementation}
+\subsection{Première idée d’implémentation}
 \paragraph{}
-Le parametrage du dispositif se faisant a distance, les données sont envoyer au dispositif par wifi la carte udoo etant equipé un module wifi.\\
-Comme l'interface graphie et le dispositif communiquaient pas le wifi, nous sommes dit qu'il etait interessant de permettre a l'utilisateur de s'abstraire de la contrainte d'avoir Pure Data sur l'ordinateur configurant le dispositif. \\
-Dans l'optique d'avoir une interface portable et simple d'installation, nous avions pensé au Java.
+Le paramétrage du dispositif se faisant à distance, les données sont envoyé au dispositif par \texttt{wifi}, la carte Udoo en étant équipé.\\
+Comme l'interface graphie et le dispositif communiquaient par \texttt{wifi}, Il était intéressant de permettre à l'utilisateur de s'abstraire de la contrainte d'avoir Pure Data sur l'ordinateur configurant le dispositif. \\
+Dans l'optique d'une interface portable et simple d'installation, nous avions pensé la faire en Java.
 \paragraph{}
-En PureData, les communication se sont a l'aide d'une boite du nom de \texttt{netsend} qui permet d'envoyer des messages (Pd) commecent par \texttt{send} et envoie les données a la fin du message. En Tcp ou en Udp selon les parametres de la boites.\\
-\texttt{netreceiver}, la boite complementaire de \texttt{netsend}, stock les données recus jusqu'a recevoir la fin du message, et l'envoie sur la sortie de la boite.\\
-Dans un premier temps il nous a donc fallu trouver comment Pure Data convertiser les messages avant de les envoyer si il sagié d'une ismple convertion en ASCII ou un autre  mecanisme. De plus il a fallu trouvé le caractere ajouter au message par netsebnd ou que netreceiver puisse connaitre la fin du message.\\
-Apres plusieurs experimentations ous avons decouvert que le caratere etait le ';', ce qui nous a permis de faire d'envoyer des messages exterieur (d'une programm) à PureData.
+En Pure Data, les communications se fait à l'aide d'une boite du nom de \texttt{netsend} qui permet d'envoyer des messages (Pd) commencent par \texttt{send}. En \texttt{Tcp} ou en \texttt{Udp} selon les paramètres de la boite.\\
+\texttt{netreceiver} la boite complémentaire de \texttt{netsend}, stock les données reçus jusqu’à recevoir la fin du message, et l'envoie sur sa sortie.\\
+Dans un premier temps il nous a donc fallu trouver comment Pure Data convertissait les messages avant de les envoyer si il s’agissait d'une conversion en ASCII ou un autre  mécanisme plus complexe. De plus il a fallu trouvé le caractère ajouter au message par \texttt{netsend} pour que   \texttt{netreceiver} puisse connaître la fin du message.\\
+Après plusieurs expérimentations nous avons découvert que le caractère délimiteur était  le ';', ce qui nous a permit d'envoyer des messages extérieur (d'une programme Java) à Pure Data.
 
 \paragraph{}
-Apres quelque teste nous sommes dit que le parametrage du dispositif ne pouvait pas ce faire sans connaissances en Pure Data. Par consequent, nous decider de change d'idéee et de fournir un interface graphique fait en Pure Data, l'utilisateur serai plus a l'aise avec une interface fait dans un langage qu'il connait et qui a la philosophie que le programme embarqué dans le dispositif. L'utilisateur pourra egalement l'adaper selon ses besoins.
+Après quelques testes, nous nous sommes rendu compte que le paramétrage du dispositif ne pouvait pas se faire sans connaissances en Pure Data. Par consequant, nous avons décider de change d'idée et de créer une interface graphique en Pure Data, l'utilisateur serait plus à l'aise avec une interface fait dans un langage qu'il connaît et qui à les mêmes principe et philosophie que le programme embarqué dans le dispositif. L'utilisateur pouvant également l’adapter selon ses besoins.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=250px] {GUI.jpg}
 	\caption{Interface Graphique}
 \end{figure}
-\subsection{Envoie des données capteur}
+\subsection{Envoie des données des capteurs}
 \paragraph{}
-Nous avons recontré plusieurs fois le compositieur pour savoir ce qui lui serait le plus facile pour l'envoie de données. Il lui a paru interessant de dessiner des coubes pour chaque capteur. Il a pense egalement que pouvoir choisir changer la précision des courbes pour pouvoir similer de grande variations ou au contraire des tres petit variation.\\
+Nous avons rencontré plusieurs fois le compositeur pour savoir ce qui lui serait le plus facile et intuitif pour l'envoi de données. Il lui à paru intéressant de dessiner des courbes pour chaque capteurs, pour visualiser exactement se qui est envoyé au dispositif. Il a pense également demandé de pouvoir changer l'échelle des courbes pour pouvoir simuler de grande variations comme des très petites.\\
 
 \paragraph{fonctionnement}
-L'utilisateur peut dessinerl les courbes qui desir pour capteur, quand il a fini il se connecte au dispositif a ce moment l'interface envoie les doonées au dispositif qui va les socker et tant que la connectio n'est rompu par l'utilisateur. Le dispositif va les lire en boucle, en espacent chaque lecture d'un certain delais (fixé a 100 millis second). et va s'en servir comme si ses informations etait celle recu par les capteurs.\\
-Pour envoyer de nouvelle données, il suffira a l'utilisateur de tracer de nouvelle courbe, de se deconnecter et de se reconnecte pour que l'envoie de face a nouveau.
+L'utilisateur peut dessiner les courbes qui désir pour chaques capteurs, quand il a fini, il se connecte au dispositif à ce moment l'interface envoie les données au dispositif qui va les stocker et tant que la connexion ne sera pas rompu par l'utilisateur, (envoi du message de déconnexion). Le dispositif va lire ces données en boucle. Chaque lecture étant espacé d'un certain délais (fixé a 100 milliseconde). Et va les substituer aux données reçu par les capteurs.\\
+Pour envoyer de nouvelles données, il suffira à l'utilisateur de tracer de nouvelles courbes, de se déconnecter et de se reconnecte pour que l'envoie des données est lieux de nouveau.
 
 \begin{figure}[H]
 	\centering
@@ -417,63 +420,68 @@ Pour envoyer de nouvelle données, il suffira a l'utilisateur de tracer de nouve
 \end{figure}
 
 \paragraph{}
-Le nombre d'echantillon envoyer a chaque fois est fixe dans les patchs, elle est fixé a 256 mais il est possible de modifier cela agrandicent les tableaux contentat les courbes de l'interface utiliser ainsi que le programme embarqué dans le dispositif.
+Le nombre d’échantillon envoyé à chaque fois est fixe dans le patch, elle est fixé à 256 mais il est possible de modifier ça taille en changeant les propriétés tableaux contenant les courbes de l'interface utiliser ainsi que le programme embarqué dans le dispositif.
 \paragraph{}
-Pour savoir a quoi corespond cahque liste de données envoi, le premier mot en debut de liste correspond au capteur (tempe pour la température, humid pour l'humidité ...). 
+Pour savoir à quoi correspond chaque liste de données envoyé, le premier mot en début de liste correspond au capteur (tempe pour la température, humid pour l'humidité ...). 
 
 
 \subsection{Envoie d'objet Pure data}
 \paragraph{}
-En Pure Data, il est impossible de pouvoir modifier un patch autrement que par l'interface du logiciel en ajoutant des boites ou des connections. Et donc la creation du module "Creation Musicale" génerique que l'utilisateur pourrai modelé a ca guise serait impossible a programmer. La Creation d'une nouveau module serait obligatoire pour chaque evenement.
+En Pure Data, il est impossible de modifier un patch autrement que par l'interface du logiciel en ajoutant des boites ou des connections. La création du module "Création Musicale" générique, que l'utilisateur pourrait modeler à sa guise serait impossible. La création d'une nouveau module est donc obligatoire pour chaque événement différant.
 \paragraph{}
-Nous nous sommes questionné sur comment  pouvoir changer la partie "Creation musicale" à distance.\\
-La premiere chose envisage a etait de faire un simple script \texttt{Bash} pour envoyer un pathc programmé par sur l'ordinateur de l'utilisateur vers le dispositif. Le defaut majeur de cette technique est le cela force l'utilisateur a connaitre les commandes utile pour maintenir le script et les bases du ssh. Ce qui peut paraitre evident pour une personne travaillant dans le domaine de l'informatique mais qui est rare pour les utilisateurs de PureData. Utilisant un langague graphique pour s'abstraire du code informatique. De plus cela  oblige à utiliser un autre outils que Pd.
+Nous nous sommes questionné sur comment  pouvoir changer la partie "Création musicale" à distance.\\
+La première idée envisage a était de faire un script \texttt{Bash} pour envoyer un patch programmé sur l'ordinateur de l'utilisateur vers le dispositif.\\
+Le défaut majeur de cette technique est que cela force l'utilisateur à connaître les base du  \texttt{Bash} et les commandes utile pour maintenir le script. \\
+Ce qui peut paraître évident pour une personne travaillant dans le domaine de l'informatique mais qui est rare chez les utilisateurs de Pure Data, utilisant un langage graphique pour s'abstraire du code informatique. De plus cela  oblige à utiliser un autre outil que Pd.
 
 \paragraph{}
-Nous avons vite laisser le problème de coté, par manque de solutions satisfaisante.\\
-En effectuant des teste sur l'evoi de données pour les capteurs l'idée mes venu de ne pas envoyer une liste de données (venant des courbes) mais d'envoyer une liste qui serai le contenu d'un fichier, et plus particulierement d'une fichier Pd. Un fichier Pure Data etant ecrit en \texttt{ascii}.\\
-L'idée est que l'utiliateur ecrive un module de creation qu'il envoi le ficher par l'interface graphique et que de l'autre cote, le dispositif le recpetion et ecrive est remplace le module de "Creation Sonore" par le fichier recu.
+Nous avons vite laissé le problème de coté, par manque de solutions satisfaisantes.\\
+En effectuant des testes sur l'envoi des données pour les capteurs, l'idée nous est venu de ne pas envoyer une liste de données (venant des courbes) mais d'envoyer une liste qui serait le contenu d'un fichier, et plus particulièrement d'une fichier Pd. Les fichiers Pure Data étant écrit en \texttt{ascii}, il est donc possible de les stocker dans des messages \texttt{Pd}.\\
+L'idée est que l’utilisateur écrive un module de "Création musicale" qu'il envoi par le biais de l'interface graphique et de l'autre cote le dispositif le réceptionne et remplace le module de "Création Sonore" par le fichier reçu.
 \paragraph{}
-Comme le caractere de ceparation dans les fichiers Pd est le point virgule, et que ce point virgule est aussi utiliser en interne pour delimiter les messages, les fin d'envoi... Cela a lecture et le traitement de ce genre de fichier n'a etait sans difficultés.
+Comme le caractère de séparation dans les fichiers Pd est le point virgule, et qu'il est aussi utilisé en interne pour délimiter les messages, les fin d'envoi... La lecture et le traitement de ce genre de fichier n'a était sans difficultés, Mais la transfert de boite via Pure Data est possible.
 \paragraph{}
-De plus quand nous avons commencer a implementer cette methode nous ne savions pas cela aller vraiment marcher.\\
-A notre grande supprime il est tous a fait possible de reecrire des fichiers sans fait planté le patch actuelle chargé. L'inconveniant est que Pure Data ne recharge le contenu de la boite qu'apres fermeture et reouverture du patch le contenant. Il aurai etait possible d'ecrire un external qui par une commande \texttt{Bash} recharger le patch, dans la version action du projet, on est obligé de d'eteindre et de relancer le dispositif.
+En commencent a implémenter cette méthode nous ne savions si pas cela allait vraiment marcher. Car aucun documentation sur le sujet n'a était trouvé dans les livres traitent du sujet, ni sur les sites de la communauté.\\
+À notre grande supprime il est tous à fait possible de réécrire des fichiers sans fait planté le patch actuelle chargé, même si le fichier modifier correspond à une boite du patch.\\
+Par contre Pure Data ne prendra en compte le changement de contenu de la boite qu’après fermeture et réouverture du patch.\\
+Il n'existe aucune boite permettant d’agir sur les patch chargé. Il aurait était possible d’écrire un external qui par une commande \texttt{Bash} recharger le patch, dans la version actuel du projet, l'utilisateur est obligé de d'éteindre et de relancer le dispositif.
 \paragraph{}
-Un second probleme a etait trouvé si le patch envoyé n'est pas un fichier Pure Data ou que la syntagre du fichier n'est pas rigoureusement suivi. Quant Pure Data ce reouvre avec la nouvelle boite cela produit etrangment pas de message erreur, le chargement du patch s'arret et aucun connexion entre le boite ne sont faite. A ce moment, la seul solution est de re-installer toute la partie Pure Data du dispositif.\\
-Il aurai ete intersant de programme un external charger de verifier la syntaxe du fichier envoyé a l'aide de \texttt{regexp} mais faut de temps nous n'avons pas eu le temps de le faire.   
+Un second problème de l'envoi d'un fichier et que si le patch envoyé n'est pas un fichier Pure Data ou que la syntagme du fichier n'est pas respecté. Quant Pure Data se ré-ouvre avec la nouvelle boite cela produit étrangement pas de message erreur, mais le chargement du patch s’arrête et aucune connexions entre le boite ne sont faite. 
+À ce moment, la seule solution est de ré-installer toute la partie Pure Data du dispositif, ce qui est très contraignant, il faudra donc que l'utilisateur face tres attention en utilisant l'envoi de fichier.\\
+Il aurai été internant de programme un external chargé de vérifier la syntaxe du fichier envoyé à l'aide de \texttt{regexp} mais faute de temps nous n'avons pas eu le temps de le faire.   
 
 \section{Tutoriel et Documentation}
 \subsection{Écriture documentation Pure data}
 \paragraph{}
-Le projet n'etant qu'une permiere version, il est important de fournir un documentation la plus complete sur le fonctionnement de tous les patchs et les externals fabriquer. Pour facilité la comprehention du programme pas les personnes qui travaillerons sur le projet.
+Le projet n’étant qu'une permienne version, il est important de fournir un documentation la plus complète sur le fonctionnement de tous les patchs et les externals fabriqués. Pour facilité la compréhension du programme par les personnes qui travaillerons sur le projet.
 \subsection{Écriture du Tutoriel d'installation}
 \paragraph{}
-Comme beaucoup d'utilisateur de Pure Data on des connaissances limite en informatique, Nous avons ecrit une documentation qui explique pas a pas ce que l'utilisateur doit faire pour pouvoir reproduire le dispositif.\\
-Elle decrit la partie Hardware avec les differant montage des capteurs mais aussi la partie Software pour l'installation de la distribution linux, des packets essantiel pours le faire foncionner correctement, ainsi quela description de l'installation de Pure Data et de Flext a partir des sources.
+Comme beaucoup d'utilisateur de Pure Data ont des connaissances limité en informatique. Une documentation a était écrite pour expliquer pas à pas se que l'utilisateur doit faire pour pouvoir reproduire le dispositif.\\
+Elle décrit la partie Hardware avec les différents montage avec les capteurs mais aussi la partie Software pour l'installation de la distribution Linux, des paquets essentiels pour le faire fonctionner correctement, ainsi que la description de l'installation de Pure Data et de \texttt{Flext} à partir des sources.
 
 \paragraph{}
-Une image de la carte micro sd sera fourmi pour pouvoir mettre en place le dispositif sur la même carte.\\
-De plus un tutoriel est present pour pouvoir permetre a un neofite de faire de nouvelle image, si le dispositif venait a changer.
+Une image de la carte micro SD sera fourmi pour pouvoir mettre en place le dispositif sur la même carte.\\
+De plus un tutoriel est présent pour  permettre à un utilisateur néophyte de faire de nouvelle image, si le dispositif venait à changer.
 
 \section{Pour aller plus loin}
-\subsection{Tests en environnement reel}
+\subsection{Test en environnement réel}
 \paragraph{}
-Faire des testes sur le son n'est jamais quelques choses de faciles surtout quand il faut les buits envivorant. ces sons etant souvnat de faible intensiter et de nature tres diverse.
-Nous tous de même essayer de faire le plus de teste possible que cela soit de son synthetiser par ordinateur ou des enregistre d'environement. Mais il aurait etait interse de teste les dispositif plus emplement dans des conditoon reeln, que nous n'avons pas eu le temps de faire faute de temps. 
+Faire des testes sur le son n'est jamais quelques choses de faciles surtout quand il faut les bruits de l'environnement. ces sons étant souvent de faible intensités et de nature très diverse. De plus il est difficile de pouvoir prévoir tous les cas possibles au niveau des combinaisons de sons capté par le micro et les valeurs des capteurs.\\
+Nous avons tout de même essayé de faire le plus de teste possible que cela soit avec des sons de synthèses ou des enregistrements de environnement. Mais il aurait était pertinent de tester le dispositif plus amplement dans des conditions réel que nous n'avons pas eu le temps de faire faute de temps. 
 
-\subsection{Tests énergétiques}
+\subsection{Test énergétique}
 \paragraph{}
-La carte Udoo malgrés tous c'est avantage et par toute ca connection et le micro controleur pour un nano-ordinateur. Même si sur certaine document non officiel, estime la consomation moyenne d'energie de la carte a environs 10 Watts. Les specifications et les divers documents officiel trouvé parlent d'une consomation maximum de 24 Watts.\\
-Ce qui est considerable pour dispositif devant etre le plus autonome energetique energetiquement.\\
-Il aurait etait interessant de faire des testes avec d'autres cartes moins gourmandes en energie.\\
-Comme par example combiné une carte Arduino Nano pour l'aquisition de données et un Raspberry Pi V2 pour les traitement, consomerait moins de 5 Watts (environ  0.5 Watts pour l'Arduino et 4 pour la Raspberry).\\
-Des testes des programmes sur d'autre platforme et voir si la traitement pourrai se faire en temps reel.
+La carte Udoo malgré tous ses avantages (ses connexions et le micro contrôleur intégré ...) la carte reste très consommatrice d’énergie.\\
+Même si certaines documents non officiel, estime la consommation énergie moyenne de la carte à environs 10 Watts. Les spécifications et les divers documents officiel trouvé parlent seulement d'une consommation maximum de 24 Watts. Ce qui est considérable pour dispositif devant être le plus autonome possible énergétiquement.\\
+Il aurait était intéressant de faire des tests avec d'autres cartes moins gourmandes en énergie.\\
+Comme par example combiné une carte Arduino Nano pour l’acquisition de données avec une Raspberry Pi V2 pour faire les traitements. Ce dispositif serai plus raisonnable car il consommerait moins de 5 Watts (environ  0.5 Watts pour l'Arduino et 4 Watts pour la Raspberry).\\
 
 \subsection{Serveur distant}
 \paragraph{}
-Dans l'optique d'etre de diminuer la consomation d'energie, il aurait peut etre possible d'essayer une implementation centraliser. La carte n'aurai pour role que de collecer les donné pour les envoyer a un serveur qui lui ferrai les traitement et renveré la flux audio ou simplement les parametres a la carte pour synthetiser du son.\\
-Cela permaittre de ne plus ce soucier du temps de calcul et permaitre d'avoir une supervision des dispositifs. De plus il serait possible de partagerdes capteurs entre plusieurs dispositifs, comme la pression qui varie que tres peu dans un endroit donné.\\
-La modification des modules de creation musical serai egalement simplifié.
+Dans l'optique de diminuer la consommation d’énergie, il aurait peut être possible d'essayer de centraliser les traitements. La carte aurai pour rôle de collecter les données et les enverrait à un serveur qui lui ferrai les traitement et renverrait la flux audio ou simplement les paramètres pour synthétiser à la carte.\\
+Cela permettre de ne plus se soucier du temps de calcul et permettre d'avoir une supervision des dispositifs, pour savoir ce que chaque dispositif capte et fait comme musique.\\
+De plus il serait possible de partager des capteurs entre plusieurs dispositifs, comme la pression qui varie que très peu sur tous un site où les dispositifs seraient déployé.\\
+La modification des modules de création musical serai également simplifié étant sur le serveur.
  
 
 \newpage
@@ -481,10 +489,7 @@ La modification des modules de creation musical serai egalement simplifié.
 \nocite{*}
 \bibliographystyle{plain}
 \bibliography{biblio-projet-DASS}
-%\addcontentsline{toc}{chapter}{Bibliographie}
 
 \newpage\section{Annexe}
-\subsection{Rappel musical}
-% rappel sur les harmoniques 
 
 \end{document}
