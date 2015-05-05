@@ -1,4 +1,4 @@
-#N canvas 992 82 927 998 10;
+#N canvas 971 87 927 998 10;
 #N canvas 2057 189 668 891 Pduino 0;
 #X obj 267 330 comport 9600;
 #X obj 411 47 inlet;
@@ -1658,7 +1658,7 @@
 #X restore 480 229 pd analyse;
 #X obj 480 177 spigot~;
 #X obj 519 153 r netprio;
-#N canvas 992 82 927 998 traiterMessage 1;
+#N canvas 971 87 927 998 traiterMessage 1;
 #X obj 256 -71 inlet;
 #X obj 230 -24 route tempe light humid;
 #X obj 81 96 list append;
@@ -1668,7 +1668,7 @@
 #X obj 81 40 t b l;
 #X obj 108 183 compt;
 #X obj 81 242 tabwrite temperature;
-#N canvas 65 97 718 300 (subpatch) 0;
+#N canvas 65 127 718 300 (subpatch) 0;
 #X array temperature 256 float 1;
 #A 0 -1 -0.693834 -0.686691 -0.679549 -0.672406 -0.650978 -0.646217
 -0.641455 -0.636693 -0.622408 -0.593838 -0.593838 -0.593838 -0.584315
@@ -1706,8 +1706,8 @@
 0.310884 0.315646 0.320408 0.320408 0.32755 0.334693 0.334693 0.334693
 0.348978 0.348978 0.348978 0.363263 0.377548 0.377548 0.38469 0.406118
 1;
-#X coords 0 1 255 -1 200 140 1;
-#X restore 586 -62 graph;
+#X coords 0 1 255 -1 200 140 1 0 0;
+#X restore 586 -63 graph;
 #X obj 81 159 t f b;
 #X obj 227 97 list append;
 #X obj 227 125 list split 1;
@@ -1725,7 +1725,7 @@
 #X obj 373 159 t f b;
 #X obj 227 243 tabwrite lumiere;
 #X obj 373 242 tabwrite humidite;
-#N canvas 65 87 450 300 (subpatch) 0;
+#N canvas 65 97 450 300 (subpatch) 0;
 #X array lumiere 256 float 1;
 #A 0 0.238634 0.195776 0.195776 0.167204 0.167204 0.124346 0.0886306
 0.0814875 0.0814875 0.0529155 0.0386294 0.0386294 0.0386294 0.0243434
@@ -1834,11 +1834,12 @@
 #X msg 508 311 stop;
 #X obj 215 287 r netprio;
 #X msg 215 313 stop;
-#X obj 108 210 moses 257;
-#X obj 254 209 moses 257;
-#X obj 400 210 moses 257;
 #X obj 311 422 moses 257;
-#X obj 457 421 moses 257;
+#X obj 401 210 moses 256;
+#X obj 457 421 moses 256;
+#X obj 108 209 moses 256;
+#X obj 254 209 moses 256;
+#X obj 19 278 print [rec];
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
 #X connect 1 1 15 0;
@@ -1851,7 +1852,7 @@
 #X connect 5 0 4 1;
 #X connect 6 0 4 0;
 #X connect 6 1 2 1;
-#X connect 7 0 58 0;
+#X connect 7 0 61 0;
 #X connect 10 0 8 0;
 #X connect 10 1 7 0;
 #X connect 11 0 12 0;
@@ -1862,7 +1863,7 @@
 #X connect 14 0 13 1;
 #X connect 15 0 13 0;
 #X connect 15 1 11 1;
-#X connect 16 0 59 0;
+#X connect 16 0 62 0;
 #X connect 17 0 25 0;
 #X connect 17 1 16 0;
 #X connect 18 0 19 0;
@@ -1873,7 +1874,7 @@
 #X connect 21 0 20 1;
 #X connect 22 0 20 0;
 #X connect 22 1 18 1;
-#X connect 23 0 60 0;
+#X connect 23 0 59 0;
 #X connect 24 0 26 0;
 #X connect 24 1 23 0;
 #X connect 29 0 36 0;
@@ -1886,12 +1887,12 @@
 #X connect 36 0 32 0;
 #X connect 36 1 35 1;
 #X connect 36 2 35 0;
-#X connect 37 0 61 0;
+#X connect 37 0 58 0;
 #X connect 38 0 44 0;
 #X connect 39 0 43 0;
 #X connect 39 1 38 1;
 #X connect 39 2 38 0;
-#X connect 40 0 62 0;
+#X connect 40 0 60 0;
 #X connect 41 0 46 0;
 #X connect 42 0 45 0;
 #X connect 42 1 41 1;
@@ -1911,19 +1912,20 @@
 #X connect 55 0 51 0;
 #X connect 56 0 57 0;
 #X connect 57 0 49 0;
-#X connect 58 0 8 1;
-#X connect 58 1 49 0;
-#X connect 58 1 7 1;
-#X connect 59 0 25 1;
-#X connect 59 1 16 1;
-#X connect 59 1 50 0;
-#X connect 60 0 26 1;
-#X connect 60 1 23 1;
-#X connect 60 1 51 0;
-#X connect 61 0 47 0;
-#X connect 61 1 37 1;
-#X connect 62 0 48 0;
-#X connect 62 1 40 1;
+#X connect 58 0 47 0;
+#X connect 58 1 37 1;
+#X connect 59 0 26 1;
+#X connect 59 1 23 1;
+#X connect 59 1 51 0;
+#X connect 60 0 48 0;
+#X connect 60 1 40 1;
+#X connect 61 0 8 1;
+#X connect 61 0 63 0;
+#X connect 61 1 49 0;
+#X connect 61 1 7 1;
+#X connect 62 0 25 1;
+#X connect 62 1 16 1;
+#X connect 62 1 50 0;
 #X restore 740 197 pd traiterMessage;
 #X obj 276 265 print [capteur inconnu];
 #X floatatom 46 260 5 0 0 0 - - -;

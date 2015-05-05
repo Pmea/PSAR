@@ -1,4 +1,4 @@
-#N canvas 477 121 612 616 10;
+#N canvas 360 87 612 616 10;
 #X obj 138 -628 cnv 15 365 200 empty empty Temperature 20 12 0 14 -86277
 -262144 0;
 #X obj 150 -603 cnv 15 350 170 empty empty empty 20 12 0 14 -228856
@@ -7,9 +7,9 @@
 -262144 0;
 #X obj 150 -399 cnv 15 350 170 empty empty empty 20 12 0 14 -228856
 -66577 0;
-#N canvas 109 190 913 824 temperature_send 0;
+#N canvas 65 256 913 824 temperature_send 0;
 #X floatatom 216 586 5 0 0 0 - - -;
-#N canvas 65 117 450 300 (subpatch) 0;
+#N canvas 65 127 450 300 (subpatch) 0;
 #X array \$0_temperature 256 float 1;
 #A 0 -1 -0.693834 -0.686691 -0.679549 -0.672406 -0.650978 -0.646217
 -0.641455 -0.636693 -0.622408 -0.593838 -0.593838 -0.593838 -0.584315
@@ -288,7 +288,7 @@
 -262144 0;
 #X obj 150 -195 cnv 15 350 170 empty empty empty 20 12 0 14 -228856
 -66577 0;
-#N canvas 834 196 913 824 temperature_send 0;
+#N canvas 904 191 913 824 temperature_send 0;
 #X floatatom 216 586 5 0 0 0 - - -;
 #N canvas 65 87 450 300 (subpatch) 0;
 #X array \$0_humidite 256 float 1;
