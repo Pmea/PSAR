@@ -1,4 +1,4 @@
-#N canvas 1985 54 1855 1026 10;
+#N canvas 989 87 927 998 10;
 #N canvas 2057 189 668 891 Pduino 0;
 #X obj 267 330 comport 9600;
 #X obj 411 47 inlet;
@@ -1658,7 +1658,7 @@
 #X restore 480 229 pd analyse;
 #X obj 480 177 spigot~;
 #X obj 519 153 r netprio;
-#N canvas 167 54 1855 1026 traiterMessage 1;
+#N canvas 706 413 1855 998 traiterMessage 0;
 #X obj 256 -96 inlet;
 #X obj 230 -49 route tempe light humid;
 #X obj 81 100 list append;
@@ -1735,7 +1735,7 @@
 0.00291431 0.0100573 0.0243434 0.0243434 0.0243434 0.0386294 0.0457724
 0.0529155 0.0600585 0.0672015 0.0743445 0.0814875 0.0886306 0.0957736
 0.102917 0.11006 0.119584 0.129108 0.138632 0.152918 0.167204 0.171966
-0.176728 0.18149 0.195776 0.338636 20.3386 0.238634 0.195776 0.195776
+0.176728 0.18149 0.195776 0.338636 0.338636 0.238634 0.195776 0.195776
 0.167204 0.167204 0.124346 0.0886306 0.0814875 0.0814875 0.0529155
 0.0386294 0.0386294 0.0386294 0.0243434 0.0243434 0.0100573 0.0100573
 0.0100573 -0.00422871 -0.0185148 -0.0185148 -0.0185148 -0.0328008 -0.0470868
@@ -2016,8 +2016,31 @@
 #X connect 21 0 20 0;
 #X connect 22 0 21 0;
 #X restore 480 489 pd synthese;
-#N canvas 3271 356 450 300 reception_modification 0;
+#N canvas 1369 530 450 300 reception_modification 1;
 #X obj 180 61 netreceive 4343;
+#X floatatom 267 96 5 0 0 0 - - -;
+#X obj 197 248 msgfile;
+#X obj 267 124 moses 1;
+#X obj 180 94 t b b b a;
+#X msg 197 162 add;
+#X msg 197 116 set add;
+#X msg 267 217 clear;
+#X obj 267 194 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 267 169 write creation.pd;
+#X connect 0 0 4 0;
+#X connect 0 1 1 0;
+#X connect 1 0 3 0;
+#X connect 3 0 9 0;
+#X connect 4 1 6 0;
+#X connect 4 2 5 0;
+#X connect 4 3 5 0;
+#X connect 5 0 2 0;
+#X connect 6 0 5 0;
+#X connect 7 0 2 0;
+#X connect 8 0 7 0;
+#X connect 9 0 2 0;
+#X connect 9 0 8 0;
 #X restore 1328 112 pd reception_modification boite;
 #X connect 0 0 8 0;
 #X connect 1 0 0 0;
