@@ -60,7 +60,7 @@
 \setbeamersize{text margin right=15px}
 
 
-\title{Rapport du Projet PSAR}
+\title{Projet PSAR}
 \subtitle{Dispositif Autonome de Synthèse Sonore}
 \institute{Encadrant : Hugues Genevois}
 \author{Pierre Mahé}
@@ -78,12 +78,12 @@
 
 
 \begin{frame}
-\frametitle{Contrainte du projet}
+\frametitle{Contraintes du projet}
 \framesubtitle{Pure Data}
 \textbf{Pure Data}
 \begin{itemize}
 \item Langage Graphique pour la création et l'interaction musical temps réel.
-\item Possibilité de définir des nouveaux modules appelés boites.
+\item Possibilité de définir des nouveaux modules appelés \texttt{boites}.
 \item Possibilité de créer des modules appelé \texttt{External} grâce à \texttt{Flext}.
 \item Possibilité de modifier les patchs durant l’exécution du programme.
 \item Il existe une grande communauté d'utilisateurs, de nombreuse fonctionnalité sont déjà implémenté.
@@ -91,7 +91,7 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Contrainte du projet}
+\frametitle{Contraintes du projet}
 \framesubtitle{Pure Data}
 \textbf{Exemple de Patch}
 \begin{figure}
@@ -102,7 +102,7 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Contrainte du projet}
+\frametitle{Contraintes du projet}
 \framesubtitle{La Carte Udoo}
 \begin{minipage}{0.49\textwidth}
 \textbf{Avantage:}
@@ -144,6 +144,7 @@
 \centering
 \vspace{-0.5cm}
 \includegraphics[height=30px]{protocole.jpg}
+\caption{Messages échangés entre la partie Arduino et Pure Data}
 \end{figure}
 \end{frame}
 
@@ -151,34 +152,33 @@
 \frametitle{Traitement audio}
 \framesubtitle{Mélodie}
 
-Partage du spectre sonore en plusieurs bandes de fréquences à l'aide de filtres puis de détecter la fréquence principale de chaque bande.
+Partage du spectre sonore en plusieurs bandes de fréquences à l'aide de filtres.\\
+Détection de la fréquence principale de chaque bande de frequences.
 \begin{figure}
 \centering
 \includegraphics[height=100px]{filtre.jpg}
-\caption{Filtrage par bandes}
+\caption{Filtrage par bandes de fréquences}
 \end{figure}
-Les filtres sont espacés d'une octave.\\
-Pour limiter les fausses détections, à la sortie de chaque filtre des \texttt{Nose Gates} ont été ajoutés. 
+Pour limiter les fausses détections, des \texttt{Noise Gates} ont été ajoutés à la sortie de chaque filtre. 
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Traitement audio}
 \framesubtitle{Mélodie}
-\textbf{Détecteur de notes}\\
-Un compteur de notes fourni périodiquement la fréquence d'apparition de chaque note.
+\textbf{Ce module permet de récupérer deux informations utiles}\\\\
+\textbf{Un compteur de notes}, fournissant périodiquement la fréquence d'apparition de chaque note.
 \\ 
-\textbf{Bande de fréquences}\\
-Pour ne pas perdre l'information sur la hauteur du son capté par le micro.\\
-Le dispositif conserve aussi la répartition des fréquences.
-
+\textbf{Une mesure la répartition des fréquences}\\
+Pour ne pas perdre l'information sur la hauteur du son capté par le micro.
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Traitement audio}
 \framesubtitle{Rythme}
-Une information importante en plus de la Mélodie et le rythme, pour jouer des sons cohéritant avec l’environnement.\\
+Le ryhtme est la seconde informations importante.\\
+Pour que le dispositif joue des sons cohéritant avec l’environnement.\\
 Création d'un module pour détecter le début de notes à l'aide de la boite \texttt{bonk} qui détecte les impacts dans un signal.
 
 \begin{figure}
@@ -192,7 +192,7 @@ Création d'un module pour détecter le début de notes à l'aide de la boite \t
 \begin{frame}
 \frametitle{Traitement audio}
 \framesubtitle{Rythme}
-Groupement des rythmes détecté en sequence.\\
+Groupement des rythmes détectés en sequence.\\
 Le module procède à une normalisation de la duré des rythmes.
 \begin{figure}
 \centering
@@ -205,8 +205,9 @@ Le module procède à une normalisation de la duré des rythmes.
 
 \begin{frame}
 \frametitle{Traitement audio}
-\framesubtitle{Traitement haut niveau - Détection de Motif minimal}
-Pour plus d'interactivité, le dispositif retourne le premier motif rythmique trouvé, et non le motif rythmique le plus long.\\
+\framesubtitle{Rythme}
+Une External se est chagé de detecter des motifs dans les séquences.\\
+Des qu'une sequence est trouvé, l'external l'envoi au module de création musical.\\
 La taille du motif est paramétrable.
 \begin{figure}
 \centering
@@ -220,7 +221,7 @@ La taille du motif est paramétrable.
 \frametitle{Interface Utilisateur}
 \begin{minipage}{0.49\textwidth}
 \textbf{Permet à l'utilisateur}\\\\
-L'envoi de données pour simuler les données collectés par les capteurs.\\\\
+L'envoi de données pour simuler les données des capteurs.\\\\
 Changement du module de Création Musicale
 \end{minipage}
 \begin{minipage}{0.49\textwidth}
@@ -237,15 +238,15 @@ Changement du module de Création Musicale
 \frametitle{Pour aller plus loin}
 \framesubtitle{Les Tests}
 \textbf{Tests en environnement réel}\\
-Les sons de l'environnement étant de nature très diverses, il est difficile de pouvoir tous les cas possibles.\\
-Des testes supplémentaires en environnement réel auraient était pertinents.
+Les sons de l'environnement étant de nature très diverses, il est difficile de couvrir tous les cas possibles.\\
+Des testes supplémentaires en environnement réel auraient était souhaitable.
 \newline
 \newline
 \textbf{Tests énergétique}\\
-La carte Udoo étant tres énergivore, il serait intéressant de tester le dispositif sur d'autre carte moins gourmande en énergie.
+La carte Udoo étant très énergivore, il serait intéressant de tester le dispositif sur d'autre carte plus économe en énergie.
 \newline
 \newline
 \textbf{Serveur distant}\\
-Dans l'optique d'econnomie d'energie, il serait intéressant de réflechir à un version avec un serveur, où le traitement des capteurs serait fait sur celui ci.
+Dans l'optique d'économie d’énergie, il serait intéressant de réfléchir à une version du dispositif avec un serveur, où le traitement des capteurs serait fait sur celui ci.
 \end{frame}
 \end{document}
