@@ -79,28 +79,6 @@
 
 \begin{frame}
 \frametitle{Contrainte du projet}
-\framesubtitle{La Carte Udoo}
-\begin{minipage}{0.49\textwidth}
-\textbf{Avantage:}
-\begin{itemize}
-\item Compatibilité Arduino
-\item Bonne plate-forme d’expérimentation
-\item Distribution Linux
-\item Prix raisonnable
-\end{itemize}
-\end{minipage}
-\begin{minipage}{0.49\textwidth}
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{udoo.jpg} 
-	\caption{Carte Udoo}
-\end{figure}
-\end{minipage}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Contrainte du projet}
 \framesubtitle{Pure Data}
 \textbf{Pure Data}
 \begin{itemize}
@@ -121,9 +99,28 @@
   \includegraphics[width=160px]{pd.jpg} 
 	\caption{Patch Pd}
 \end{figure}
-
 \end{frame}
 
+\begin{frame}
+\frametitle{Contrainte du projet}
+\framesubtitle{La Carte Udoo}
+\begin{minipage}{0.49\textwidth}
+\textbf{Avantage:}
+\begin{itemize}
+\item Compatibilité Arduino
+\item Bonne plate-forme d’expérimentation
+\item Distribution Linux
+\item Prix raisonnable
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{udoo.jpg} 
+	\caption{Carte Udoo}
+\end{figure}
+\end{minipage}
+\end{frame}
 
 \begin{frame}
 \frametitle{Structure du projet}
@@ -143,40 +140,16 @@
   \includegraphics[width=150px]{montagephoto.jpg} 
 	\caption{Montage sur la carte Udoo}
 \end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Récupération de l'environnement}
-
-\textbf{Communication inter plate-forme}
 \begin{figure}
 \centering
+\vspace{-0.5cm}
 \includegraphics[height=30px]{protocole.jpg}
 \end{figure}
-\textbf{External pour la communication}
-\begin{figure}
-\centering
-\includegraphics[height=120px]{protocole2.jpg}
-\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Traitement audio}
-\framesubtitle{Traitement bas niveau - première approche}
-De prime abord, la Transformée de Fourier apparaissait comme la meilleur solution.\\
-La carte ayant des ressources limité, la solution fut abandonnée au profit d'une technique plus économe en ressources.
-
-\begin{figure}
-\centering
-\includegraphics[height=100px]{fft.jpg}
-\caption{Transformée de Fourier}
-\end{figure}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Traitement audio}
-\framesubtitle{Traitement bas niveau - seconde approche}
+\framesubtitle{Mélodie}
 
 Partage du spectre sonore en plusieurs bandes de fréquences à l'aide de filtres puis de détecter la fréquence principale de chaque bande.
 \begin{figure}
@@ -191,7 +164,7 @@ Pour limiter les fausses détections, à la sortie de chaque filtre des \texttt{
 
 \begin{frame}
 \frametitle{Traitement audio}
-\framesubtitle{Traitement bas niveau - autres traitements}
+\framesubtitle{Mélodie}
 \textbf{Détecteur de notes}\\
 Un compteur de notes fourni périodiquement la fréquence d'apparition de chaque note.
 \\ 
@@ -204,7 +177,7 @@ Le dispositif conserve aussi la répartition des fréquences.
 
 \begin{frame}
 \frametitle{Traitement audio}
-\framesubtitle{Traitement haut niveau - Mélodie et Rythme}
+\framesubtitle{Rythme}
 Une information importante en plus de la Mélodie et le rythme, pour jouer des sons cohéritant avec l’environnement.\\
 Création d'un module pour détecter le début de notes à l'aide de la boite \texttt{bonk} qui détecte les impacts dans un signal.
 
@@ -218,7 +191,7 @@ Création d'un module pour détecter le début de notes à l'aide de la boite \t
 
 \begin{frame}
 \frametitle{Traitement audio}
-\framesubtitle{Traitement haut niveau - Détection de Motif minimal}
+\framesubtitle{Rythme}
 Groupement des rythmes détecté en sequence.\\
 Le module procède à une normalisation de la duré des rythmes.
 \begin{figure}
