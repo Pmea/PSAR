@@ -439,25 +439,25 @@ Nous avons vite laissé le problème de coté, par manque de solutions satisfais
 En effectuant des testes sur l'envoi des données pour les capteurs, l'idée nous est venu de ne pas envoyer une liste de données (venant des courbes) mais d'envoyer une liste qui serait le contenu d'un fichier, et plus particulièrement d'une fichier Pd. Les fichiers Pure Data étant écrit en \texttt{ascii}, il est donc possible de les stocker dans des messages \texttt{Pd}.\\
 L'idée est que l’utilisateur écrive un module de "Création musicale" qu'il envoi par le biais de l'interface graphique et de l'autre cote le dispositif le réceptionne et remplace le module de "Création Sonore" par le fichier reçu.
 \paragraph{}
-Comme le caractère de séparation dans les fichiers Pd est le point virgule, et qu'il est aussi utilisé en interne pour délimiter les messages, les fin d'envoi... La lecture et le traitement de ce genre de fichier n'a était sans difficultés, Mais la transfert de boite via Pure Data est possible.
+Comme le caractère de séparation dans les fichiers Pd est le point virgule, et qu'il est aussi utilisé en interne pour délimiter les messages, les fins d'envois... La lecture et le traitement de ce genre de fichier n'a pas été sans difficultés, Mais la transfert de boite via Pure Data est possible.
 \paragraph{}
-En commencent a implémenter cette méthode nous ne savions si pas cela allait vraiment marcher. Car aucun documentation sur le sujet n'a était trouvé dans les livres traitent du sujet, ni sur les sites de la communauté.\\
-À notre grande supprime il est tous à fait possible de réécrire des fichiers sans fait planté le patch actuelle chargé, même si le fichier modifier correspond à une boite du patch.\\
+En commencent à implémenter cette méthode nous ne savions si pas cela allait vraiment fonctionner. Car aucun documentation sur le sujet n'a été trouvé dans les livres traitent du sujet, ni sur les sites de la communauté.\\
+À notre grande supprime, il est tous à fait possible de réécrire des fichiers sans fait planté le patch actuelle chargé, même si le fichier modifié correspond à une boite du patch.\\
 Par contre Pure Data ne prendra en compte le changement de contenu de la boite qu’après fermeture et réouverture du patch.\\
-Il n'existe aucune boite permettant d’agir sur les patch chargé. Il aurait était possible d’écrire un external qui par une commande \texttt{Bash} recharger le patch, dans la version actuel du projet, l'utilisateur est obligé de d'éteindre et de relancer le dispositif.
+Il n'existe aucune boite permettant d’agir sur les patchs chargés. Il aurait était possible d’écrire un external qui par une commande \texttt{Bash} recharger le patch. Dans la version actuel du projet, l'utilisateur est obligé de d'éteindre et de relancer le dispositif.
 \paragraph{}
 Un second problème de l'envoi d'un fichier et que si le patch envoyé n'est pas un fichier Pure Data ou que la syntagme du fichier n'est pas respecté. Quant Pure Data se ré-ouvre avec la nouvelle boite cela produit étrangement pas de message erreur, mais le chargement du patch s’arrête et aucune connexions entre le boite ne sont faite. 
-À ce moment, la seule solution est de ré-installer toute la partie Pure Data du dispositif, ce qui est très contraignant, il faudra donc que l'utilisateur face tres attention en utilisant l'envoi de fichier.\\
+À ce moment, la seule solution est de ré-installer toute la partie Pure Data du dispositif, ce qui est très contraignant, il faudra donc que l'utilisateur face très attention en utilisant l'envoi de fichier.\\
 Il aurai été internant de programme un external chargé de vérifier la syntaxe du fichier envoyé à l'aide de \texttt{regexp} mais faute de temps nous n'avons pas eu le temps de le faire.   
 
 \section{Tutoriel et Documentation}
 \subsection{Écriture documentation Pure data}
 \paragraph{}
-Le projet n’étant qu'une permienne version, il est important de fournir un documentation la plus complète sur le fonctionnement de tous les patchs et les externals fabriqués. Pour facilité la compréhension du programme par les personnes qui travaillerons sur le projet.
+Le projet n’étant qu'une permienne version, il est important de fournir un documentation la plus complète sur le fonctionnement de tous les patchs et les externals fabriqués. Pour facilité la compréhension du programme par les personnes qui travailleront sur le projet.
 \subsection{Écriture du Tutoriel d'installation}
 \paragraph{}
-Comme beaucoup d'utilisateur de Pure Data ont des connaissances limité en informatique. Une documentation a était écrite pour expliquer pas à pas se que l'utilisateur doit faire pour pouvoir reproduire le dispositif.\\
-Elle décrit la partie Hardware avec les différents montage avec les capteurs mais aussi la partie Software pour l'installation de la distribution Linux, des paquets essentiels pour le faire fonctionner correctement, ainsi que la description de l'installation de Pure Data et de \texttt{Flext} à partir des sources.
+Comme beaucoup d'utilisateur de Pure Data ont des connaissances limité en informatique. Une documentation a été écrite pour expliquer pas à pas se que l'utilisateur doit faire pour pouvoir reproduire le dispositif.\\
+Elle décrit la partie Hardware avec les différents montages avec les capteurs mais aussi la partie Software pour l'installation de la distribution Linux, des paquets essentiels pour le faire fonctionner correctement, ainsi que la description de l'installation de Pure Data et de \texttt{Flext} à partir des sources.
 
 \paragraph{}
 Une image de la carte micro SD sera fourmi pour pouvoir mettre en place le dispositif sur la même carte.\\
@@ -467,22 +467,22 @@ De plus un tutoriel est présent pour  permettre à un utilisateur néophyte de 
 \subsection{Test en environnement réel}
 \paragraph{}
 Faire des testes sur le son n'est jamais quelques choses de faciles surtout quand il faut les bruits de l'environnement. ces sons étant souvent de faible intensités et de nature très diverse. De plus il est difficile de pouvoir prévoir tous les cas possibles au niveau des combinaisons de sons capté par le micro et les valeurs des capteurs.\\
-Nous avons tout de même essayé de faire le plus de teste possible que cela soit avec des sons de synthèses ou des enregistrements de environnement. Mais il aurait était pertinent de tester le dispositif plus amplement dans des conditions réel que nous n'avons pas eu le temps de faire faute de temps. 
+Nous avons tout de même essayé de faire le plus de tests possibles que cela soit avec des sons de synthèses ou des enregistrements de environnement. Mais il aurait était pertinent de tester le dispositif plus amplement dans des conditions réels que nous n'avons pas eu le temps de faire faute de temps. 
 
 \subsection{Test énergétique}
 \paragraph{}
 La carte Udoo malgré tous ses avantages (ses connexions et le micro contrôleur intégré ...) la carte reste très consommatrice d’énergie.\\
 Même si certaines documents non officiel, estime la consommation énergie moyenne de la carte à environs 10 Watts. Les spécifications et les divers documents officiel trouvé parlent seulement d'une consommation maximum de 24 Watts. Ce qui est considérable pour dispositif devant être le plus autonome possible énergétiquement.\\
 Il aurait était intéressant de faire des tests avec d'autres cartes moins gourmandes en énergie.\\
-Comme par example combiné une carte Arduino Nano pour l’acquisition de données avec une Raspberry Pi V2 pour faire les traitements. Ce dispositif serai plus raisonnable car il consommerait moins de 5 Watts (environ  0.5 Watts pour l'Arduino et 4 Watts pour la Raspberry).\\
+Comme par example combiné une carte Arduino Nano, pour l’acquisition de données, etc une Raspberry Pi V2 pour faire les traitements. Ce dispositif serait plus économe car il consommerait moins de 5 Watts (environ  0.5 Watts pour l'Arduino et 4 Watts pour la Raspberry).\\
 
 \subsection{Serveur distant}
 \paragraph{}
-Dans l'optique de diminuer la consommation d’énergie, il aurait peut être possible d'essayer de centraliser les traitements. La carte aurai pour rôle de collecter les données et les enverrait à un serveur qui lui ferrai les traitement et renverrait la flux audio ou simplement les paramètres pour synthétiser à la carte.\\
+Dans l'optique de diminuer la consommation d’énergie, il aurait peut être possible d'essayer de centraliser les traitements. La carte aurai pour rôle de collecter les données et les enverrait à un serveur qui lui ferrai les traitements et renverrait la flux audio ou simplement les paramètres pour synthétiser à la carte.\\
 Cela permettre de ne plus se soucier du temps de calcul et permettre d'avoir une supervision des dispositifs, pour savoir ce que chaque dispositif capte et fait comme musique.\\
-De plus il serait possible de partager des capteurs entre plusieurs dispositifs, comme la pression qui varie que très peu sur tous un site où les dispositifs seraient déployé.\\
-La modification des modules de création musical serai également simplifié étant sur le serveur.
- 
+De plus il serait possible de partager des capteurs entre plusieurs dispositifs, comme la pression qui varie que très peu sur tout un site où les dispositifs seraient déployé.\\
+La modification des modules de création musical serait également simplifié étant sur le serveur.
+
 
 \newpage
 \section{Bibliographie}
