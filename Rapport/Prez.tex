@@ -189,26 +189,16 @@ Pour ne pas perdre la hauteur du son capté par le micro.
 \begin{frame}
 \frametitle{Traitement audio}
 \framesubtitle{Rythme}
-Pour que le dispositif joue des sons cohérents avec l’environnement, le dispositif extrait également le rythme.\\
 Création d'un module pour détecter les débuts de notes à l'aide d'une boite détectant les impacts dans un signal.
-
-\begin{figure}
-\centering
-\includegraphics[height=130px]{bonk.jpg}
-\caption{Fonctionnement de \texttt{bonk}}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Traitement audio}
-\framesubtitle{Rythme}
+\newline
+\newline
 Les rythmes détectés sont groupés en séquence.\\
 Le module procède à une normalisation de la durée des rythmes.
 \begin{figure}
 \centering
-\includegraphics[height=20px]{rythme.jpg}
+\includegraphics[height=15px]{rythme.jpg}
 \caption{Séquence rythmique détectée}
-\includegraphics[height=50px]{structurerythme.jpg}
+\includegraphics[height=40px]{structurerythme.jpg}
 \caption{Séquence rythmique pouvant produire la séquence}
 \end{figure}
 \end{frame}
@@ -217,11 +207,11 @@ Le module procède à une normalisation de la durée des rythmes.
 \frametitle{Traitement audio}
 \framesubtitle{Rythme}
 Un External se charge de détecter des motifs récurrents dans la séquence.\\
-Dès qu'une séquence est trouvée, l'external retourne ce motif.\\
+Dès qu'une séquence est trouvée, le module retourne ce motif.\\
 La taille du motif est paramétrable.
 \begin{figure}
 \centering
-\includegraphics[height=50px]{motifrythme.jpg}
+\includegraphics[height=40px]{motifrythme.jpg}
 \caption{Motif rythmique}
 \end{figure}
 \end{frame}
