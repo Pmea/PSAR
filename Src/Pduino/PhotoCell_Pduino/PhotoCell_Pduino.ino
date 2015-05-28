@@ -3,7 +3,7 @@
 #include <SimpleTimer.h>
 #include "DHT.h"
 
-#define DHTPIN 2     // what pin we're connected to
+#define DHTPIN 2        // what pin we're connected to
 #define DHTTYPE DHT11   // DHT 11 
 #define VOYANTPIN 13
 
