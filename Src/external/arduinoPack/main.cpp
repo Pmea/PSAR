@@ -41,7 +41,7 @@ public:
 protected:
 
 	
-	// quand retourne ton la sequence quand il y en a une ou quand on envoi un bang ?
+	// retourne un symbol avec le code ascii + sep (en code ascii)
 	void m_pack(const t_symbol * input_Sym)	
 	{
 		string s=GetString(input_Sym);
@@ -58,6 +58,7 @@ protected:
 		ToOutString(0, out.c_str()); 
 	}
 
+	// pour tous les autres types que les symbols
 	void m_nothing(const t_symbol *s,int argc,const t_atom *argv){
 		ToOutBang(0);
 	}
@@ -65,7 +66,9 @@ protected:
 private:
 	char sep;
 
-	FLEXT_CALLBACK_S(m_pack)  
+	//callback pour symbol
+	FLEXT_CALLBACK_S(m_pack)
+	//callback pour le reste  
 	FLEXT_CALLBACK_A(m_nothing)
 };
 

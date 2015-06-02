@@ -42,7 +42,8 @@ public:
 protected:
 
 	
-	// quand retourne ton la sequence quand il y en a une ou quand on envoi un bang ?
+	// on stock les identifiants jusqu'a avoir un separateur, et on renvoi
+	// on peut donc envoyer caractere par caractere ou une chaine entiere
 	void m_unpack(const t_symbol * input_Sym)	
 	{
 		string s=GetString(input_Sym);
@@ -76,11 +77,14 @@ protected:
 
 private:
 
+	// le message en cours
 	vector<char> msg;
 
 	char sep;
 
-	FLEXT_CALLBACK_S(m_unpack)  
+	//si on recoi un symbol
+	FLEXT_CALLBACK_S(m_unpack)
+	//si on recoi un autre symbol  
 	FLEXT_CALLBACK_A(m_nothing)
 };
 

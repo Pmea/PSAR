@@ -70,10 +70,11 @@ protected:
 	int p;
 
 
+// L'algorithme fonctionne, a base de tublee (indice debut, indice fin)
+// il n'y a pas de recopie memoire, la seule place prise est celui du buffer des données recues.
+void m_analyse(const t_symbol * input_Sym){
 
-	void m_analyse(const t_symbol * input_Sym)	
-	{
-					if(tuple_max.end - tuple_max.start + 1 < min_size_seq){
+		if(tuple_max.end - tuple_max.start + 1 < min_size_seq){
 
 			string s=GetString(input_Sym);
 
@@ -125,6 +126,7 @@ protected:
 	}
 }
 	
+	// si on recoi un bang a droite on vide les buffers, on reinitialiser la recherche
 	void m_bang(const t_symbol *s,int argc,const t_atom *argv){
 		//reset all 
 		buff.clear();
@@ -140,6 +142,10 @@ protected:
 		ToOutBang(0);
 	}
 
+	// si on recoi un nombre a droite, on change la timme min du motif a detecter
+	// on ne vide pas les buffers
+	// ATTENTION: si on diminue la taille de la sequence. Le programme peut deja avoir trouvé
+	// un sequence de la nouvelle taille (il l'envera la prochaine fois que l'on fera appel a m_analyse)
 	void m_size_seq(int input_size){
 		if(input_size <= 1){
 			ToOutString(0, "Error: sequence must have 2 minimun");
