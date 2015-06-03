@@ -1,0 +1,46 @@
+#N canvas 374 187 663 653 10;
+#X obj 8 517 cnv 15 552 21 empty \$0-pddp.cnv.footer empty 20 12 0
+14 -228856 -66577 0;
+#X obj 10 8 cnv 15 552 40 empty \$0-pddp.cnv.header Maximun_value 3
+12 0 18 -204280 -1 0;
+#X obj 8 246 cnv 3 550 3 empty \$0-pddp.cnv.inlets inlets 8 12 0 13
+-228856 -1 0;
+#X obj 8 340 cnv 3 550 3 empty \$0-pddp.cnv.outlets outlets 8 12 0
+13 -228856 -1 0;
+#X obj 8 382 cnv 3 550 3 empty \$0-pddp.cnv.argument arguments 8 12
+0 13 -228856 -1 0;
+#X obj 8 445 cnv 3 550 3 empty \$0-pddp.cnv.more_info more_info 8 12
+0 13 -228856 -1 0;
+#X obj 86 349 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X obj 86 255 cnv 17 3 35 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X obj 86 297 cnv 17 3 35 empty \$0-pddp.cnv.let.1 1 5 9 0 16 -228856
+-162280 0;
+#X obj 90 408 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X text 110 407 (none);
+#X text 106 349 (nombre);
+#X text 119 454 This module was create by Pierre Mahé during Projet
+Master Degree. Any question \, mahe.pierre@live.fr;
+#X text 19 29 return the greaters value;
+#X floatatom 103 109 5 0 0 0 - - -;
+#X floatatom 160 109 5 0 0 0 - - -;
+#X obj 103 192 print [maxvalue];
+#X obj 473 17 maxvalpass;
+#X obj 103 140 maxvalpass;
+#X text 105 253 number;
+#X text 106 295 number;
+#X text 175 348 - greaters value;
+#X obj 126 77 t b b;
+#X obj 126 57 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 174 294 -second number;
+#X text 175 252 -fist number;
+#X text 250 133 ATTENTION NE FONCTIONNE PAS;
+#X connect 14 0 18 0;
+#X connect 15 0 18 1;
+#X connect 18 0 16 0;
+#X connect 22 0 14 0;
+#X connect 22 1 15 0;
+#X connect 23 0 22 0;
