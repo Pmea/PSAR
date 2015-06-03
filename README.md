@@ -110,6 +110,17 @@ bash {path flext]/flext/build.sh pd gcc install
 
 Pour ajouter un external à Pd-extendedune, fois qu'il a été compilé il faut l'ajouter le chemin vers le fichier compilé dans Pd-extended : Édition >> préférence >> New.
 
+### Branchement de la carte
+Pour brancher les capteurss, il n'y a pas grand chose a faire mise a part reporduire le schema du montage fourmis dans le dossier *Tutoriel*.
+
+### Installation bibliothèque Arduino
+Il faut ajouter au dossier "Arduino" à la racine de votre repertoire personnelle, les bibliotheques Arduino à copier sont : 
+
+*  SimpleTimer, [leurs site](http://playground.arduino.cc/Code/SimpleTimer)
+*  DHT_sensor, [leurs site](https://github.com/adafruit/DHT-sensor-library)
+
+Ils sont joint dans le dossier et telechargable sur le site officiel.
+
 ### Annexe
 ##### Recommandation pour l’utilisation de Pd-extended sur Udoo
 Au démarrage de Pd-extended, le logiciel affiche de nombreux **Warning** de *ALSA* mais cela n'a pas d’incidence sur le logiciel.
