@@ -1,0 +1,58 @@
+#N canvas 186 240 725 738 10;
+#X obj 20 702 cnv 15 552 21 empty \$0-pddp.cnv.footer empty 20 12 0
+14 -228856 -66577 0;
+#X obj 23 22 cnv 15 552 40 empty \$0-pddp.cnv.header NoiseGate 3 12
+0 18 -204280 -1 0;
+#X obj 20 347 cnv 3 550 3 empty \$0-pddp.cnv.inlets inlets 8 12 0 13
+-228856 -1 0;
+#X obj 20 443 cnv 3 550 3 empty \$0-pddp.cnv.outlets outlets 8 12 0
+13 -228856 -1 0;
+#X obj 20 509 cnv 3 550 3 empty \$0-pddp.cnv.argument arguments 8 12
+0 13 -228856 -1 0;
+#X obj 20 664 cnv 3 550 3 empty \$0-pddp.cnv.more_info more_info 8
+12 0 13 -228856 -1 0;
+#X obj 98 452 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X obj 98 356 cnv 17 3 35 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X obj 98 398 cnv 17 3 35 empty \$0-pddp.cnv.let.1 1 5 9 0 16 -228856
+-162280 0;
+#X obj 102 535 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X text 131 673 This module was create by Pierre Mahé during Projet
+Master Degree. Any question \, mahe.pierre@live.fr;
+#X obj 148 171 gaten;
+#X obj 147 107 osc~ 440;
+#X obj 138 295 dac~;
+#X obj 236 296 print [gaten-env];
+#X text 31 43 Create NoiseGate for signal;
+#X text 117 354 signal;
+#X text 191 353 -signal which must process;
+#X text 187 451 -signal;
+#X obj 97 479 cnv 17 3 17 empty \$0-pddp.cnv.let.0 1 5 9 0 16 -228856
+-162280 0;
+#X text 118 452 signal;
+#X text 117 479 nombre;
+#X text 186 478 -signal env;
+#X text 122 534 number;
+#X text 182 534 -threashold;
+#X obj 102 560 cnv 17 3 17 empty \$0-pddp.cnv.let.0 1 5 9 0 16 -228856
+-162280 0;
+#X text 122 559 number;
+#X obj 102 587 cnv 17 3 17 empty \$0-pddp.cnv.let.0 2 5 9 0 16 -228856
+-162280 0;
+#X text 122 586 number;
+#X obj 102 614 cnv 17 3 17 empty \$0-pddp.cnv.let.0 3 5 9 0 16 -228856
+-162280 0;
+#X text 122 613 number;
+#X text 182 613 -decay;
+#X text 183 586 -hold;
+#X text 181 560 -attack;
+#X text 118 396 number;
+#X floatatom 236 108 5 0 0 0 - - -;
+#X text 193 395 -minimal env to thown the signal;
+#X connect 11 0 13 0;
+#X connect 11 0 13 1;
+#X connect 11 1 14 0;
+#X connect 12 0 11 0;
+#X connect 35 0 11 1;

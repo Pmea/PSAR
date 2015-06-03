@@ -1,19 +1,20 @@
-#N canvas 986 92 927 998 10;
+#N canvas 980 102 927 998 10;
 #X obj 487 619 outlet;
 #X obj 434 537 spigot;
 #X obj 561 529 spigot;
-#X obj 573 568 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 561 563 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 403 564 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 434 568 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 401 407 unpack;
-#X obj 374 380 t a a;
-#X obj 611 407 unpack;
-#X obj 584 380 t a a;
-#X obj 584 327 inlet;
-#X obj 374 330 inlet;
+#X obj 434 406 unpack;
+#X obj 407 379 t a a;
+#X obj 576 407 unpack;
+#X obj 549 380 t a a;
+#X obj 549 327 inlet;
+#X obj 407 330 inlet;
 #X obj 467 516 >;
 #X obj 594 503 <;
+#X obj 229 500 print;
 #X connect 1 0 0 0;
 #X connect 1 0 4 0;
 #X connect 2 0 0 0;
@@ -21,6 +22,7 @@
 #X connect 5 1 11 0;
 #X connect 5 1 12 0;
 #X connect 6 0 1 0;
+#X connect 6 0 13 0;
 #X connect 6 1 5 0;
 #X connect 7 1 11 1;
 #X connect 7 1 12 1;
@@ -29,4 +31,5 @@
 #X connect 9 0 8 0;
 #X connect 10 0 6 0;
 #X connect 11 0 1 1;
+#X connect 11 0 13 0;
 #X connect 12 0 2 1;
