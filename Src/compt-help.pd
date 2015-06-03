@@ -1,4 +1,4 @@
-#N canvas 1090 256 644 672 10;
+#N canvas 1087 261 644 672 10;
 #X obj 10 605 cnv 15 552 21 empty \$0-pddp.cnv.footer empty 20 12 0
 14 -228856 -66577 0;
 #X obj 12 12 cnv 15 552 40 empty \$0-pddp.cnv.header Compter 3 12 0
@@ -19,7 +19,6 @@
 #X obj 88 301 cnv 17 3 35 empty \$0-pddp.cnv.let.1 1 5 9 0 16 -228856
 -162280 0;
 #X obj 475 21 compt;
-#X text 508 13;
 #X text 21 33 create compter for patch;
 #X obj 56 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -53,9 +52,9 @@ initialise by 0 \, first valeur are 0 this action are a hot entry.
 entry.;
 #X text 121 542 This module was create by Pierre Mahé during Projet
 Master Degree. Any question \, mahe.pierre@live.fr;
+#X connect 12 0 13 0;
 #X connect 13 0 14 0;
-#X connect 14 0 15 0;
-#X connect 14 0 16 0;
-#X connect 17 0 14 1;
-#X connect 18 0 14 3;
-#X connect 19 0 14 2;
+#X connect 13 0 15 0;
+#X connect 16 0 13 1;
+#X connect 17 0 13 3;
+#X connect 18 0 13 2;
