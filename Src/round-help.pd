@@ -1,0 +1,41 @@
+#N canvas 992 82 927 998 10;
+#X obj 30 537 cnv 15 552 21 empty \$0-pddp.cnv.footer empty 20 12 0
+14 -228856 -66577 0;
+#X obj 34 32 cnv 15 552 40 empty \$0-pddp.cnv.header Round 3 12 0 18
+-204280 -1 0;
+#X obj 30 270 cnv 3 550 3 empty \$0-pddp.cnv.inlets inlets 8 12 0 13
+-228856 -1 0;
+#X obj 30 360 cnv 3 550 3 empty \$0-pddp.cnv.outlets outlets 8 12 0
+13 -228856 -1 0;
+#X obj 30 402 cnv 3 550 3 empty \$0-pddp.cnv.argument arguments 8 12
+0 13 -228856 -1 0;
+#X obj 30 465 cnv 3 550 3 empty \$0-pddp.cnv.more_info more_info 8
+12 0 13 -228856 -1 0;
+#X obj 108 369 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X obj 108 279 cnv 17 3 35 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X floatatom 125 154 10 0 0 0 - - -;
+#X obj 112 428 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X text 132 427 (none);
+#X text 141 474 This module was create by Pierre Mahé during Projet
+Master Degree. Any question \, mahe.pierre@live.fr;
+#X text 635 135;
+#X floatatom 125 212 5 0 0 0 - - -;
+#X text 41 53 Round nomber;
+#X obj 128 122 hsl 128 15 0 5 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 12700 1;
+#X text 128 277 number;
+#X obj 533 39 round;
+#X obj 125 179 round;
+#X obj 108 318 cnv 17 3 35 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X text 128 316 bang;
+#X text 198 276 -number which must be round;
+#X text 199 315 -return last valeur;
+#X text 128 369 number;
+#X text 199 369 -round number;
+#X connect 8 0 18 0;
+#X connect 15 0 8 0;
+#X connect 18 0 13 0;
