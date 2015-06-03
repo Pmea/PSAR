@@ -1,0 +1,42 @@
+#N canvas 633 88 793 742 10;
+#X obj 20 615 cnv 15 552 21 empty \$0-pddp.cnv.footer empty 20 12 0
+14 -228856 -66577 0;
+#X obj 24 22 cnv 15 552 40 empty \$0-pddp.cnv.header Note_compter 3
+12 0 18 -204280 -1 0;
+#X obj 20 260 cnv 3 550 3 empty \$0-pddp.cnv.inlets inlets 8 12 0 13
+-228856 -1 0;
+#X obj 20 438 cnv 3 550 3 empty \$0-pddp.cnv.outlets outlets 8 12 0
+13 -228856 -1 0;
+#X obj 20 480 cnv 3 550 3 empty \$0-pddp.cnv.argument arguments 8 12
+0 13 -228856 -1 0;
+#X obj 20 543 cnv 3 550 3 empty \$0-pddp.cnv.more_info more_info 8
+12 0 13 -228856 -1 0;
+#X obj 98 447 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X obj 98 269 cnv 17 3 35 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X obj 98 311 cnv 17 3 35 empty \$0-pddp.cnv.let.1 1 5 9 0 16 -228856
+-162280 0;
+#X obj 166 115 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 102 506 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X text 122 505 (none);
+#X text 118 309 bang;
+#X text 131 552 This module was create by Pierre Mahé during Projet
+Master Degree. Any question \, mahe.pierre@live.fr;
+#X text 519 23;
+#X obj 506 32 comptNote;
+#X text 31 43 create compter for note by midi pitch;
+#X obj 115 154 comptNote;
+#X msg 115 115 100;
+#X obj 115 206 print [NoteCompter];
+#X text 187 308 -send list of note \, and reinitilise compters;
+#X text 118 267 anything;
+#X text 188 267 -a MIDI value \, comptNote look up the value corespond
+to note. And increment compter for this note;
+#X text 118 447 number;
+#X text 187 446 - list of Note compters;
+#X connect 9 0 17 1;
+#X connect 17 0 19 0;
+#X connect 18 0 17 0;

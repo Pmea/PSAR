@@ -1,0 +1,61 @@
+#N canvas 1090 256 644 672 10;
+#X obj 10 605 cnv 15 552 21 empty \$0-pddp.cnv.footer empty 20 12 0
+14 -228856 -66577 0;
+#X obj 12 12 cnv 15 552 40 empty \$0-pddp.cnv.header Compter 3 12 0
+18 -204280 -1 0;
+#X obj 10 250 cnv 3 550 3 empty \$0-pddp.cnv.inlets inlets 8 12 0 13
+-228856 -1 0;
+#X obj 10 428 cnv 3 550 3 empty \$0-pddp.cnv.outlets outlets 8 12 0
+13 -228856 -1 0;
+#X obj 10 470 cnv 3 550 3 empty \$0-pddp.cnv.argument arguments 8 12
+0 13 -228856 -1 0;
+#X obj 10 533 cnv 3 550 3 empty \$0-pddp.cnv.more_info more_info 8
+12 0 13 -228856 -1 0;
+#X obj 88 437 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X obj 88 259 cnv 17 3 35 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X text 108 257 anything;
+#X obj 88 301 cnv 17 3 35 empty \$0-pddp.cnv.let.1 1 5 9 0 16 -228856
+-162280 0;
+#X obj 475 21 compt;
+#X text 508 13;
+#X text 21 33 create compter for patch;
+#X obj 56 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 105 144 compt;
+#X obj 105 196 print [compter];
+#X obj 115 172 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 98 80 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 179 83 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 134 80 5 0 0 0 - - -;
+#X obj 92 496 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-162280 0;
+#X text 112 495 (none);
+#X text 108 437 (nombre);
+#X text 177 436 - value of compter;
+#X text 108 299 bang;
+#X text 178 256 -incremente le compter by 1 initialy the compt are
+initialise by 0 \, first valeur are 0 this action are a hot entry.
+;
+#X text 183 298 -set compter to 0 this action are cold entry.;
+#X obj 88 343 cnv 17 3 35 empty \$0-pddp.cnv.let.1 2 5 9 0 16 -228856
+-162280 0;
+#X obj 88 384 cnv 17 3 35 empty \$0-pddp.cnv.let.1 3 5 9 0 16 -228856
+-162280 0;
+#X text 108 382 bang;
+#X text 108 341 number;
+#X text 177 382 -set compter to 0 this action are hot entry.;
+#X text 182 341 -set compter to a special value. this action are cold
+entry.;
+#X text 121 542 This module was create by Pierre Mahé during Projet
+Master Degree. Any question \, mahe.pierre@live.fr;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 14 0 16 0;
+#X connect 17 0 14 1;
+#X connect 18 0 14 3;
+#X connect 19 0 14 2;
